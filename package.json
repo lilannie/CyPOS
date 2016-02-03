@@ -1,0 +1,19 @@
+{
+  "name": "g17_cypos",
+  "version": "1.0.0",
+  "description": "Generates a Program of Study from Degree Audit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.linux.iastate.edu/309Spring2016/G17_CyPOS.git"
+  },
+  "author": "Annie Steenson",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "pdf2json": "^0.7.1"
+  }
+}
