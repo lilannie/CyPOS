@@ -13,7 +13,9 @@
   "author": "Annie Steenson",
   "license": "ISC",
   "dependencies": {
+    "bootstrap": "^3.3.6",
     "express": "^4.13.4",
+    "passport": "^0.3.2",
     "pdf2json": "^0.7.1"
   }
 }
