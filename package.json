@@ -15,7 +15,10 @@
   "dependencies": {
     "bootstrap": "^3.3.6",
     "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "jquery": "^2.2.0",
     "passport": "^0.3.2",
+    "path": "^0.12.7",
     "pdf2json": "^0.7.1"
   }
 }
