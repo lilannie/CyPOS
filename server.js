@@ -2,24 +2,24 @@ var express = require('express');
 var pdf2json = require('pdf2json');
 var router = express.Router();
 
-var path = __dirname + '/views/';
+var path = __dirname + '/public/views/';
 var app = express();
 var port = 8080;
-
-router.use(function (req,res,next) {
-    console.log("/" + req.method);
-    next();
-});
 
 router.get("/",function(req,res){
     res.sendFile(path + "index.html");
 });
 
-router.get("/home",function(req,res){
+router.get(/home/,function(req,res){
     res.sendFile(path + "home.html");
 });
 
+router.get("/new",function(req,res){
+    res.sendFile(path + "new.html");
+});
+
 app.use("/",router);
+app.use(express.static('public'));
 
 /*//Defining middleware to server static files
 app.use('static', express.static('./node_modules/bootstrap'));*/
