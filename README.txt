@@ -9,8 +9,13 @@ Install dependencies on local: "npm install"
 Run server on localhost: "npm start"
 Access website at: "localhost:8080"
 
+HTTP Routing:
+-------------------------------------------
+localhost:8080/ or localhost:8080/index.html   --> login page
+localhost:8080/home --> home page setup with no login info
+
 Directory Structure:
-----------------------------------------
+-------------------------------------------
 database: DB scripts
 files: extra files for testing, reference, etc.
 html: extra html files for testing, referencee, etc.
