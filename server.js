@@ -1,16 +1,24 @@
 var express = require('express');
 var pdf2json = require('pdf2json');
-var path = require('path');
+var router = express.Router();
 
+var path = __dirname + '/views/';
 var app = express();
 var port = 8080;
 
-app.get('/', function (request, response) {
-    response.sendFile(path.join(__dirname, '/views', 'index.html'));
+router.use(function (req,res,next) {
+    console.log("/" + req.method);
+    next();
 });
 
-app.post('/upload', function (request, response) {
-    response.send('test');
+router.get("/",function(req,res){
+    res.sendFile(path + "index.html");
+});
+
+app.use("/",router);
+
+app.use("*",function(req,res){
+    res.sendFile(path + "404.html");
 });
 
 app.listen(port, function () {
