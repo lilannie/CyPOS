@@ -15,7 +15,14 @@ router.get("/",function(req,res){
     res.sendFile(path + "index.html");
 });
 
+router.get("/home",function(req,res){
+    res.sendFile(path + "home.html");
+});
+
 app.use("/",router);
+
+/*//Defining middleware to server static files
+app.use('static', express.static('./node_modules/bootstrap'));*/
 
 app.use("*",function(req,res){
     res.sendFile(path + "404.html");
