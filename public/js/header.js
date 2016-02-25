@@ -25,7 +25,7 @@ var header = "" +
     "<button type='submit' class='btn btn-default'>Submit</button>" +
     "</form>" +
     "<ul class='nav navbar-nav navbar-right'>" +
-    "<li><a href=''>Logout</a></li>" +
+    "<li><a href='./index'>Logout</a></li>" +
     "<li class='dropdown'>" +
     "<a href='./myaccount' class='dropdown-toggle' data-toggle='dropdown' role='button' aria-haspopup='true' aria-expanded='false'>My Account<span class='caret'></span></a>" +
     "<ul class='dropdown-menu'>" +
@@ -39,6 +39,6 @@ var header = "" +
     "</div><!-- /.navbar-collapse -->" +
     "</div><!-- /.container-fluid -->" +
     "</nav>";
-document.write("here");
-$("body").after(header);
+document.write("");
+$("body").before(header);
 

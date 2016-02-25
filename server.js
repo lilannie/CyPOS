@@ -10,9 +10,9 @@ var path = __dirname + '/public/views/';
 
 /*Express App Routing*/
 app.use("/",require('./routes'));
-/*app.use("*",function(req,res){
+app.use("*",function(req,res){
     res.sendFile(path + "404.html");
-});*/
+});
 app.listen(port, function () {
     console.log('listening on port '+ port);
 });
