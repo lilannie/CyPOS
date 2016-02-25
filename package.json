@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Generates a Program of Study from Degree Audit",
   "main": "index.js",
-  "scripts" : {
-    "start" : "node Server.js"
+  "scripts": {
+    "start": "node Server.js"
   },
   "repository": {
     "type": "git",
@@ -13,10 +13,16 @@
   "author": "Annie Steenson",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "bookshelf": "0.5",
     "bootstrap": "^3.3.6",
+    "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "express-session": "^1.13.0",
     "jquery": "^2.2.0",
+    "mysql": "*",
     "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "pdf2json": "^0.7.1"
   }
 }

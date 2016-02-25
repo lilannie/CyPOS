@@ -31,7 +31,15 @@ util: utility scripts
 root directory: scripts ran on the server
 
 
-Technology Used:
+Node Modules Used:
 -------------------------------------------
-Express.js: <descrip>
+Express.js: Bundled minddlewares for configuring our application.
 Bootstrap.js: <descrip>
+Bcrypt-nodejs: Encrypts password before we store it
+Ejs: javascript templating engine, allows us to execute some inline codes within our page
+Passportjs: Authentication middleware designed for users
+Passport-local: Because were using our own database for authentication
+Bookshelfjs: ORM, use lists of functions to query
+MySQL: Work with MySQL database
+
+
