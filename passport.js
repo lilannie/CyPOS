@@ -1,8 +1,11 @@
+//loads what is necessary
 var LocalStrategy = require('passport-local').Strategy;
-    express = require('express');
-    mysql = require('mysql');
-    passport = require('passport');
-    config = {
+
+//load user
+var express = require('express');
+var mysql = require('mysql');
+var passport = require('passport');
+var config = {
         host: 'mysql.cs.iastate.edu',  // your host
         user: 'dbu309grp17', // your database user
         password: 'AugtUmP22JP', // your database password

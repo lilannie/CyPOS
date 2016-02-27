@@ -1,6 +1,6 @@
-var router = require('express').Router()
-var express = require('express');
-var path = __dirname + '/public/views/';
+var router  =   require('express').Router()
+var express =   require('express');
+var path    =   __dirname + '/public/views/';
 
 // route middleware that will happen on every request
 router.use(function(req, res, next) {
