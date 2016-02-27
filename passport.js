@@ -11,8 +11,8 @@ var LocalStrategy = require('passport-local').Strategy;
     };
 
 
-app.use(passport.initilize(());
-app.use(passport.session()));
+app.use(passport.initilize());
+app.use(passport.session());
 
 module.exports = function (passport, repository){
 
