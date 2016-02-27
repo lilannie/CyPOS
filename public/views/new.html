@@ -14,6 +14,31 @@
 
 
 <body>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("select").change(function(){
+            $(this).find("option:selected").each(function(){
+                if($(this).attr("value")=="ComputerEngineering"){
+                    $(".major").not(".ComputerEngineering").hide();
+                    $(".ComputerEngineering").show();
+                }
+                else if($(this).attr("value")=="ComputerScience"){
+                    $(".major").not(".ComputerScience").hide();
+                    $(".ComputerScience").show();
+                }
+                else if($(this).attr("value")=="SoftwareEngineering"){
+                    $(".major").not(".SoftwareEngineering").hide();
+                    $(".SoftwareEngineering").show();
+                }
+                else{
+                    $(".major").hide();
+                }
+            });
+        }).change();
+    });
+</script>
+
 <script src="./js/header.js" type="text/javascript"></script>
 
     <form>
@@ -21,13 +46,281 @@
             <div class="form-group">
                 <label for="major">Select Major:</label>
                 <select class="form-control" id="major">
-                    <option>Software Engineering</option>
-                    <option>Computer Engineering</option>
-                    <option>Computer Science</option>
+                    <option value="SoftwareEngineering">Software Engineering</option>
+                    <option value="ComputerEngineering">Computer Engineering</option>
+                    <option value="ComputerScience">Computer Science</option>
                 </select>
             </div>
             <!--Rockies stuff: Use bootstrap:  http://getbootstrap.com/css/#forms-example-->
+            <div class="ComputerEngineering major">
+                <label><input type="checkbox" value="">Option 1</label>
+            </div>
+            <div class="ComputerScience major">
+                <label><input type="checkbox" value="">Option 2</label>
+            </div>
+            <div class="SoftwareEngineering major">
+                <label><input type="checkbox" value="">Option 3</label>
+            </div>
 
+            <div class="ComputerEngineering major">
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Math 165</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Engr 101</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 185</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Chem 167</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Lib 160</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Engl 150</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Math 166</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Phys 221</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 166</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Com S 227</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Gen Ed Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Math 265</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Math 265</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Phys 222</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 281</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Com S 228</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 294</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Math 267</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">EE 201</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 288</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Engl 250</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Gen Ed Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">EE 230</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 381</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 310</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Com S 309</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 394</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Gen Ed Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">EE Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 308</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Com S 311</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Engl 314</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Gen Ed Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Tech Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Tech Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 491</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 494</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Stat 330</label>
+            </div>
+
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Gen Ed Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Tech Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Com S Elective</label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">CprE 492</label>
+            </div>
+            </div>
+            <div class="ComputerScience major">
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Math 165</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 101</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Social Science</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 227</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Forl 101</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Engl 150</label>
+                </div>
+
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Math 166</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Arts and Humanities</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 228</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Elective/Forl 102</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Lib 160</label>
+                </div>
+
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Math choice</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 203</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 327</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">CprE 281</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Engl 250</label>
+                </div>
+
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Stats Option</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 330</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 321</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Natural Sci</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Elective</label>
+                </div>
+
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Sci Sequence p1</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 331</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 362 or 363</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">SpCm 212</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Arts and Humanities</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Sci Sequence p2</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 311</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">ComS 309</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Engl 302/305/309/314</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Social Sci</label>
+                </div>
+
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Science Requirement</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Engr 101</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">CprE 185</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Chem 167</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Lib 101</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="checkbox" value="">Engl 150</label>
+                </div>
+            </div>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
     </form>
