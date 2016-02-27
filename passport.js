@@ -1,6 +1,6 @@
 var LocalStrategy = require('passport-local').Strategy;
     express = require('express');
-    mysql = require('mysql';)
+    mysql = require('mysql');
     passport = require('passport');
     config = {
         host: 'mysql.cs.iastate.edu',  // your host
