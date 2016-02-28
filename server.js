@@ -10,20 +10,19 @@ var express = require('express');
 /*var pdf2json = require('pdf2json');*/
 var router = express.Router();
 var app = express();
-var dbConfig = {
-    client: 'mysql',
-    connection: {
-        host: 'localhost',
-        user: 'root',
-        password: 'your_password',
-        database: 'blog',
-        charset: 'utf8'
-    }
-};
-app.set('bookshelf', bookshelf);
 
+/*/!*Database config*!/
+var dbConfig = {
+    host: 'mysql.cs.iastate.edu',  // your host
+    user: 'dbu309grp17', // your database user
+    password: 'AugtUmP22JP', // your database password
+    database: 'db309grp17',
+    charset: 'UTF8_GENERAL_CI'
+};
 var knex = require('knex')(dbConfig);
 var bookshelf = require('bookshelf')(knex);
+app.set('bookshelf', bookshelf);*/
+
 
 /*Variables to make things easier to read*/
 var port = 8080;
