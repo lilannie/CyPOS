@@ -10,7 +10,7 @@ var express = require('express');
 /*var pdf2json = require('pdf2json');*/
 var router = express.Router();
 var app = express();
-var dbConfig = {
+/*var dbConfig = {
     client: 'mysql',
     connection: {
         host: 'localhost',
@@ -23,7 +23,7 @@ var dbConfig = {
 app.set('bookshelf', bookshelf);
 
 var knex = require('knex')(dbConfig);
-var bookshelf = require('bookshelf')(knex);
+var bookshelf = require('bookshelf')(knex);*/
 
 /*Variables to make things easier to read*/
 var port = 8080;
