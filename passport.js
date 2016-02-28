@@ -19,12 +19,14 @@ app.use(passport.session());
 
 module.exports = function (passport, repository){
 
+    //initialize user for session (login)
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
+
+    //close out user session (log out)
+    passport.deserializeUser(function(user, done) {
+        done(null, user);
+    });
 }
 
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-
-passport.deserializeUser(function(user, done) {
-    done(null, user);
-});
