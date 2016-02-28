@@ -14,6 +14,7 @@ var config = {
     };
 
 
+var app = express();
 app.use(passport.initilize());
 app.use(passport.session());
 
@@ -21,10 +22,12 @@ module.exports = function (passport, repository){
 
 }
 
+//initialize user for session (login)
 passport.serializeUser(function(user, done) {
     done(null, user.id);
 });
 
+//close out user session (log out)
 passport.deserializeUser(function(user, done) {
     done(null, user);
 });
