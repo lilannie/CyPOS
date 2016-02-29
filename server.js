@@ -1,74 +1,57 @@
 // vendor library
-var passport = require('passport');
-var bcrypt = require('bcrypt-nodejs');
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var session = require('express-session');
-var ejs = require('ejs');
-var LocalStrategy = require('passport-local').Strategy;
-
-// custom library
-// model
-var Model = require('./database/model');
-var functions = require('./functions');
-
-var express = require('express');
-/*var pdf2json = require('pdf2json');*/
-var router = express.Router();
-var app = express();
-
-passport.use(new LocalStrategy(function(username, password, done) {
-    new Model.User({username: username}).fetch().then(function(data) {
-        var user = data;
-        if(user === null) {
-            return done(null, false, {message: 'Invalid username or password'});
-        } else {
-            user = data.toJSON();
-            if(!bcrypt.compareSync(password, user.password)) {
-                return done(null, false, {message: 'Invalid username or password'});
-            } else {
-                return done(null, user);
-            }
+var passport = require('passport'),
+    express = require('express'),
+    session     = require('express-session'),
+    bodyParser  = require('body-parser'),
+    app = express(),
+    pdf2json = require('pdf2json'),
+    server      = require('http').Server(app),
+    io          = require('socket.io')(server),
+    knex        = require('knex')(module.exports = {
+        client     : 'mysql',
+        connection : {
+            host     : 'mysql.cs.iastate.edu',
+            user     : 'dbu309grp17',
+            password : 'AugtUmP22JP',
+            database : 'db309grp17',
+            charset  : 'utf8'
         }
-    });
-}));
-
-passport.serializeUser(function(user, done) {
-    done(null, user.username);
-});
-
-passport.deserializeUser(function(username, done) {
-    new Model.User({username: username}).fetch().then(function(user) {
-        done(null, user);
-    });
-});
-
-
-var dbConfig = {
-    host: 'mysql.cs.iastate.edu',  // your host
-    user: 'dbu309grp17', // your database user
-    password: 'AugtUmP22JP', // your database password
-    database: 'db309grp17',
-    charset: 'UTF8_GENERAL_CI'
-};
-
-//var knex = require('knex')(dbConfig);
-//var bookshelf = require('bookshelf')(knex);
-//app.set('bookshelf', bookshelf);
-app.use(cookieParser());
-app.use(bodyParser());
-app.use(session({secret: 'secret strategic xxzzz code'}));
-app.use(passport.initialize());
-app.use(passport.session());
-
+    }),
+    Bookshelf   = require('bookshelf')(knex),
+    Models      = require('./database/model')(Bookshelf),
+    Collections = require('./database/collections')(Models, Bookshelf),
+    repository  = require('./repository')(Models, Collections);
 
 /*Variables to make things easier to read*/
 var port = 8080;
 var path = __dirname + '/public/views/';
 
+//Initial database setup
+repository.getAllUsers()
+    .then(function (users) {
+        if (users.length == 0) {
+            repository.createUser('Annie', 'annie1')
+        } else {
+            console.log('Database is already set up');
+        }
+    });
+
+//Settings for Passport (authentication)
+require('./passport.js')(passport, repository);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 /*Express App Routing*/
-app.use("/",require('./routes'));
+/*app.use("/",require('./routes')(express, path));*/
+
+//Routes
+require('./routes.js')(app, passport, io, repository, express);
+
+//Configure static-serving directory for js, css, client side react components
+app.use('/static', express.static(__dirname + '/public'));
+
+
 app.use("*",function(req,res){
     res.sendFile(path + "404.html");
 });
