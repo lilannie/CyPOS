@@ -1,10 +1,10 @@
-var DB = require('./db').DB;
+module.exports = function (bookshelf) {
+    var User = bookshelf.Model.extend({
+        tableName : 'tblUsers',
+        idAttribute: 'userID'
+    });
 
-var User = DB.Model.extend({
-    tableName: 'tblUsers',
-    idAttribute: 'userID',
-});
-
-module.exports = {
-    User: User
+    return {
+        User    : User
+    };
 };

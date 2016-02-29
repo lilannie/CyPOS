@@ -1,54 +1,72 @@
-var router  =   require('express').Router()
-var express =   require('express');
 var path    =   __dirname + '/public/views/';
-var functions = require('./functions');
 
-//Sign In
-//Get
-//Called from app.js
-var signIn = function(req, res, next) {
-    if(req.isAuthenticated()) res.redirect('/');
-    res.render('signin', {title: 'Sign In'});
-};
+function authenticated(request, response, next) {
+    if (request.isAuthenticated()) return next();
+    else response.redirect('/index');
+}
+var loggedInUsers = [];
+function isLoggedIn (username) {
+    for (var user in loggedInUsers) {
+        if (user === username) return true;
+    }
+    return false;
+}
+module.exports = function (app, passport, io, repository, express) {
 
-// route middleware that will happen on every request
-router.use(function(req, res, next) {
-    // log each request to the console
-    console.log(req.method, req.url);
-    // continue doing what we were doing and go to the route
-    next();
-});
+    app.get('/', function (request, response) {
+        response.sendFile(path + '/index.html');
+    });
+    app.post(
+        '/',
+        passport.authenticate('login', {
+            successRedirect : '/home',
+            failureRedirect : '/'
+        }),
+        function (request, response) {
+            console.log("User logged in successfully.");
+        }
+    );
+    app.get("/home",function(req,res){
+        res.sendFile(path + "home.html");
+    });
+    app.get("/classes",function(req,res){
+        res.sendFile(path + "classes.html");
+    });
+    app.get("/help",function(req,res){
+        res.sendFile(path + "help.html");
+    });
+    app.get("/history",function(req,res){
+        res.sendFile(path + "history.html");
+    });
+    app.get("/home",function(req,res){
+        res.sendFile(path + "home.html");
+    });
+    app.get("/manage",function(req,res){
+        res.sendFile(path + "manage.html");
+    });
+    app.get("/myaccount",function(req,res){
+        res.sendFile(path + "myaccount.html");
+    });
+    app.get("/new",function(req,res){
+        res.sendFile(path + "new.html");
+    });
+    app.get("/view",function(req,res){
+        res.sendFile(path + "view.html");
+    });
 
-/*Basic Routes*/
-router.get("/",functions.index());
-router.get("/home",function(req,res){
-    res.sendFile(path + "home.html");
-});
-router.get("/classes",function(req,res){
-    res.sendFile(path + "classes.html");
-});
-router.get("/help",function(req,res){
-    res.sendFile(path + "help.html");
-});
-router.get("/history",function(req,res){
-    res.sendFile(path + "history.html");
-});
-router.get("/home",function(req,res){
-    res.sendFile(path + "home.html");
-});
-router.get("/manage",function(req,res){
-    res.sendFile(path + "manage.html");
-});
-router.get("/myaccount",function(req,res){
-    res.sendFile(path + "myaccount.html");
-});
-router.get("/new",function(req,res){
-    res.sendFile(path + "new.html");
-});
-router.get("/view",function(req,res){
-    res.sendFile(path + "view.html");
-});
+    app.get('/logout', function (request, response) {
+        loggedInUsers = loggedInUsers.filter(function (user) {
+            return user !== request.user.get('username');
+        });
+        io.emit('out', {username: request.user.get('username')});
+        request.logout();
+        response.redirect('/');
+    });
 
-router.use(express.static(__dirname + '/public'));
+    io.on('connection', function () {
+        console.log('Connected to IO server');
+    });
+}
 
-module.exports = router;
+
+

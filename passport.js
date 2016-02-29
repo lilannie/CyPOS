@@ -1,33 +1,44 @@
-//loads what is necessary
 var LocalStrategy = require('passport-local').Strategy;
 
-//load user
-var express = require('express');
-var mysql = require('mysql');
-var passport = require('passport');
-var config = {
-        host: 'mysql.cs.iastate.edu',  // your host
-        user: 'dbu309grp17', // your database user
-        password: 'AugtUmP22JP', // your database password
-        database: 'db309grp17',
-        charset: 'UTF8_GENERAL_CI'
-    };
+module.exports = function (passport, repository) {
+    passport.serializeUser(function (user, done) {
+        done(null, user.id);
+    });
 
+    passport.deserializeUser(function (id, done) {
+        repository.getUserById(id)
+            .then(function (user) {
+                done(null, user);
+            });
+    });
 
-var app = express();
-app.use(passport.initilize());
-app.use(passport.session());
-
-module.exports = function (passport, repository){
-
-}
-
-//initialize user for session (login)
-passport.serializeUser(function(user, done) {
-    done(null, user.id);
-});
-
-//close out user session (log out)
-passport.deserializeUser(function(user, done) {
-    done(null, user);
-});
+    passport.use(
+        'login',
+        new LocalStrategy({
+                usernameField     : 'username',
+                passwordField     : 'password',
+                passReqToCallback : true
+            },
+            function (req, username, password, done) {
+                repository.getUserByUsername(username)
+                    .then(function (user) {
+                        if (user === null) {
+                            console.log("User not found: " + username);
+                            return done(null, false);
+                        } else {
+                            if (user.get('password') === password) {
+                                return done(null, user);
+                            } else {
+                                console.log('Invalid password for user ' + username);
+                                return done(null, false);
+                            }
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log(err.message);
+                        return done(null, false);
+                    });
+            }
+        )
+    )
+};
