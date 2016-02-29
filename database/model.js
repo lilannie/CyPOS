@@ -4,7 +4,12 @@ module.exports = function (bookshelf) {
         idAttribute: 'userID'
     });
 
+    var Course = bookshelf.Model.extend({
+        tableName: 'tblCourses'
+    });
+
     return {
-        User    : User
+        User    : User,
+        Course : Course
     };
 };

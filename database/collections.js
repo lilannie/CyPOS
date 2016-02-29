@@ -3,9 +3,14 @@ module.exports = function (models, bookshelf) {
         model: models.User
     });
 
+    var Courses = bookshelf.Collection.extend({
+        model: models.Courses
+    });
+
 
 
     return {
-        Users: Users
+        Users: Users,
+        Courses: Courses
     };
 };
