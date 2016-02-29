@@ -5,7 +5,6 @@ Annie Steenson
 
 Developer Notes:
 -------------------------------------------
-Rocky-> Your stuff is ready to insert into new.html
 
 
 Uses:
