@@ -3,7 +3,7 @@ var express =   require('express');
 var path    =   __dirname + '/public/views/';
 var functions = require('./functions');
 
-//Sign In
+/*//Sign In
 //Get
 //Called from app.js
 var signIn = function(req, res, next) {
@@ -17,10 +17,12 @@ router.use(function(req, res, next) {
     console.log(req.method, req.url);
     // continue doing what we were doing and go to the route
     next();
-});
+});*/
 
 /*Basic Routes*/
-router.get("/",functions.index());
+router.get("/", function(req, res){
+    res.sendFile(path + "index.html");
+});
 router.get("/home",function(req,res){
     res.sendFile(path + "home.html");
 });
