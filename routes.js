@@ -18,7 +18,7 @@ module.exports = function (app, passport, io, repository, express) {
     });
     app.post(
         '/',
-        passport.authenticate('login', {
+        passport.authenticate('local-login', {
             successRedirect : '/home',
             failureRedirect : '/'
         }),

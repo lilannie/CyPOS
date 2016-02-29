@@ -3,8 +3,6 @@ module.exports = function (models, bookshelf) {
         model: models.User
     });
 
-
-
     return {
         Users: Users
     };

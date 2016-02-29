@@ -30,7 +30,7 @@ var path = __dirname + '/public/views/';
 repository.getAllUsers()
     .then(function (users) {
         if (users.length == 0) {
-            repository.createUser('Annie', 'annie1')
+            repository.createUser('Annie', 'annie1');
         } else {
             console.log('Database is already set up');
         }
