@@ -43,11 +43,11 @@ module.exports = function(passport) {
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, email, password, done) {
+        function(req, username, password, done) {
 
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
-            connection.query("select * from users where email = '"+email+"'",function(err,rows){
+            connection.query("SELECT * FROM tblUsers WHERE username = '"+username+"'",function(err,rows){
                 console.log(rows);
                 console.log("above row object");
                 if (err)
@@ -60,10 +60,10 @@ module.exports = function(passport) {
                     // create the user
                     var newUserMysql = new Object();
 
-                    newUserMysql.email    = email;
+                    newUserMysql.email    = username;
                     newUserMysql.password = password; // use the generateHash function in our user model
 
-                    var insertQuery = "INSERT INTO users ( email, password ) values ('" + email +"','"+ password +"')";
+                    var insertQuery = "INSERT INTO tblUsers (username, password ) values ('" + username +"','"+ password +"')";
                     console.log(insertQuery);
                     connection.query(insertQuery,function(err,rows){
                         newUserMysql.id = rows.insertId;
@@ -82,13 +82,13 @@ module.exports = function(passport) {
 
     passport.use('local-login', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
-            usernameField : 'email',
+            usernameField : 'username',
             passwordField : 'password',
             passReqToCallback : true // allows us to pass back the entire request to the callback
         },
-        function(req, email, password, done) { // callback with email and password from our form
+        function(req, username, password, done) { // callback with email and password from our form
 
-            connection.query("SELECT * FROM `users` WHERE `email` = '" + email + "'",function(err,rows){
+            connection.query("SELECT * FROM `tblUsers` WHERE `username` = '" + username + "'",function(err,rows){
                 if (err)
                     return done(err);
                 if (!rows.length) {
