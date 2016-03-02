@@ -11,6 +11,7 @@ function isLoggedIn (username) {
     }
     return false;
 }
+
 module.exports = function (app, passport, io, repository, express) {
 
     app.get('/', function (request, response) {
@@ -29,8 +30,12 @@ module.exports = function (app, passport, io, repository, express) {
     app.get("/home",function(req,res){
         res.sendFile(path + "home.html");
     });
+
     app.get("/classes",function(req,res){
-        res.sendFile(path + "classes.html");
+        repository.getAllCourses()
+            .then(function(courses) {
+                res.render('classes', {name : 'testing react', courses : courses});
+            })
     });
     app.get("/help",function(req,res){
         res.sendFile(path + "help.html");

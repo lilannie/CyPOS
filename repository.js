@@ -20,11 +20,16 @@ module.exports = function (Models, Collections) {
             .save();
     }
 
+    function getAllCourses () {
+        return Collections.Courses.forge().fetch();
+    }
+
 
     return {
         getAllUsers         : getAllUsers,
         getUserById         : getUserById,
         getUserByUsername   : getUserByUsername,
-        createUser          : createUser
+        createUser          : createUser,
+        getAllCourses       : getAllCourses
     };
 };

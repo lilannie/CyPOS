@@ -4,7 +4,7 @@ module.exports = function (models, bookshelf) {
     });
 
     var Courses = bookshelf.Collection.extend({
-        model: models.Courses
+        model: models.Course
     });
 
 

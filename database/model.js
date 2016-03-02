@@ -5,7 +5,8 @@ module.exports = function (bookshelf) {
     });
 
     var Course = bookshelf.Model.extend({
-        tableName: 'tblCourses'
+        tableName: 'tblCourses',
+        idAttribute: 'courseID'
     });
 
     return {
