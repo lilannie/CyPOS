@@ -11,23 +11,31 @@ function isLoggedIn (username) {
     }
     return false;
 }
-module.exports = function (app, passport, io, repository, express) {
+module.exports = function (app, passport, io) {
 
+    app.use(function (req,res,next) {
+        console.log(req.path);
+        next();
+    });
     app.get('/', function (request, response) {
         response.sendFile(path + '/index.html');
     });
+
     app.post(
         '/',
-        passport.authenticate('local-login', {
+        passport.authenticate('login',{
             successRedirect : '/home',
-            failureRedirect : '/'
+            failureRedirect : '/foo'
         }),
         function (request, response) {
-            console.log("User logged in successfully.");
+            response.send('sdfsdf');
         }
     );
     app.get("/home",function(req,res){
         res.sendFile(path + "home.html");
+    });
+    app.post("/test", function(req, res){
+        console.log("test post");
     });
     app.get("/classes",function(req,res){
         res.sendFile(path + "classes.html");
@@ -37,9 +45,6 @@ module.exports = function (app, passport, io, repository, express) {
     });
     app.get("/history",function(req,res){
         res.sendFile(path + "history.html");
-    });
-    app.get("/home",function(req,res){
-        res.sendFile(path + "home.html");
     });
     app.get("/manage",function(req,res){
         res.sendFile(path + "manage.html");

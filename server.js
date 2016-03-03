@@ -1,4 +1,3 @@
-// vendor library
 var passport = require('passport'),
     express = require('express'),
     session     = require('express-session'),
@@ -29,28 +28,34 @@ var path = __dirname + '/public/views/';
 //Initial database setup
 repository.getAllUsers()
     .then(function (users) {
-        if (users.length == 0) {
-            repository.createUser('Annie', 'annie1');
-        } else {
-            console.log('Database is already set up');
-        }
+        repository.createUser('Annie', 'annie1', 'annie@gmail.com', 'annie', 'steenson');
+        console.log('Database is already set up');
     });
 
-//Settings for Passport (authentication)
 require('./passport.js')(passport, repository);
+
+//Used to send login information to server
+app.use(bodyParser.urlencoded({
+    extended : true
+}));
+app.use(bodyParser.json());
+
+app.use(session(
+    {
+        secret            : 'dfgdfhdh',
+        resave            : true,
+        saveUninitialized : true
+    }
+));
+
+
 app.use(passport.initialize());
 app.use(passport.session());
-
-
-/*Express App Routing*/
-/*app.use("/",require('./routes')(express, path));*/
-
-//Routes
-require('./routes.js')(app, passport, io, repository, express);
 
 //Configure static-serving directory for js, css, client side react components
 app.use('/static', express.static(__dirname + '/public'));
 
+require('./routes.js')(app, passport, io);
 
 app.use("*",function(req,res){
     res.sendFile(path + "404.html");

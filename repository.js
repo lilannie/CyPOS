@@ -5,21 +5,23 @@ module.exports = function (Models, Collections) {
     }
 
     function getUserById (id) {
-        return Models.User.forge({id : id}).fetch();
+        return Models.User.forge({userId : id}).fetch();
     }
 
     function getUserByUsername (username) {
         return Models.User.forge({username : username}).fetch({require : true});
     }
 
-    function createUser (username, password) {
+    function createUser (username, password, email, name, lastname) {
         return Models.User.forge({
                 username : username,
-                password : password
+                password : password,
+                email: email,
+                name: name,
+                lastname: lastname,
             })
             .save();
     }
-
 
     return {
         getAllUsers         : getAllUsers,
