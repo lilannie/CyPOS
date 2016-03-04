@@ -65,7 +65,6 @@ module.exports = function (app, passport, express) {
         loggedInUsers = loggedInUsers.filter(function (user) {
             return user !== request.user.get('username');
         });
-        io.emit('out', {username: request.user.get('username')});
         request.logout();
         response.redirect('/');
     });
