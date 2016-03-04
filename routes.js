@@ -11,7 +11,9 @@ function isLoggedIn (username) {
     }
     return false;
 }
-module.exports = function (app, passport, io) {
+module.exports = function (app, passport, express) {
+
+    app.use(express.static(__dirname + '/public'));
 
     app.use(function (req,res,next) {
         console.log(req.path);
@@ -25,10 +27,10 @@ module.exports = function (app, passport, io) {
         '/',
         passport.authenticate('login',{
             successRedirect : '/home',
-            failureRedirect : '/foo'
+            failureRedirect : '/'
         }),
         function (request, response) {
-            response.send('sdfsdf');
+            response.send('User logged in successfully');
         }
     );
     app.get("/home",function(req,res){
@@ -66,10 +68,6 @@ module.exports = function (app, passport, io) {
         io.emit('out', {username: request.user.get('username')});
         request.logout();
         response.redirect('/');
-    });
-
-    io.on('connection', function () {
-        console.log('Connected to IO server');
     });
 }
 

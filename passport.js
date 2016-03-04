@@ -4,12 +4,24 @@ var LocalStrategy   = require('passport-local').Strategy;
 var users = [
     {
         username: 'Annie',
-        password: 'foo'
+        password: 'annie1'
+    },
+    {
+        username: 'Rockie',
+        password: 'rockie1'
+    },
+    {
+        username: 'George',
+        password: 'george1'
+    },
+    {
+        username: 'Jens',
+        password: 'jens1'
     }
 ];
 
 // expose this function to our app using module.exports
-module.exports = function(passport, repository) {
+module.exports = function(passport) {
 
     // used to serialize the user for the session
     passport.serializeUser(function(user, done) {
@@ -31,29 +43,19 @@ module.exports = function(passport, repository) {
                 passReqToCallback : true
             },
             function (req, username, password, done) {
-                console.log("here");
-
-                repository.getUserByUsername(username)
-                    .then(function (user) {
-                        if (user === null) {
-                            console.log("User not found: " + username);
-                            return done(null, false);
-                        } else {
-
-                            console.log("username: "+username);
-                            console.log("password: "+password);
-                            if (user.get('password') === password) {
-                                return done(null, user);
-                            } else {
-                                console.log('Invalid password for user ' + username);
-                                return done(null, false);
-                            }
+                for (var i = 0; i < users.length; i++) {
+                    if (username === users[i].username) {
+                        if (password === users[i].password){
+                            return done(null, users[i]);
                         }
-                    })
-                    .catch(function (err) {
-                        console.log(err.message);
-                        return done(null, false);
-                    });
+                        else {
+                            console.log('Invalid password for user ' + username);
+                            return done(null, false);
+                        }
+                    }
+                }
+                console.log("User not found: " + username);
+                return done(null, false);
             }
         ));
 };

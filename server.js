@@ -3,36 +3,13 @@ var passport = require('passport'),
     session     = require('express-session'),
     bodyParser  = require('body-parser'),
     app = express(),
-    pdf2json = require('pdf2json'),
-    server      = require('http').Server(app),
-    io          = require('socket.io')(server),
-    knex        = require('knex')(module.exports = {
-        client     : 'mysql',
-        connection : {
-            host     : 'mysql.cs.iastate.edu',
-            user     : 'dbu309grp17',
-            password : 'AugtUmP22JP',
-            database : 'db309grp17',
-            charset  : 'utf8'
-        }
-    }),
-    Bookshelf   = require('bookshelf')(knex),
-    Models      = require('./database/model')(Bookshelf),
-    Collections = require('./database/collections')(Models, Bookshelf),
-    repository  = require('./repository')(Models, Collections);
+    pdf2json = require('pdf2json');
 
 /*Variables to make things easier to read*/
 var port = 8080;
 var path = __dirname + '/public/views/';
 
-//Initial database setup
-repository.getAllUsers()
-    .then(function (users) {
-        repository.createUser('Annie', 'annie1', 'annie@gmail.com', 'annie', 'steenson');
-        console.log('Database is already set up');
-    });
-
-require('./passport.js')(passport, repository);
+require('./passport.js')(passport);
 
 //Used to send login information to server
 app.use(bodyParser.urlencoded({
@@ -42,20 +19,17 @@ app.use(bodyParser.json());
 
 app.use(session(
     {
-        secret            : 'dfgdfhdh',
+        secret            : '309grp17',
         resave            : true,
         saveUninitialized : true
     }
 ));
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 //Configure static-serving directory for js, css, client side react components
-app.use('/static', express.static(__dirname + '/public'));
-
-require('./routes.js')(app, passport, io);
+require('./routes.js')(app, passport, express);
 
 app.use("*",function(req,res){
     res.sendFile(path + "404.html");
