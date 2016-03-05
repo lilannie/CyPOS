@@ -60,7 +60,6 @@ module.exports = function (app, passport, express) {
     app.get("/view",function(req,res){
         res.sendFile(path + "view.html");
     });
-
     app.get('/logout', function (request, response) {
         loggedInUsers = loggedInUsers.filter(function (user) {
             return user !== request.user.get('username');
@@ -69,5 +68,3 @@ module.exports = function (app, passport, express) {
         response.redirect('/');
     });
 }
-
-
