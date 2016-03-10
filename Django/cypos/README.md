@@ -51,3 +51,9 @@ Get all records from a table where: (returns an array of objects)
 Get all records from a table where not: (returns an array of objects)
     Users.objects.exclude(name="annie")
     Users.objects.exclude(name="annie")[0].id
+    
+Template Syntax 
+--------------- 
+{{ variable }}
+{% tag %}
+{{ variable|filter }}
