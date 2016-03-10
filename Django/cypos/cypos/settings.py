@@ -56,7 +56,7 @@ ROOT_URLCONF = 'cypos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['cypos/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
