@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import Http404
 # from django.http import HttpResponse
 
-from base.models import Users
-from base.models import Courses
+from .models import Users
+from .models import Courses
 
 
 def index(request):
