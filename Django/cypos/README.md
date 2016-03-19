@@ -10,6 +10,14 @@ Run Server Command:
 python manage.py runserver
 localhost:8000
 
+Install Dependencies
+--------------------
+pip install requirements.txt
+
+List Dependencies
+-----------------
+pip list
+
 Migrate/Update Database Commands:
 ---------------------------------
 Generates migration files:
