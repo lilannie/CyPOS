@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Users(models.Model):
+class TestUsers(models.Model):
     id = models.AutoField(primary_key=True)
     username = models.TextField(null=False, blank=False)
     password = models.TextField(null=False, blank=False)
@@ -11,21 +11,27 @@ class Users(models.Model):
     lastname = models.TextField(null=False, blank=False)
 
 
-class Courses(models.Model):
+class TestDepartments(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.TextField(null=False, blank=False)
+    acronym = models.TextField(null=False, blank=False)
+    # courses = models.ManyToOneRel(TestCourses)
+
+
+class TestCourses(models.Model):
     id = models.AutoField(primary_key=True)
     number = models.TextField(null=False, blank=False)
     name = models.TextField(null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     prereqs = models.ManyToManyField("self")
     numCredits = models.IntegerField(null=False, blank=False)
-    departmentID = models.ForeignKey(Departments, ond_delete=models.CASCADE, null=False)
+    # departmentID = models.ForeignKey(TestDepartments, on_delete=models.CASCADE, null=True)
 
 
-class Departments(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.TextField(null=False, blank=False)
-    acronym = models.TextField(null=False, blank=False)
-    courses = models.ManyToOneRel(Courses)
+
+
+
+
 
 
 

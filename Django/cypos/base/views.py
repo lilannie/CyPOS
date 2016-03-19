@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import Http404
 # from django.http import HttpResponse
 
-from .models import Users
-from .models import Courses
+from .models import TestUsers
+from .models import TestCourses
 
 
 def index(request):
@@ -12,8 +12,8 @@ def index(request):
 
 def user_detail(request, id):
     try:
-        user = Users.objects.get(id=id)
-    except Users.DoesNotExist:
+        user = TestUsers.objects.get(id=id)
+    except TestUsers.DoesNotExist:
         raise Http404('This user does not exist')
     return render(request, 'user/user_detail.html', {
         'user': user,
@@ -21,7 +21,7 @@ def user_detail(request, id):
 
 
 def courses_view(request):
-    courses = Courses.objects.all()
+    courses = TestCourses.objects.all()
     return render(request, 'base/courses.html', {
         'courses': courses,
     })

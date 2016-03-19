@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Users
+from .models import TestUsers
 # Register your models here.
 
 
@@ -8,5 +8,5 @@ from .models import Users
 class UsersAdmin(admin.ModelAdmin):
     list_display = ['id', 'firstname', 'lastname', 'email']
 
-admin.site.register(Users, UsersAdmin)
+admin.site.register(TestUsers, UsersAdmin)
 

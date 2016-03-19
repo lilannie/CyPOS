@@ -1,9 +1,14 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../../../bootstrap-3.3.6-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../../../bootstrap-3.3.6-dist/css/bootstrap-theme.min.css">
+    {# Load the tag library #}
+    {% load bootstrap3 %}
+
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
     <title></title>
 </head>
 <body>
