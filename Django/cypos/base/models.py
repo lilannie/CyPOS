@@ -18,14 +18,14 @@ class Courses(models.Model):
     description = models.TextField(null=False, blank=False)
     prereqs = models.ManyToManyField("self")
     numCredits = models.IntegerField(null=False, blank=False)
-    departmentID = models.ForeignKey(Departments, ond_delete=models.CASADE, null=False)
+    departmentID = models.ForeignKey(Departments, ond_delete=models.CASCADE, null=False)
 
 
 class Departments(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
     acronym = models.TextField(null=False, blank=False)
-    courses = models.ManyToOneField(Courses)
+    courses = models.ManyToOneRel(Courses)
 
 
 
