@@ -23,7 +23,7 @@ class TestCourses(models.Model):
     name = models.TextField(null=False, blank=False)
     description = models.TextField(null=False, blank=False)
     prereqs = models.ManyToManyField("self")
-    numCredits = models.IntegerField(null=False, blank=False)
+    numCredits = models.IntegerField(null=True, blank=False)
     department = models.ForeignKey(TestDepartments, null=True)
 
 
