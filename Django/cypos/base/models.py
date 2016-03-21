@@ -15,7 +15,6 @@ class TestDepartments(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
     acronym = models.TextField(null=False, blank=False)
-    # courses = models.ManyToOneRel(TestCourses)
 
 
 class TestCourses(models.Model):
@@ -25,7 +24,7 @@ class TestCourses(models.Model):
     description = models.TextField(null=False, blank=False)
     prereqs = models.ManyToManyField("self")
     numCredits = models.IntegerField(null=False, blank=False)
-    # departmentID = models.ForeignKey(TestDepartments, on_delete=models.CASCADE, null=True)
+    departmentID = models.ForeignKey(TestDepartments, null=True, default=0)
 
 
 
