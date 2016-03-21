@@ -10,6 +10,10 @@ def index(request):
     return render(request, 'base/index.html')
 
 
+def home(request):
+    return render(request, 'base/home.html')
+
+
 def user_detail(request, id):
     try:
         user = TestUsers.objects.get(id=id)
