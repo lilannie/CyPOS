@@ -6,12 +6,31 @@ from .models import TestUsers
 from .models import TestCourses
 
 
-def index(request):
-    return render(request, 'base/index.html')
+def courses_view(request):
+    courses = TestCourses.objects.all()
+    return render(request, 'base/courses.html', {
+        'courses': courses,
+    })
+
+
+def help(request):
+    return render(request, 'base/help.html')
+
+
+def pos_history(request):
+    return render(request, 'base/history.html')
 
 
 def home(request):
     return render(request, 'base/home.html')
+
+
+def user_manage(request):
+    return render(request, 'base/manage.html')
+
+
+def pos_new(request):
+    return render(request, 'base/new.html')
 
 
 def user_detail(request, id):
@@ -24,8 +43,9 @@ def user_detail(request, id):
     })
 
 
-def courses_view(request):
-    courses = TestCourses.objects.all()
-    return render(request, 'base/courses.html', {
-        'courses': courses,
-    })
+def pos_view(request):
+    return render(request, 'base/view.html')
+
+
+def index(request):
+    return render(request, 'base/index.html')
