@@ -1,0 +1,89 @@
+{% include "base.html" %}
+{% block content %}
+<div class="panel panel-defaul panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Semester</h3>
+    </div>
+    <div class="panel-body" id="redips-drag">
+        <table class="table table-hover">
+            <colgroup>
+                <col width="30"/>
+                <col width="100"/>
+                <col width="100"/>
+                <col width="100"/>
+            </colgroup>
+            <thead>
+            <tr>
+                <th colspan="1" class="redips-mark"></th>
+                <th colspan="1" class="redips-mark">Course Number</th>
+                <th colspan="1" class="redips-mark">Course Name</th>
+                <th colspan="1" class="redips-mark">Credit Hours</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr class="rl">
+                <td class="redips-rowhandler">
+                    <div class="redips-drag redips-row"></div>
+                </td>
+                <div class="redips-drag blue">
+                    <td>165</td>
+                    <td>Math</td>
+                    <td>4</td>
+                </div>
+            </tr>
+            <tr class="rl">
+                <td class="redips-rowhandler">
+                    <div class="redips-drag redips-row"></div>
+                </td>
+                <div class="redips-drag blue">
+                    <td>177</td>
+                    <td>Chem</td>
+                    <td>4</td>
+                </div>
+            </tr>
+            <tr class="rl">
+                <td class="redips-rowhandler">
+                    <div class="redips-drag redips-row"></div>
+                </td>
+                <div class="redips-drag blue">
+                    <td>101</td>
+                    <td>SE</td>
+                    <td>R</td>
+                </div>
+            </tr>
+            <tr class="rl">
+                <td class="redips-rowhandler">
+                    <div class="redips-drag redips-row"></div>
+                </td>
+                <div class="redips-drag blue">
+                    <td>185</td>
+                    <td>CprE</td>
+                    <td>3</td>
+                </div>
+            </tr>
+            <tr class="rl">
+                <td class="redips-rowhandler">
+                    <div class="redips-drag redips-row"></div>
+                </td>
+                <div class="redips-drag blue">
+                    <td>160</td>
+                    <td>LIB</td>
+                    <td>R</td>
+                </div>
+            </tr>
+            <tr class="rl">
+                <td class="redips-rowhandler">
+                    <div class="redips-drag redips-row"></div>
+                </td>
+                <div class="redips-drag blue">
+                    <td>150</td>
+                    <td>Engl</td>
+                    <td>3</td>
+                </div>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
