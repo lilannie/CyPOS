@@ -6,20 +6,22 @@ George Zachariades
 Jens Petersen
 Rockie Brooks
 
-
+LearnPythonSyntax.py
+--------------------
+Is a python file to learn the syntax.. 
+self explanatory in the name
 
 Run Server Command:
 -------------------
 python manage.py runserver
 localhost:8000
 
-Install Dependencies
---------------------
-pip install requirements.txt
-
-List Dependencies
------------------
-pip list
+Dependencies
+------------
+Install
+    pip install requirements.txt
+List all
+    pip list
 
 Migrate/Update Database Commands:
 ---------------------------------
@@ -28,7 +30,7 @@ Generates migration files:
 Runs all migration files that have not been ran:
     python manage.py migrate 
 See all migrations:
-    python manage.py migrate --list
+    python manage.py showmigrations
     
 Administrative Account:
 -----------------------
