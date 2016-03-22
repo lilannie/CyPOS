@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UserForm
-from .models import TestCourses
+from .models import TestCourses, Majors
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -123,6 +123,8 @@ def user_manage(request):
 
 
 def pos_new(request):
+    coursesPerMajor = []
+
     return render(request, 'base/new.html')
 
 
