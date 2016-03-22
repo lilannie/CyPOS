@@ -15,5 +15,7 @@ urlpatterns = [
     url(r'^user/(?P<id>\d+)/', views.user_detail, name='user_detail'),
     url(r'^view', views.pos_view, name='pos_view'),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.user_login, name='login'),
+    url(r'^logout', views.user_logout, name='logout'),
     url(r'^$', views.index, name='index'),
 ]
