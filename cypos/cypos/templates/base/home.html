@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    {% extends "base.html" %}
-    <title>Home</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron">
+    <h1>Welcome to CyPOS</h1>
+    <p>Generate your program of study in one click!</p>
+    <p><a class="btn btn-primary btn-lg" href="./new" role="button">Get Started</a></p>
+</div>
+{% endblock content %}

@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
 from .forms import UserForm
 from .models import TestCourses
 from django.template import RequestContext
