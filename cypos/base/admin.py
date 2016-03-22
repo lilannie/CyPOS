@@ -1,12 +1,9 @@
 from django.contrib import admin
-
-from .models import UserProfile
 # Register your models here.
 
 
 # Changes how Users display in Admin Interface
 class UsersAdmin(admin.ModelAdmin):
-    list_display = ['id', 'firstname', 'lastname', 'email']
+    list_display = ['first_name', 'last_name', 'email']
 
-admin.site.register(UserProfile, UsersAdmin)
 
