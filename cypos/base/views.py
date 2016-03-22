@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UserForm
-from .models import TestCourses, Majors
+from .models import TestCourses, Majors, Pos, Electives
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -123,9 +123,12 @@ def user_manage(request):
 
 
 def pos_new(request):
-    coursesPerMajor = []
-
-    return render(request, 'base/new.html')
+    majors = Majors.objects.all()
+    electives = Electives.objects.all()
+    return render(request, 'base/new.html', {
+        'majors': majors,
+        'electives': electives,
+    })
 
 
 def user_detail(request, id):
