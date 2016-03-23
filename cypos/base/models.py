@@ -28,15 +28,15 @@ class TestCourses(models.Model):
 class Pos(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, null=False)
-    takenCourses = models.ManyToManyField(TestCourses, related_name='takenCourses', null=True)
-    neededCourses = models.ManyToManyField(TestCourses, related_name='neededCourses', null=True)
+    takenCourses = models.ManyToManyField(TestCourses, related_name='takenCourses')
+    neededCourses = models.ManyToManyField(TestCourses, related_name='neededCourses')
 
 
 class Majors(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
     department = models.ForeignKey(TestDepartments, null=True)
-    reqCourses = models.ManyToManyField(TestCourses, null=True)
+    reqCourses = models.ManyToManyField(TestCourses)
 
 
 class Electives(models.Model):
@@ -44,7 +44,7 @@ class Electives(models.Model):
     name = models.TextField(null=False, blank=False)
     department = models.ForeignKey(TestDepartments, null=True)
     major = models.ForeignKey(Majors, null=True)
-    courses = models.ManyToManyField(TestCourses, null=True)
+    courses = models.ManyToManyField(TestCourses)
 
 
 # class UserProfile(models.Model):
