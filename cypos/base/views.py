@@ -32,6 +32,7 @@ def register(request):
 
             # Update our variable to tell the template registration was successful.
             registered = True
+            return render(request, 'base/home.html', {}, context)
 
         # Invalid form or forms - mistakes or something else?
         # Print problems to the terminal.
@@ -119,7 +120,10 @@ def home(request):
 
 
 def user_manage(request):
-    return render(request, 'base/manage.html')
+    user = request.user
+    return render(request, 'base/manage.html', {
+         'user': user,
+    })
 
 
 def pos_new(request):
