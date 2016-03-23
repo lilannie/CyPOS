@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UserForm
-from .models import TestCourses, Majors, Pos, Electives
+from .models import Courses, Majors, Pos, Electives
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -101,7 +101,7 @@ def user_logout(request):
 
 
 def courses_view(request):
-    courses = TestCourses.objects.all()
+    courses = Courses.objects.all()
     return render(request, 'base/courses.html', {
         'courses': courses,
     })
