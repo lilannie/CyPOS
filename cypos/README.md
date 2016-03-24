@@ -21,6 +21,10 @@ Run Server Command:
 python manage.py runserver
 localhost:8000
 
+Run Python Script in Django Shell:
+----------------------------------
+python manage.py runscript <script>
+
 Dependencies
 ------------
 Install: 
