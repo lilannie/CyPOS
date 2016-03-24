@@ -9,7 +9,7 @@ Phys
 ComS
 SE
 Math
-Sp Cm
+SpCm
 ComS
 CprE
 Engl

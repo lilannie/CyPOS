@@ -23,7 +23,7 @@ localhost:8000
 
 Run Python Script in Django Shell:
 ----------------------------------
-python manage.py runscript <script>
+python manage.py runscript <script>(without .py)
 
 Dependencies
 ------------
