@@ -3,23 +3,32 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+class Colleges(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.TextField(null=False, blank=False)
+
+    def __unicode__(self):
+        return self.name
+
+
 class Departments(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
     acronym = models.TextField(null=False, blank=False)
+    college = models.ForeignKey(Colleges, null=True)
 
     def __unicode__(self):
-            return self.name
+        return self.name
 
 
 class Courses(models.Model):
     id = models.AutoField(primary_key=True)
-    number = models.TextField(null=False, blank=False)
-    acronym = models.TextField(null=False, blank=False)
-    name = models.TextField(null=False, blank=False)
-    description = models.TextField(null=False, blank=False)
+    number = models.TextField(null=False, blank=False, default='0')
+    acronym = models.TextField(null=False, blank=False, default='0')
+    name = models.TextField(null=False, blank=False, default='0')
+    description = models.TextField(null=False, blank=False, default='0')
     prereqs = models.ManyToManyField("self")
-    numCredits = models.IntegerField(null=True, blank=False)
+    numCredits = models.IntegerField(null=True, blank=False, default='0')
     department = models.ForeignKey(Departments, null=True)
 
     def __unicode__(self):
@@ -32,33 +41,36 @@ class Pos(models.Model):
     takenCourses = models.ManyToManyField(Courses, related_name='takenCourses')
     neededCourses = models.ManyToManyField(Courses, related_name='neededCourses')
 
+    def __unicode__(self):
+        return self.id
+
 
 class Majors(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
-    department = models.ForeignKey(Departments, null=True)
+    college = models.ForeignKey(Colleges, null=True)
     reqCourses = models.ManyToManyField(Courses)
+
+    def __unicode__(self):
+        return self.name
 
 
 class Electives(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
-    department = models.ForeignKey(Departments, null=True)
     major = models.ForeignKey(Majors, null=True)
     courses = models.ManyToManyField(Courses)
 
+    def __unicode__(self):
+        return self.id
 
-# class UserProfile(models.Model):
-#     # This line is required. Links UserProfile to a User model instance.
-#     user = models.OneToOneField(User)
-#
-#     # The additional attributes we wish to include.
-#     website = models.URLField(blank=True)
-#     # picture = models.ImageField(upload_to='profile_images', blank=True)
-#
-#     # Override the __unicode__() method to return out something meaningful!
-#     def __unicode__(self):
-#         return self.user.username
+
+class Substitutes(models.Model):
+    id = models.AutoField(primary_key=True)
+    course = models.ForeignKey(Courses, null=True)
+
+    def __unicode__(self):
+        return self.id
 
 
 
