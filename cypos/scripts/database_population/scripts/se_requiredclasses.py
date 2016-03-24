@@ -1,4 +1,4 @@
-from .models import Majors, Departments, Courses
+from cypos.base.models import Majors, Departments, Courses
 
 fnumbers = open('./database_population/txt/se_courses_numbers.txt', 'r')
 fdepartments = open('./database_population/txt/se_courses_depart.txt', 'r')
