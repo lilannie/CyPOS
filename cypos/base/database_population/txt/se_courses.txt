@@ -1,0 +1,44 @@
+Math 165
+Chem 167
+SE 101
+CprE 185
+Lib 160
+Engl 150
+Math 166
+Phys 221
+ComS 227
+SE 166
+Math 267
+Sp Cm 212
+ComS 228
+CprE 281
+Engl 250
+ComS 229
+ComS 363
+SE 319
+ComS 309
+ComS 330
+ComS 321
+SE 339
+SE 329
+ComS 311
+ComS 352
+Engl 314
+Stat 330
+SE 491
+SE 494
+SE 492
+
+
+Econ Elective
+Gen Ed Elective
+Math Elective
+GenEd Elective
+Open Elective
+GenEd Elective
+Tech Elective
+SE Elective
+GenEd Elective
+SE Elective
+SpplM Elective
+SupplM Elective
