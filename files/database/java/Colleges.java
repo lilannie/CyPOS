@@ -4,7 +4,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.Scanner;
 
-public class Majors {
+public class Colleges {
 	public static void main(String[] args) throws SQLException {
 		Connection connect = null;
 		Statement stmt = null;
@@ -16,27 +16,20 @@ public class Majors {
 			connect = DriverManager.getConnection(dbServer, username, password);
 			stmt = connect.createStatement();
 			
-			File fMajors = new File("Majors.txt");
-			Scanner scanMajors = new Scanner(fMajors);
-			
-			File fColleges = new File("MajorsColleges.txt");
+			File fColleges = new File("colleges.txt");
 			Scanner scanColleges = new Scanner(fColleges);
+		
 			
 			String sql = "";
 			while(true){
-				if(scanMajors.hasNextLine()){
-					if(scanColleges.hasNextLine()){
-						sql = "INSERT INTO db309grp17.base_majors (name, college_id) VALUES (\""+scanMajors.nextLine().trim()+
-								"\", '"+scanColleges.nextLine().trim()+"');";
-						stmt.executeUpdate(sql);
-					}else {
-						break;
-					}
+				if(scanColleges.hasNextLine()){
+					sql = "INSERT INTO db309grp17.base_colleges (name) VALUES (\""
+							+scanColleges.nextLine().trim()+"\");";
+					stmt.executeUpdate(sql);
 				}else {
 					break;
 				}
 			}
-			scanMajors.close();
 			scanColleges.close();
 			System.out.println("Success");
 		}catch (Exception e){
@@ -50,3 +43,4 @@ public class Majors {
 		}
 	}
 }
+
