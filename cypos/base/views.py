@@ -128,9 +128,13 @@ def user_manage(request):
 
 def pos_new(request):
     majors = Majors.objects.all()
+    majorsNames = {}
+    for major in majors:
+        majorsNames[major.id] = {'name': major.name.replace(" ", ""), 'major': major}
     electives = Electives.objects.all()
     return render(request, 'base/new.html', {
         'majors': majors,
+        'majorsNames': majorsNames,
         'electives': electives,
     })
 
