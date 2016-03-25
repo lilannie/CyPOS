@@ -121,20 +121,38 @@ def home(request):
 
 def user_manage(request):
     user = request.user
+    pos = Pos.objects.filter(user=request.user).order_by('id')[0]
     return render(request, 'base/manage.html', {
-         'user': user,
+        'user': user,
+        'pos': pos,
     })
 
 
 def pos_new(request):
+    context = RequestContext(request)
     majors = Majors.objects.all()
-    majorsNames = {}
-    for major in majors:
-        majorsNames[major.id] = {'name': major.name.replace(" ", ""), 'major': major}
     electives = Electives.objects.all()
+
+    if request.method == 'POST':
+        print(request.POST.get('major'))
+        userMajor = Majors.objects.get(id=str(request.POST.get('major')))
+        pos = Pos.objects.create(user=request.user)
+        pos.save()
+
+        for reqCourse in userMajor.reqCourses.all():
+            if str(request.POST.get(str(reqCourse.id))) != 'None':
+                course = Courses.objects.get(acronym=request.POST.get(str(reqCourse.id)))
+                pos.takenCourses.add(course)
+            else:
+                course = Courses.objects.get(id=reqCourse.id)
+                pos.neededCourses.add(course)
+        # print(request.POST.get(str(number)))
+
+        # print(pos.takenCourses.all())
+        return render(request, 'base/view.html', {}, context)
+
     return render(request, 'base/new.html', {
         'majors': majors,
-        'majorsNames': majorsNames,
         'electives': electives,
     })
 
@@ -146,7 +164,10 @@ def user_detail(request, id):
 
 
 def pos_view(request):
-    return render(request, 'base/view.html')
+    pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+    return render(request, 'base/view.html', {
+        'pos': pos
+    })
 
 
 def index(request):

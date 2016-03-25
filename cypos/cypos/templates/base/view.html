@@ -2,9 +2,24 @@
 {% block content %}
 <div class="panel panel-defaul panel-primary">
     <div class="panel-heading">
+        <h3 class="panel-title">Courses Needed</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped">
+            {% for course in pos.takenCourses.all %}
+            <tr>
+                <td>{{ course.acronym }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="panel panel-defaul panel-primary">
+    <div class="panel-heading">
         <h3 class="panel-title">Semester</h3>
     </div>
-    <div class="panel-body" id="redips-drag">
+    <div class="panel-body">
         <table class="table table-hover">
             <colgroup>
                 <col width="30"/>

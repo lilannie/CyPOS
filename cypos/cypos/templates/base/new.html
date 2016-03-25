@@ -2,45 +2,49 @@
 {% block content %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript">
-/*    $(document).ready(function(){
+    $(document).ready(function(){
         $("select").change(function(){
             $(this).find("option:selected").each(function(){
-                if($(this).attr("value")=="ComputerEngineering"){
-                    $(".major").not(".ComputerEngineering").hide();
-                    $(".ComputerEngineering").show();
+/*                if($(this).attr("value")=="Computer Engineering"){
+                    $(".major").not(".Computer Engineering").hide();
+                    $(".Computer, .Engineering").show();
                 }
-                else if($(this).attr("value")=="ComputerScience"){
+                else if($(this).attr("value")=="Computer Science"){
                     $(".major").not(".ComputerScience").hide();
-                    $(".ComputerScience").show();
+                    $(".Computer, .Science").show();
                 }
-                else if($(this).attr("value")=="SoftwareEngineering"){
-                    $(".major").not(".SoftwareEngineering").hide();
-                    $(".SoftwareEngineering").show();
+                else */
+
+                if($(this).attr("value")=="559"){
+                    $(".major").not(".Software Engineering").hide();
+                    $(".Software, .Engineering").show();
                 }
                 else{
                     $(".major").hide();
                 }
             });
         }).change();
-    });*/
+    });
 </script>
 
 <form method="post" name="coursesTaken">
     {% csrf_token %}
     <div class="form-group">
         <label for="major">Select Major:</label>
-        <select class="form-control" id="major">
+        <select class="form-control" id="major" name="major">
             {% for major in majors %}
                 <option value="{{ major.id }}">{{ major.name }}</option>
             {% endfor %}
         </select>
     </div>
 
-    {% for major in majorsNames %}
+    {% for major in majors %}
         <div class="{{ major.name }} major">
-            {% for reqCourse in major.major.reqCourses.all %}
+            {% for reqCourse in major.reqCourses.all %}
                 <div class="checkbox">
-                    <label><input type="checkbox" value="{{ reqCourse.id }}">{{ reqCourse.number }} {{ reqCourse.department.acronym }}</label>
+                    <label>{{ reqCourse.department.acronym }} {{ reqCourse.number }}</label>
+                    <!--Views checks the name for POST.get(), but prints the value-->
+                    <input type="checkbox" value="{{ reqCourse.acronym }}" name="{{ reqCourse.id }}">
                 </div>
             {% endfor %}
         </div>
