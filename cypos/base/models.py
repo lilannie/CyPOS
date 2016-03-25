@@ -35,11 +35,27 @@ class Courses(models.Model):
         return self.number + " " + self.department.acronym
 
 
+class Semesters(models.Model):
+    id = models.AutoField(primary_key=True)
+    numCredits = models.IntegerField(null=True, blank=True, default='0')
+    SPRING = 'S'
+    SUMMER = 'SS'
+    FALL = 'F'
+    TERM_CHOICES = (
+        (SPRING, 'Spring'),
+        (SUMMER, 'Summer'),
+        (FALL, 'Fall'),
+    )
+    term = TERM_CHOICES
+    courses = models.ManyToManyField(Courses, related_name='courses')
+
+
 class Pos(models.Model):
     id = models.AutoField(primary_key=True)
     user = models.ForeignKey(User, null=False)
     takenCourses = models.ManyToManyField(Courses, related_name='takenCourses')
     neededCourses = models.ManyToManyField(Courses, related_name='neededCourses')
+    semesters = models.ManyToManyField(Semesters, related_name='semesters')
 
     def __unicode__(self):
         return self.id
