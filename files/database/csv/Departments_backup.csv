@@ -1,0 +1,165 @@
+id,name,acronym
+1,Accounting,ACCT
+2,Advertising,ADVRT
+3,"Aerospace Engineering","AER E"
+4,"African American Studies","AF AM"
+5,"Agricultural and Biosystems Engineering","A B E"
+6,"Agricultural Education and Studies",AGEDS
+7,Agronomy,AGRON
+8,"Air Force Aerospace Studies",AFAS
+9,"American Indian Studies","AM IN"
+10,"American Sign Language",ASL
+11,"Animal Ecology","A ECL"
+12,"Animal Science","AN S"
+13,Anthropology,ANTHR
+14,"Apparel, Events, and Hospitality Management",AESHM
+15,"Apparel, Merchandising and Design","A M D"
+16,Arabic,ARABC
+17,Architecture,ARCH
+18,"Art Education",ARTED
+19,"Art History","ART H"
+20,"Astronomy and Astrophysics",ASTRO
+21,"Athetic Training","A TR"
+22,Athletics,ATH
+23,"Biochemistry, Biophysics, and Molecular Biology",BBMB
+24,"Bioinformatics and Computational Biology",BCB
+25,"Bioinformatics and Computational Biology",BCBIO
+26,"Biological/Pre-Medical Illustration","BPM I"
+27,Biology,BIOL
+28,"Biomedical Sciences","B M S"
+29,"Biorenewable Chemicals","BR C"
+30,"Biorenewable Resources and Technology",BRT
+31,"Business Administration",BUSAD
+32,"Chemical Engineering","CH E"
+33,Chemistry,CHEM
+34,Chinese,CHIN
+35,"Civil Engineering","C E"
+36,"Classical Studies","CL ST"
+37,"Communication Disorders",CMDIS
+38,"Communication Studies",COMST
+39,"Community and Regional Planning","C R P"
+40,"Community Development","C DEV"
+41,"Complex Adaptive Systems",CAS
+42,"Computer Engineering","CPR E"
+43,"Computer Science","COM S"
+44,"Construction Engineering","CON E"
+45,"Criminal Justice Studies","CJ ST"
+46,"Curriculum and Instruction","C I"
+47,Dance,DANCE
+48,Design,DES
+49,"Design Studies","DSN S"
+50,Dietetics,DIET
+51,"Early Childcare Education and Programming","E C P"
+52,"Ecology and Evolutionary Biology",EEB
+53,"Ecology, Evolution, and Organismal Biology",EEOB
+54,Economics,ECON
+55,"Educational Administration",EDADM
+56,"Educational Leadership and Policy Studies","EL PS"
+57,"Electrical Engineering","E E"
+58,Engineering,ENGR
+59,"Engineering Mechanics","E M"
+60,English,ENGL
+61,Entomology,ENT
+62,"Environmental Science",ENSCI
+63,"Environmental Studies","ENV S"
+64,"Event Management",EVENT
+65,"Family and Consumer SciencesEducation and Studies",FCEDS
+66,"Family Financial Planning",FFP
+67,Finance,FIN
+68,"Food Science and Human Nutrition","FS HN"
+69,Forestry,FOR
+70,French,FRNCH
+71,"Genetics, Development and Cell Biology",GDCB
+72,Genetics,GEN
+73,Genetics-Interdisciplinary,GENET
+74,Geology,GEOL
+75,German,GER
+76,Gerontology,GERON
+77,"Global Resource Systems",GLOBE
+78,"Graduate Studies","GR ST"
+79,"Graphic Design",ARTGR
+80,Greek,GREEK
+81,"Health Studies","H S"
+82,"Higher Education","HG ED"
+83,"Historical, Philosophical, and Comparative Studies","H P C"
+84,History,HIST
+85,Honors,HON
+86,Horticulture,HORT
+87,"Hospitality Management","HSP M"
+88,"Human Computer Interaction",HCI
+89,"Human Development and Family Studies","HD FS"
+90,"Human Sciences","H SCI"
+91,Immunobiology,IMBIO
+92,"Industrial Design and Ind_D","IND D"
+93,"Industrial Engineering","I E"
+94,"Information Assurance",INFAS
+95,"Integrated Studio Arts",ARTIS
+96,"Interdisciplinary Graduate Studies",IGS
+97,"Interior Design",ARTID
+98,"International Studies",INTST
+99,"Iowa Lakeside Laboratory","IA LL"
+100,"Journalism and Mass Communication","JL MC"
+101,Kinesiology,KIN
+102,"Landscape Architecture","L A"
+103,Latin,LATIN
+104,"Leadership Studies","LD ST"
+105,"Learning and Leadership Sciences","L L S"
+106,"Liberal Arts and Sciences Cross-Disciplinary Studi",LAS
+107,Library,LIB
+108,Linguistics,LING
+109,"Management Information Systems",MIS
+110,Management,MGMT
+111,Marketing,MKT
+112,"Materials Engineering","MAT E"
+113,"Materials Science and Engineering","M S E"
+114,Mathematics,MATH
+115,"Mechanical Engineering","M E"
+116,Meteorology,MTEOR
+117,Microbiology,MICRO
+118,"Military Science","M S"
+119,"Molecular, Cellular and Developmental Biology",MCDB
+120,Music,MUSIC
+121,"Natural Resource Ecology and Management",NREM
+122,"Naval Science","N S"
+123,Neuroscience,NEURO
+124,"Nuclear Engineering","NUC E"
+125,"Nutritional Sciences",NUTRS
+126,"Organizational Learning and Human Resource Develop",OLHRD
+127,"Organization for Tropical Studies",OTS
+128,"Performing Arts",PERF
+129,Philosophy,PHIL
+130,Physics,PHYS
+131,"Plant Biology",PLBIO
+132,"Plant Pathology","PL P"
+133,"Political Science","POL S"
+134,Psychology,PSYCH
+135,"Public Relations","P R"
+136,"Religious Studies",RELIG
+137,"Research and Evaluation",RESEV
+138,Russian,RUS
+139,"Seed Technology and Business",STB
+140,Sociology,SOC
+141,"Software Engineering","S E"
+142,Spanish,SPAN
+143,"Special Education","SP ED"
+144,"Speech Communication","SP CM"
+145,Statistics,STAT
+146,"Supply Chain Management",SCM
+147,"Sustainable Agriculture",SUSAG
+148,"Sustainable Environments","SUS E"
+149,"Technology and Social Change","T SC"
+150,"Technology Systems Management",TSM
+151,Theatre,THTRE
+152,Toxicology,TOX
+153,Transportation,TRANS
+154,"University Studies","U ST"
+155,"Urban Design","URB D"
+156,"U.S. Latino/a Studies Program","US LS"
+157,"Veterinary Clinical Sciences","V C S"
+158,"Veterinary Diagnostic and Production Animal Medici",VDPAM
+159,"Veterinary Microbiology and Preventive Medicine","V MPM"
+160,"Veterinary Pathology","V PTH"
+161,"Wind Energy Science, Engineering and Policy",WESEP
+162,"Women's Studies","W S"
+163,"World Languages and Cultures",WLC
+164,Youth,YTH
