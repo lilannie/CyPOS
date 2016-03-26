@@ -3,7 +3,12 @@
 #
 #!/usr/bin/python
 
-import MySQLdb
+
+import pymysql
+
+db=pymysql.connect(host="jdbc:mysql://mysql.cs.iastate.edu",user="dbu309grp17",
+                  passwd="AugtUmP22JP",db="thangs")
+
 
 class ScheduleCreator:
 
