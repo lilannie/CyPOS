@@ -3,22 +3,18 @@
 #
 #!/usr/bin/python
 
-
-import pymysql
-
-db=pymysql.connect(host="jdbc:mysql://mysql.cs.iastate.edu",user="dbu309grp17",
-                  passwd="AugtUmP22JP",db="thangs")
-
+import databaseAccess
 
 class ScheduleCreator:
 
-TODO
 #Function
 ##Write a function that connects to the Database
+#***Same as databaseAccess, but placed here for simplicity***
 #return connection
-def databaseConnection():
+def databaseConnection(table):
+    return pymysql.connect(host="jdbc:mysql://mysql.cs.iastate.edu", user="dbu309grp17", passwd="AugtUmP22JP", db=table)
 
-TODO
+# TODO
 #Function
 ##Write a function that queries database
 #return the query
@@ -33,7 +29,7 @@ TODO
 #return list of filtered classes
 def classFilter():
 
-TODO
+# TODO
 #Function
 ##Write a function that checks pre-requisites
 def prereq():
