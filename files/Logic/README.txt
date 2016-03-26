@@ -31,4 +31,7 @@ Start Django project
 Install pymysql to enable mysql database access for python
 --pip install pymysql
 
+Run Django environment
+--python manage.py runserver
+
 
