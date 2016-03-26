@@ -1,9 +1,10 @@
 #!/usr/bin/python
 
-import MySQLdb
+import pymysql
 
+def openDatabase(tablequery):
 # Open database connection
-db = MySQLdb.connect("localhost","testuser","test123","TESTDB" )
+db=pymysql.connect(host="jdbc:mysql://mysql.cs.iastate.edu",user="dbu309grp17", passwd="AugtUmP22JP",db=tablequery)
 
 # prepare a cursor object using cursor() method
 cursor = db.cursor()
