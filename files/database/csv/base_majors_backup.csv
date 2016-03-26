@@ -1,0 +1,544 @@
+id,name,college_id
+326,"Undecided - Agricultural and Life Sciences",1
+327,"Undecided - Business",2
+328,"Undecided - Design",3
+329,"Undecided - Engineering",4
+330,"Undecided - Human Sciences",6
+331,"Undecided - Liberal Arts and Sciences",7
+332,"Undecided - Open Option",7
+333,Accounting,2
+334,Advertising,7
+335,"Aerospace Engineering",4
+336,"Agricultural Biochemistry",1
+337,"Agricultural Business",1
+338,"Agricultural Engineering",4
+339,"Agricultural Studies",1
+340,"Agricultural Systems Technology",1
+341,"Agriculture and Life Sciences Education",1
+342,"Agriculture and Life Sciences Exploration",1
+343,"Agriculture and Society",1
+344,Agronomy,1
+345,"Animal Ecology",1
+346,"Animal Science",1
+347,Anthropology,7
+348,"Apparel, Merchandising, and Design",6
+349,Architecture,3
+350,"Art and Design",3
+351,"Athletic Training",6
+352,Biochemistry,7
+353,"Bioinformatics and Computational Biology",7
+354,"Biological Pre-Medical Illustration",7
+355,"Biological Systems Engineering",4
+356,"Biology - AGLS",1
+357,"Biology - LAS",7
+358,Biophysics,7
+359,"Botany (Biology)",7
+360,"Business Economics",2
+361,"Chemical Engineering",4
+362,Chemistry,7
+363,"Child, Adult and Family Services",6
+364,"Civil Engineering",4
+365,"Classical Studies (Interdisciplinary Studies)",7
+366,"Communication Studies",7
+367,"Community and Regional Planning",3
+368,"Computer Engineering",4
+369,"Computer Science",7
+370,"Construction Engineering",4
+371,"Criminology and Criminal Justice (Interdisciplinary Studies)",7
+372,"Culinary Science - AGLS",1
+373,"Culinary Science - H SCI",6
+374,"Undecided - Agricultural and Life Sciences",1
+375,"Undecided - Business",2
+376,"Undecided - Design",3
+377,"Undecided - Engineering",4
+378,"Undecided - Human Sciences",6
+379,"Undecided - Liberal Arts and Sciences",7
+380,"Undecided - Open Option",7
+381,Accounting,2
+382,Advertising,7
+383,"Aerospace Engineering",4
+384,"Agricultural Biochemistry",1
+385,"Agricultural Business",1
+386,"Agricultural Engineering",4
+387,"Agricultural Studies",1
+388,"Agricultural Systems Technology",1
+389,"Agriculture and Life Sciences Education",1
+390,"Agriculture and Life Sciences Exploration",1
+391,"Agriculture and Society",1
+392,Agronomy,1
+393,"Animal Ecology",1
+394,"Animal Science",1
+395,Anthropology,7
+396,"Apparel, Merchandising, and Design",6
+397,Architecture,3
+398,"Art and Design",3
+399,"Athletic Training",6
+400,Biochemistry,7
+401,"Bioinformatics and Computational Biology",7
+402,"Biological Pre-Medical Illustration",7
+403,"Biological Systems Engineering",4
+404,"Biology - AGLS",1
+405,"Biology - LAS",7
+406,Biophysics,7
+407,"Botany (Biology)",7
+408,"Business Economics",2
+409,"Chemical Engineering",4
+410,Chemistry,7
+411,"Child, Adult and Family Services",6
+412,"Civil Engineering",4
+413,"Classical Studies (Interdisciplinary Studies)",7
+414,"Communication Studies",7
+415,"Community and Regional Planning",3
+416,"Computer Engineering",4
+417,"Computer Science",7
+418,"Construction Engineering",4
+419,"Criminology and Criminal Justice (Interdisciplinary Studies)",7
+420,"Culinary Science - AGLS",1
+421,"Culinary Science - H SCI",6
+422,"Undecided - Agricultural and Life Sciences",1
+423,"Undecided - Business",2
+424,"Undecided - Design",3
+425,"Undecided - Engineering",4
+426,"Undecided - Human Sciences",6
+427,"Undecided - Liberal Arts and Sciences",7
+428,"Undecided - Open Option",7
+429,Accounting,2
+430,Advertising,7
+431,"Aerospace Engineering",4
+432,"Agricultural Biochemistry",1
+433,"Agricultural Business",1
+434,"Agricultural Engineering",4
+435,"Agricultural Studies",1
+436,"Agricultural Systems Technology",1
+437,"Agriculture and Life Sciences Education",1
+438,"Agriculture and Life Sciences Exploration",1
+439,"Agriculture and Society",1
+440,Agronomy,1
+441,"Animal Ecology",1
+442,"Animal Science",1
+443,Anthropology,7
+444,"Apparel, Merchandising, and Design",6
+445,Architecture,3
+446,"Art and Design",3
+447,"Athletic Training",6
+448,Biochemistry,7
+449,"Bioinformatics and Computational Biology",7
+450,"Biological Pre-Medical Illustration",7
+451,"Biological Systems Engineering",4
+452,"Biology - AGLS",1
+453,"Biology - LAS",7
+454,Biophysics,7
+455,"Botany (Biology)",7
+456,"Business Economics",2
+457,"Chemical Engineering",4
+458,Chemistry,7
+459,"Child, Adult and Family Services",6
+460,"Civil Engineering",4
+461,"Classical Studies (Interdisciplinary Studies)",7
+462,"Communication Studies",7
+463,"Community and Regional Planning",3
+464,"Computer Engineering",4
+465,"Computer Science",7
+466,"Construction Engineering",4
+467,"Criminology and Criminal Justice (Interdisciplinary Studies)",7
+468,"Culinary Science - AGLS",1
+469,"Culinary Science - H SCI",6
+470,"Dairy Science",7
+471,"Dance (Performing Arts)",7
+472,Design,3
+473,"Design - Fashion (Apparel, Merchandising, and Design)",3
+474,"Diet and Exercise - AGLS",1
+475,"Diet and Exercise - H SCI",6
+476,"Dietetics - AGLS",1
+477,"Dietetics - H SCI",6
+478,"Early Childcare Education and Programming (non-licensure)",6
+479,"Early Childhood Education (teacher licensure)",6
+480,"Earth Science",7
+481,Economics,7
+482,"Education: Agriculture and Life Sciences Education",6
+483,"Education: Biology - AGLS",6
+484,"Education: Biology - LAS",7
+485,"Education: Chemistry",7
+486,"Education: Early Childhood Education",6
+487,"Education: Earth Science",7
+488,"Education: Elementary Education",6
+489,"Education: English",7
+490,"Education: Family and Consumer Sciences Education and Studies",6
+491,"Education: History",7
+492,"Education: Kinesiology and Health",6
+493,"Education: Mathematics",7
+494,"Education: Music",7
+495,"Education: Physics",7
+496,"Education: Political Science",6
+497,"Education: Speech Communication",6
+498,"Electrical Engineering",4
+499,"Elementary Education",6
+500,English,7
+501,"Environmental Science - AGLS",1
+502,"Environmental Science - LAS",7
+503,"Event Management",6
+504,"Family & Consumer Sciences Education and Studies",6
+505,"Fashion Merchandising (Apparel Merchandising, Design, and Production)",6
+506,Finance,2
+507,"Financial Counseling and Planning",6
+508,"Fine Arts (Integrated Studio Arts)",3
+509,"Food Science - AGLS",1
+510,"Food Science - H SCI",6
+511,Forestry,1
+512,"Genetics - AGLS",1
+513,"Genetics - LAS",7
+514,Geology,7
+515,"Global Resource Systems",1
+516,"Graphic Design",3
+517,History,7
+518,Horticulture,1
+519,"Hospitality Management",6
+520,"Industrial Design",3
+521,"Industrial Engineering",4
+522,"Industrial Technology",1
+523,"Integrated Studio Arts",3
+524,"Interior Design",3
+525,"Journalism and Mass Communication",7
+526,"Kinesiology and Health",6
+527,"Kinesiology and Health major (Community and Public Health)",6
+528,"Kinesiology and Health major (Exercise Science)",6
+529,"Kinesiology and Health major (Physical Education Licensure)",6
+530,"Kinesiology and Health major (Pre-Health Professions)",6
+531,"Landscape Architecture",3
+532,"Latino/a Studies, U.S. Program (Interdisciplinary Studies)",7
+533,"Liberal Studies",7
+534,Linguistics,7
+535,Management,2
+536,"Management Information Systems",2
+537,Marketing,2
+538,"Materials Engineering",4
+539,Mathematics,7
+540,"Mechanical Engineering",4
+541,Meteorology,7
+542,Microbiology,1
+543,Music,7
+544,"Nutritional Science - AGLS",1
+545,"Nutritional Science - H SCI",6
+546,"Open Option - Undecided",7
+547,"Performing Arts",7
+548,Philosophy,7
+549,"Physical Education (Kinesiology and Health)",7
+550,Physics,7
+551,"Political Science",7
+552,"Pre-Human Medicine",6
+553,Pre-Law,6
+554,"Preprofessional Health Programs",6
+555,Psychology,7
+556,"Public Relations",7
+557,"Religious Studies",7
+558,Sociology,7
+559,"Software Engineering",4
+560,"Speech Communication",7
+561,Statistics,7
+562,"Supply Chain Management",2
+563,"Technical Communication",7
+564,"Theatre (Performing Arts)",7
+565,"Veterinary Medicine",8
+566,"Women's Studies",7
+567,"World Languages and Cultures: French",7
+568,"World Languages and Cultures: German",7
+569,"World Languages and Cultures: Spanish",7
+570,"Zoology (Biology)",7
+571,"Undecided - Agricultural and Life Sciences",1
+572,"Undecided - Business",2
+573,"Undecided - Design",3
+574,"Undecided - Engineering",4
+575,"Undecided - Human Sciences",6
+576,"Undecided - Liberal Arts and Sciences",7
+577,"Undecided - Open Option",7
+578,Accounting,2
+579,Advertising,7
+580,"Aerospace Engineering",4
+581,"Agricultural Biochemistry",1
+582,"Agricultural Business",1
+583,"Agricultural Engineering",4
+584,"Agricultural Studies",1
+585,"Agricultural Systems Technology",1
+586,"Agriculture and Life Sciences Education",1
+587,"Agriculture and Life Sciences Exploration",1
+588,"Agriculture and Society",1
+589,Agronomy,1
+590,"Animal Ecology",1
+591,"Animal Science",1
+592,Anthropology,7
+593,"Apparel, Merchandising, and Design",6
+594,Architecture,3
+595,"Art and Design",3
+596,"Athletic Training",6
+597,Biochemistry,7
+598,"Bioinformatics and Computational Biology",7
+599,"Biological Pre-Medical Illustration",7
+600,"Biological Systems Engineering",4
+601,"Biology - AGLS",1
+602,"Biology - LAS",7
+603,Biophysics,7
+604,"Botany (Biology)",7
+605,"Business Economics",2
+606,"Chemical Engineering",4
+607,Chemistry,7
+608,"Child, Adult and Family Services",6
+609,"Civil Engineering",4
+610,"Classical Studies (Interdisciplinary Studies)",7
+611,"Communication Studies",7
+612,"Community and Regional Planning",3
+613,"Computer Engineering",4
+614,"Computer Science",7
+615,"Construction Engineering",4
+616,"Criminology and Criminal Justice (Interdisciplinary Studies)",7
+617,"Culinary Science - AGLS",1
+618,"Culinary Science - H SCI",6
+619,"Dairy Science",7
+620,"Dance (Performing Arts)",7
+621,Design,3
+622,"Design - Fashion (Apparel, Merchandising, and Design)",3
+623,"Diet and Exercise - AGLS",1
+624,"Diet and Exercise - H SCI",6
+625,"Dietetics - AGLS",1
+626,"Dietetics - H SCI",6
+627,"Early Childcare Education and Programming (non-licensure)",6
+628,"Early Childhood Education (teacher licensure)",6
+629,"Earth Science",7
+630,Economics,7
+631,"Education: Agriculture and Life Sciences Education",6
+632,"Education: Biology - AGLS",6
+633,"Education: Biology - LAS",7
+634,"Education: Chemistry",7
+635,"Education: Early Childhood Education",6
+636,"Education: Earth Science",7
+637,"Education: Elementary Education",6
+638,"Education: English",7
+639,"Education: Family and Consumer Sciences Education and Studies",6
+640,"Education: History",7
+641,"Education: Kinesiology and Health",6
+642,"Education: Mathematics",7
+643,"Education: Music",7
+644,"Education: Physics",7
+645,"Education: Political Science",6
+646,"Education: Speech Communication",6
+647,"Electrical Engineering",4
+648,"Elementary Education",6
+649,English,7
+650,"Environmental Science - AGLS",1
+651,"Environmental Science - LAS",7
+652,"Event Management",6
+653,"Family & Consumer Sciences Education and Studies",6
+654,"Fashion Merchandising (Apparel Merchandising, Design, and Production)",6
+655,Finance,2
+656,"Financial Counseling and Planning",6
+657,"Fine Arts (Integrated Studio Arts)",3
+658,"Food Science - AGLS",1
+659,"Food Science - H SCI",6
+660,Forestry,1
+661,"Genetics - AGLS",1
+662,"Genetics - LAS",7
+663,Geology,7
+664,"Global Resource Systems",1
+665,"Graphic Design",3
+666,History,7
+667,Horticulture,1
+668,"Hospitality Management",6
+669,"Industrial Design",3
+670,"Industrial Engineering",4
+671,"Industrial Technology",1
+672,"Integrated Studio Arts",3
+673,"Interior Design",3
+674,"Journalism and Mass Communication",7
+675,"Kinesiology and Health",6
+676,"Kinesiology and Health major (Community and Public Health)",6
+677,"Kinesiology and Health major (Exercise Science)",6
+678,"Kinesiology and Health major (Physical Education Licensure)",6
+679,"Kinesiology and Health major (Pre-Health Professions)",6
+680,"Landscape Architecture",3
+681,"Latino/a Studies, U.S. Program (Interdisciplinary Studies)",7
+682,"Liberal Studies",7
+683,Linguistics,7
+684,Management,2
+685,"Management Information Systems",2
+686,Marketing,2
+687,"Materials Engineering",4
+688,Mathematics,7
+689,"Mechanical Engineering",4
+690,Meteorology,7
+691,Microbiology,1
+692,Music,7
+693,"Nutritional Science - AGLS",1
+694,"Nutritional Science - H SCI",6
+695,"Open Option - Undecided",7
+696,"Performing Arts",7
+697,Philosophy,7
+698,"Physical Education (Kinesiology and Health)",7
+699,Physics,7
+700,"Political Science",7
+701,"Pre-Human Medicine",6
+702,Pre-Law,6
+703,"Preprofessional Health Programs",6
+704,Psychology,7
+705,"Public Relations",7
+706,"Religious Studies",7
+707,Sociology,7
+708,"Software Engineering",4
+709,"Speech Communication",7
+710,Statistics,7
+711,"Supply Chain Management",2
+712,"Technical Communication",7
+713,"Theatre (Performing Arts)",7
+714,"Veterinary Medicine",8
+715,"Women's Studies",7
+716,"World Languages and Cultures: French",7
+717,"World Languages and Cultures: German",7
+718,"World Languages and Cultures: Spanish",7
+719,"Zoology (Biology)",7
+720,"Undecided - Agricultural and Life Sciences",1
+721,"Undecided - Business",2
+722,"Undecided - Design",3
+723,"Undecided - Engineering",4
+724,"Undecided - Human Sciences",6
+725,"Undecided - Liberal Arts and Sciences",7
+726,"Undecided - Open Option",7
+727,Accounting,2
+728,Advertising,7
+729,"Aerospace Engineering",4
+730,"Agricultural Biochemistry",1
+731,"Agricultural Business",1
+732,"Agricultural Engineering",4
+733,"Agricultural Studies",1
+734,"Agricultural Systems Technology",1
+735,"Agriculture and Life Sciences Education",1
+736,"Agriculture and Life Sciences Exploration",1
+737,"Agriculture and Society",1
+738,Agronomy,1
+739,"Animal Ecology",1
+740,"Animal Science",1
+741,Anthropology,7
+742,"Apparel, Merchandising, and Design",6
+743,Architecture,3
+744,"Art and Design",3
+745,"Athletic Training",6
+746,Biochemistry,7
+747,"Bioinformatics and Computational Biology",7
+748,"Biological Pre-Medical Illustration",7
+749,"Biological Systems Engineering",4
+750,"Biology - AGLS",1
+751,"Biology - LAS",7
+752,Biophysics,7
+753,"Botany (Biology)",7
+754,"Business Economics",2
+755,"Chemical Engineering",4
+756,Chemistry,7
+757,"Child, Adult and Family Services",6
+758,"Civil Engineering",4
+759,"Classical Studies (Interdisciplinary Studies)",7
+760,"Communication Studies",7
+761,"Community and Regional Planning",3
+762,"Computer Engineering",4
+763,"Computer Science",7
+764,"Construction Engineering",4
+765,"Criminology and Criminal Justice (Interdisciplinary Studies)",7
+766,"Culinary Science - AGLS",1
+767,"Culinary Science - H SCI",6
+768,"Dairy Science",7
+769,"Dance (Performing Arts)",7
+770,Design,3
+771,"Design - Fashion (Apparel, Merchandising, and Design)",3
+772,"Diet and Exercise - AGLS",1
+773,"Diet and Exercise - H SCI",6
+774,"Dietetics - AGLS",1
+775,"Dietetics - H SCI",6
+776,"Early Childcare Education and Programming (non-licensure)",6
+777,"Early Childhood Education (teacher licensure)",6
+778,"Earth Science",7
+779,Economics,7
+780,"Education: Agriculture and Life Sciences Education",6
+781,"Education: Biology - AGLS",6
+782,"Education: Biology - LAS",7
+783,"Education: Chemistry",7
+784,"Education: Early Childhood Education",6
+785,"Education: Earth Science",7
+786,"Education: Elementary Education",6
+787,"Education: English",7
+788,"Education: Family and Consumer Sciences Education and Studies",6
+789,"Education: History",7
+790,"Education: Kinesiology and Health",6
+791,"Education: Mathematics",7
+792,"Education: Music",7
+793,"Education: Physics",7
+794,"Education: Political Science",6
+795,"Education: Speech Communication",6
+796,"Electrical Engineering",4
+797,"Elementary Education",6
+798,English,7
+799,"Environmental Science - AGLS",1
+800,"Environmental Science - LAS",7
+801,"Event Management",6
+802,"Family & Consumer Sciences Education and Studies",6
+803,"Fashion Merchandising (Apparel Merchandising, Design, and Production)",6
+804,Finance,2
+805,"Financial Counseling and Planning",6
+806,"Fine Arts (Integrated Studio Arts)",3
+807,"Food Science - AGLS",1
+808,"Food Science - H SCI",6
+809,Forestry,1
+810,"Genetics - AGLS",1
+811,"Genetics - LAS",7
+812,Geology,7
+813,"Global Resource Systems",1
+814,"Graphic Design",3
+815,History,7
+816,Horticulture,1
+817,"Hospitality Management",6
+818,"Industrial Design",3
+819,"Industrial Engineering",4
+820,"Industrial Technology",1
+821,"Integrated Studio Arts",3
+822,"Interior Design",3
+823,"Journalism and Mass Communication",7
+824,"Kinesiology and Health",6
+825,"Kinesiology and Health major (Community and Public Health)",6
+826,"Kinesiology and Health major (Exercise Science)",6
+827,"Kinesiology and Health major (Physical Education Licensure)",6
+828,"Kinesiology and Health major (Pre-Health Professions)",6
+829,"Landscape Architecture",3
+830,"Latino/a Studies, U.S. Program (Interdisciplinary Studies)",7
+831,"Liberal Studies",7
+832,Linguistics,7
+833,Management,2
+834,"Management Information Systems",2
+835,Marketing,2
+836,"Materials Engineering",4
+837,Mathematics,7
+838,"Mechanical Engineering",4
+839,Meteorology,7
+840,Microbiology,1
+841,Music,7
+842,"Nutritional Science - AGLS",1
+843,"Nutritional Science - H SCI",6
+844,"Open Option - Undecided",7
+845,"Performing Arts",7
+846,Philosophy,7
+847,"Physical Education (Kinesiology and Health)",7
+848,Physics,7
+849,"Political Science",7
+850,"Pre-Human Medicine",6
+851,Pre-Law,6
+852,"Preprofessional Health Programs",6
+853,Psychology,7
+854,"Public Relations",7
+855,"Religious Studies",7
+856,Sociology,7
+857,"Software Engineering",4
+858,"Speech Communication",7
+859,Statistics,7
+860,"Supply Chain Management",2
+861,"Technical Communication",7
+862,"Theatre (Performing Arts)",7
+863,"Veterinary Medicine",8
+864,"Women's Studies",7
+865,"World Languages and Cultures: French",7
+866,"World Languages and Cultures: German",7
+867,"World Languages and Cultures: Spanish",7
+868,"Zoology (Biology)",7

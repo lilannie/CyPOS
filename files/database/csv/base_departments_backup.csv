@@ -1,0 +1,165 @@
+id,name,acronym,college_id
+1,Accounting,ACCT,NULL
+2,Advertising,ADVRT,NULL
+3,"Aerospace Engineering",AERE,NULL
+4,"African American Studies",AFAM,NULL
+5,"Agricultural and Biosystems Engineering",ABE,NULL
+6,"Agricultural Education and Studies",AGEDS,NULL
+7,Agronomy,AGRON,NULL
+8,"Air Force Aerospace Studies",AFAS,NULL
+9,"American Indian Studies","AM IN",NULL
+10,"American Sign Language",ASL,NULL
+11,"Animal Ecology",AECL,NULL
+12,"Animal Science",ANS,NULL
+13,Anthropology,ANTHR,NULL
+14,"Apparel, Events, and Hospitality Management",AESHM,NULL
+15,"Apparel, Merchandising and Design",AMD,NULL
+16,Arabic,ARABC,NULL
+17,Architecture,ARCH,NULL
+18,"Art Education",ARTED,NULL
+19,"Art History","ART H",NULL
+20,"Astronomy and Astrophysics",ASTRO,NULL
+21,"Athetic Training","A TR",NULL
+22,Athletics,ATH,NULL
+23,"Biochemistry, Biophysics, and Molecular Biology",BBMB,NULL
+24,"Bioinformatics and Computational Biology",BCB,NULL
+25,"Bioinformatics and Computational Biology",BCBIO,NULL
+26,"Biological/Pre-Medical Illustration","BPM I",NULL
+27,Biology,BIOL,NULL
+28,"Biomedical Sciences",BMS,NULL
+29,"Biorenewable Chemicals",BRC,NULL
+30,"Biorenewable Resources and Technology",BRT,NULL
+31,"Business Administration",BUSAD,NULL
+32,"Chemical Engineering",CHE,NULL
+33,Chemistry,CHEM,NULL
+34,Chinese,CHIN,NULL
+35,"Civil Engineering",CE,NULL
+36,"Classical Studies",CLST,NULL
+37,"Communication Disorders",CMDIS,NULL
+38,"Communication Studies",COMST,NULL
+39,"Community and Regional Planning",CRP,NULL
+40,"Community Development",CDEV,NULL
+41,"Complex Adaptive Systems",CAS,NULL
+42,"Computer Engineering",CPRE,NULL
+43,"Computer Science",COMS,NULL
+44,"Construction Engineering",CONE,NULL
+45,"Criminal Justice Studies",CJST,NULL
+46,"Curriculum and Instruction",CI,NULL
+47,Dance,DANCE,NULL
+48,Design,DES,NULL
+49,"Design Studies","DSN S",NULL
+50,Dietetics,DIET,NULL
+51,"Early Childcare Education and Programming",ECP,NULL
+52,"Ecology and Evolutionary Biology",EEB,NULL
+53,"Ecology, Evolution, and Organismal Biology",EEOB,NULL
+54,Economics,ECON,NULL
+55,"Educational Administration",EDADM,NULL
+56,"Educational Leadership and Policy Studies",ELPS,NULL
+57,"Electrical Engineering",EE,NULL
+58,Engineering,ENGR,NULL
+59,"Engineering Mechanics",EM,NULL
+60,English,ENGL,NULL
+61,Entomology,ENT,NULL
+62,"Environmental Science",ENSCI,NULL
+63,"Environmental Studies",ENVS,NULL
+64,"Event Management",EVENT,NULL
+65,"Family and Consumer SciencesEducation and Studies",FCEDS,NULL
+66,"Family Financial Planning",FFP,NULL
+67,Finance,FIN,NULL
+68,"Food Science and Human Nutrition",FSHN,NULL
+69,Forestry,FOR,NULL
+70,French,FRNCH,NULL
+71,"Genetics, Development and Cell Biology",GDCB,NULL
+72,Genetics,GEN,NULL
+73,Genetics-Interdisciplinary,GENET,NULL
+74,Geology,GEOL,NULL
+75,German,GER,NULL
+76,Gerontology,GERON,NULL
+77,"Global Resource Systems",GLOBE,NULL
+78,"Graduate Studies",GRST,NULL
+79,"Graphic Design",ARTGR,NULL
+80,Greek,GREEK,NULL
+81,"Health Studies",HS,NULL
+82,"Higher Education",HGED,NULL
+83,"Historical, Philosophical, and Comparative Studies",HPC,NULL
+84,History,HIST,NULL
+85,Honors,HON,NULL
+86,Horticulture,HORT,NULL
+87,"Hospitality Management",HSPM,NULL
+88,"Human Computer Interaction",HCI,NULL
+89,"Human Development and Family Studies",HDFS,NULL
+90,"Human Sciences","H SCI",NULL
+91,Immunobiology,IMBIO,NULL
+92,"Industrial Design and Ind_D","IND D",NULL
+93,"Industrial Engineering",IE,NULL
+94,"Information Assurance",INFAS,NULL
+95,"Integrated Studio Arts",ARTIS,NULL
+96,"Interdisciplinary Graduate Studies",IGS,NULL
+97,"Interior Design",ARTID,NULL
+98,"International Studies",INTST,NULL
+99,"Iowa Lakeside Laboratory",IALL,NULL
+100,"Journalism and Mass Communication",JLMC,NULL
+101,Kinesiology,KIN,NULL
+102,"Landscape Architecture","L A",NULL
+103,Latin,LATIN,NULL
+104,"Leadership Studies",LDST,NULL
+105,"Learning and Leadership Sciences",LLS,NULL
+106,"Liberal Arts and Sciences Cross-Disciplinary Studi",LAS,NULL
+107,Library,LIB,NULL
+108,Linguistics,LING,NULL
+109,"Management Information Systems",MIS,NULL
+110,Management,MGMT,NULL
+111,Marketing,MKT,NULL
+112,"Materials Engineering",MATE,NULL
+113,"Materials Science and Engineering",MSE,NULL
+114,Mathematics,MATH,NULL
+115,"Mechanical Engineering",ME,NULL
+116,Meteorology,MTEOR,NULL
+117,Microbiology,MICRO,NULL
+118,"Military Science",MS,NULL
+119,"Molecular, Cellular and Developmental Biology",MCDB,NULL
+120,Music,MUSIC,NULL
+121,"Natural Resource Ecology and Management",NREM,NULL
+122,"Naval Science",NS,NULL
+123,Neuroscience,NEURO,NULL
+124,"Nuclear Engineering",NUCE,NULL
+125,"Nutritional Sciences",NUTRS,NULL
+126,"Organizational Learning and Human Resource Develop",OLHRD,NULL
+127,"Organization for Tropical Studies",OTS,NULL
+128,"Performing Arts",PERF,NULL
+129,Philosophy,PHIL,NULL
+130,Physics,PHYS,NULL
+131,"Plant Biology",PLBIO,NULL
+132,"Plant Pathology",PLP,NULL
+133,"Political Science",POLS,NULL
+134,Psychology,PSYCH,NULL
+135,"Public Relations",PR,NULL
+136,"Religious Studies",RELIG,NULL
+137,"Research and Evaluation",RESEV,NULL
+138,Russian,RUS,NULL
+139,"Seed Technology and Business",STB,NULL
+140,Sociology,SOC,NULL
+141,"Software Engineering",SE,NULL
+142,Spanish,SPAN,NULL
+143,"Special Education",SPED,NULL
+144,"Speech Communication",SPCM,NULL
+145,Statistics,STAT,NULL
+146,"Supply Chain Management",SCM,NULL
+147,"Sustainable Agriculture",SUSAG,NULL
+148,"Sustainable Environments",SUSE,NULL
+149,"Technology and Social Change",TSC,NULL
+150,"Technology Systems Management",TSM,NULL
+151,Theatre,THTRE,NULL
+152,Toxicology,TOX,NULL
+153,Transportation,TRANS,NULL
+154,"University Studies",UST,NULL
+155,"Urban Design","URB D",NULL
+156,"U.S. Latino/a Studies Program",USLS,NULL
+157,"Veterinary Clinical Sciences",VCS,NULL
+158,"Veterinary Diagnostic and Production Animal Medici",VDPAM,NULL
+159,"Veterinary Microbiology and Preventive Medicine",VMPM,NULL
+160,"Veterinary Pathology",VPTH,NULL
+161,"Wind Energy Science, Engineering and Policy",WESEP,NULL
+162,"Women's Studies",WS,NULL
+163,"World Languages and Cultures",WLC,NULL
+164,Youth,YTH,NULL
