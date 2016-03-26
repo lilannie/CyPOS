@@ -1,0 +1,1 @@
+Notes for installing and running Django
