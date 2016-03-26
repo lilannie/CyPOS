@@ -8,6 +8,8 @@ def openDatabase(tablequery):
     table = tablequery
     return pymysql.connect(host="jdbc:mysql://mysql.cs.iastate.edu", user="dbu309grp17", passwd="AugtUmP22JP", db=table)
 
+
+
 # prepare a cursor object using cursor() method
 # cursor = db.cursor()
 
@@ -16,8 +18,6 @@ def openDatabase(tablequery):
 
 # Fetch a single row using fetchone() method.
 # data = cursor.fetchone()
-
-# print "Database version : %s " % data
 
 # disconnect from server
 # db.close()
