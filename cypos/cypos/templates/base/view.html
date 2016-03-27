@@ -6,11 +6,17 @@
     </div>
     <div class="panel-body">
         <table class="table table-striped">
-            {% for course in pos.neededCourses.all %}
-            <tr>
-                <td>{{ course.acronym }}</td>
-            </tr>
-            {% endfor %}
+            {% if pos == [] %}
+                <tr>
+                    <td>No Courses Needed</td>
+                </tr>
+            {% else %}
+                {% for course in pos.neededCourses.all %}
+                    <tr>
+                        <td>{{ course.acronym }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </table>
     </div>
 </div>

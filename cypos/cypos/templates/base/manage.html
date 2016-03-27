@@ -39,11 +39,19 @@
     </div>
     <div class="panel-body">
         <table class="table table-striped">
-            {% for course in pos.takenCourses.all %}
-            <tr>
-                <td>{{ course }}</td>
-            </tr>
-            {% endfor %}
+            {% if pos %}
+                <tr>
+                    <td>No Courses Taken</td>
+                    <td>{{ pos.takenCourses }}</td>
+                </tr>
+            {% else %}
+                {% for course in pos.takenCourses.all %}
+                    <tr>
+                        <td>{{ course }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+
         </table>
         <form>
             <button type="button" class="btn btn-primary">Edit</button>
