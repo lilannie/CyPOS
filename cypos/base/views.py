@@ -167,12 +167,14 @@ def home(request):
 def user_manage(request):
     user = request.user
     try:
-        pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+        pos = Pos.objects.filter(user=request.user).order_by('-id')[0]
+        takenCourses = pos.takenCourses.all()
     except:
         pos = []
     return render(request, 'base/manage.html', {
         'user': user,
         'pos': pos,
+        'takenCourses': takenCourses
     })
 
 
@@ -184,7 +186,7 @@ def pos_new(request):
     if request.method == 'POST':
         print(request.POST.get('major'))
         userMajor = Majors.objects.get(id=str(request.POST.get('major')))
-        pos = Pos.objects.create(user=request.user)
+        pos = Pos.objects.create(user=request.user, major=userMajor)
         pos.save()
 
         for reqCourse in userMajor.reqCourses.all():
@@ -213,7 +215,7 @@ def user_detail(request, id):
 
 def pos_view(request):
     try:
-        pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+        pos = Pos.objects.filter(user=request.user).order_by('-id')[0]
     except:
         pos = []
     return render(request, 'base/view.html', {

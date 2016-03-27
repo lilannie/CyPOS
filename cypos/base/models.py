@@ -50,17 +50,6 @@ class Semesters(models.Model):
     courses = models.ManyToManyField(Courses, related_name='courses')
 
 
-class Pos(models.Model):
-    id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, null=False)
-    takenCourses = models.ManyToManyField(Courses, related_name='takenCourses')
-    neededCourses = models.ManyToManyField(Courses, related_name='neededCourses')
-    semesters = models.ManyToManyField(Semesters, related_name='semesters')
-
-    def __unicode__(self):
-        return self.id
-
-
 class Majors(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
@@ -69,6 +58,18 @@ class Majors(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Pos(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.ForeignKey(User, null=False)
+    major = models.ForeignKey(Majors, null=True)
+    takenCourses = models.ManyToManyField(Courses, related_name='takenCourses')
+    neededCourses = models.ManyToManyField(Courses, related_name='neededCourses')
+    semesters = models.ManyToManyField(Semesters, related_name='semesters')
+
+    def __unicode__(self):
+        return self.id
 
 
 class Electives(models.Model):
