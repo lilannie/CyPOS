@@ -29,6 +29,7 @@ def register(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
+            user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
             login(request, user)
             # Update our variable to tell the template registration was successful.
 
