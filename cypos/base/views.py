@@ -29,9 +29,9 @@ def register(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-
+            login(request, user)
             # Update our variable to tell the template registration was successful.
-            registered = True
+
             return render(request, 'base/home.html', {}, context)
 
         # Invalid form or forms - mistakes or something else?
@@ -165,7 +165,10 @@ def home(request):
 
 def user_manage(request):
     user = request.user
-    pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+    try:
+        pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+    except:
+        pos = []
     return render(request, 'base/manage.html', {
         'user': user,
         'pos': pos,
@@ -208,7 +211,10 @@ def user_detail(request, id):
 
 
 def pos_view(request):
-    pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+    try:
+        pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+    except:
+        pos = []
     return render(request, 'base/view.html', {
         'pos': pos
     })
