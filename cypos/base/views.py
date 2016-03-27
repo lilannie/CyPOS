@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UserForm
-from .models import Courses, Majors, Pos, Electives
+from .models import Courses, Majors, Pos, Electives, Departments, Colleges
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -101,9 +101,53 @@ def user_logout(request):
 
 
 def courses_view(request):
-    courses = Courses.objects.all()
+    departments = Departments.objects.all()
+    ag = []
+    bus = []
+    des = []
+    eng = []
+    grad = []
+    hs = []
+    las = []
+    vet = []
+
+    for department in departments:
+        if department.college_id == 1:
+            ag.append(department)
+        elif department.college_id == 2:
+            bus.append(department)
+        elif department.college_id == 3:
+            des.append(department)
+        elif department.college_id == 4:
+            eng.append(department)
+        elif department.college_id == 5:
+            grad.append(department)
+        elif department.college_id == 6:
+            hs.append(department)
+        elif department.college_id == 7:
+            las.append(department)
+        elif department.college_id == 8:
+            vet.append(department)
+
     return render(request, 'base/courses.html', {
-        'courses': courses,
+        'ag': ag,
+        'bus': bus,
+        'des': des,
+        'eng': eng,
+        'grad': grad,
+        'hs': hs,
+        'las': las,
+        'vet': vet,
+    })
+
+
+def course_view_department(request, id):
+    try:
+        courses = Courses.objects.get(id=id).order_by('number')
+    except Courses.DoesNotExist:
+        courses = []
+    return render(request, 'base/course_department.html', {
+        'courses': courses
     })
 
 
