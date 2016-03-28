@@ -171,6 +171,7 @@ def user_manage(request):
         takenCourses = pos.takenCourses.all()
     except:
         pos = []
+        takenCourses = []
     return render(request, 'base/manage.html', {
         'user': user,
         'pos': pos,
