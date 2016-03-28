@@ -4,7 +4,8 @@ from base import views
 
 
 urlpatterns = [
-    url(r'^courses', views.courses_view, name='course_view'),
+    url(r'^courses/(?P<id>\d+)/', views.course_view_department, name='course_view_department'),
+    url(r'^courses$', views.courses_view, name='course_view'),
     url(r'^help', views.user_help, name='user_help'),
     url(r'^history', views.pos_history, name='pos_history'),
     url(r'^home', views.home, name='home'),

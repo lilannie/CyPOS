@@ -1,0 +1,35 @@
+{% include "base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% for course in courses %}
+        <div class="panel panel-default panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{ course.acronym }}</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>Name:</th>
+                        <td>{{ course.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Prerequisites:</th>
+                        <td>
+                            {%for prereq in course.prereqs.all %}
+                                {{ prereq.acronym }} <br/>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Credit Hours:</th>
+                        <td>{{ course.numCredits }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description:</th>
+                        <td>{{ course.description }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

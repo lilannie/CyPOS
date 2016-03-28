@@ -42,9 +42,12 @@
         <div class="{{ major.name }} major">
             {% for reqCourse in major.reqCourses.all %}
                 <div class="checkbox">
-                    <label>{{ reqCourse.department.acronym }} {{ reqCourse.number }}</label>
+                    <label>
+                         <input type="checkbox" value="{{ reqCourse.acronym }}" name="{{ reqCourse.id }}">
+                        {{ reqCourse.department.acronym }} {{ reqCourse.number }}
+                    </label>
                     <!--Views checks the name for POST.get(), but prints the value-->
-                    <input type="checkbox" value="{{ reqCourse.acronym }}" name="{{ reqCourse.id }}">
+
                 </div>
             {% endfor %}
         </div>

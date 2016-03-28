@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import UserForm
-from .models import Courses, Majors, Pos, Electives
+from .models import Courses, Majors, Pos, Electives, Departments, Colleges
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -29,9 +29,10 @@ def register(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-
+            user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+            login(request, user)
             # Update our variable to tell the template registration was successful.
-            registered = True
+
             return render(request, 'base/home.html', {}, context)
 
         # Invalid form or forms - mistakes or something else?
@@ -101,9 +102,53 @@ def user_logout(request):
 
 
 def courses_view(request):
-    courses = Courses.objects.all()
+    departments = Departments.objects.all()
+    ag = []
+    bus = []
+    des = []
+    eng = []
+    grad = []
+    hs = []
+    las = []
+    vet = []
+
+    for department in departments:
+        if department.college_id == 1:
+            ag.append(department)
+        elif department.college_id == 2:
+            bus.append(department)
+        elif department.college_id == 3:
+            des.append(department)
+        elif department.college_id == 4:
+            eng.append(department)
+        elif department.college_id == 5:
+            grad.append(department)
+        elif department.college_id == 6:
+            hs.append(department)
+        elif department.college_id == 7:
+            las.append(department)
+        elif department.college_id == 8:
+            vet.append(department)
+
     return render(request, 'base/courses.html', {
-        'courses': courses,
+        'ag': ag,
+        'bus': bus,
+        'des': des,
+        'eng': eng,
+        'grad': grad,
+        'hs': hs,
+        'las': las,
+        'vet': vet,
+    })
+
+
+def course_view_department(request, id):
+    try:
+        courses = Courses.objects.get(id=id).order_by('number')
+    except Courses.DoesNotExist:
+        courses = []
+    return render(request, 'base/course_department.html', {
+        'courses': courses
     })
 
 
@@ -121,10 +166,15 @@ def home(request):
 
 def user_manage(request):
     user = request.user
-    pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+    try:
+        pos = Pos.objects.filter(user=request.user).order_by('-id')[0]
+        takenCourses = pos.takenCourses.all()
+    except:
+        pos = []
     return render(request, 'base/manage.html', {
         'user': user,
         'pos': pos,
+        'takenCourses': takenCourses
     })
 
 
@@ -136,7 +186,7 @@ def pos_new(request):
     if request.method == 'POST':
         print(request.POST.get('major'))
         userMajor = Majors.objects.get(id=str(request.POST.get('major')))
-        pos = Pos.objects.create(user=request.user)
+        pos = Pos.objects.create(user=request.user, major=userMajor)
         pos.save()
 
         for reqCourse in userMajor.reqCourses.all():
@@ -164,7 +214,10 @@ def user_detail(request, id):
 
 
 def pos_view(request):
-    pos = Pos.objects.filter(user=request.user).order_by('id')[0]
+    try:
+        pos = Pos.objects.filter(user=request.user).order_by('-id')[0]
+    except:
+        pos = []
     return render(request, 'base/view.html', {
         'pos': pos
     })

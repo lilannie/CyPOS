@@ -6,10 +6,10 @@
     </div>
     <div class="panel-body">
         <table class="table table-striped">
-            {% for course in pos.takenCourses.all %}
-            <tr>
-                <td>{{ course.acronym }}</td>
-            </tr>
+            {% for course in pos.neededCourses.all %}
+                <tr>
+                    <td>{{ course.acronym }}</td>
+                </tr>
             {% endfor %}
         </table>
     </div>

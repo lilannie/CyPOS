@@ -4,7 +4,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.Scanner;
 
-public class CreditHours {
+public class CourseNumber {
 	public static void main(String[] args) throws SQLException {
 		Connection connect = null;
 		Statement stmt = null;
@@ -19,14 +19,14 @@ public class CreditHours {
 			File fCourses = new File("classNumber2.txt");
 			Scanner scanCourses = new Scanner(fCourses);
 			
-			File fCredits = new File("credits.txt");
-			Scanner scanCredits = new Scanner(fCredits);
+			File fNumber= new File("classNumber-corrected.txt");
+			Scanner scanNumber= new Scanner(fNumber);
 			
 			String sql = "";
 			while(true){
 				if(scanCourses.hasNextLine()){
-					if(scanCredits.hasNextLine()){
-						sql = "UPDATE db309grp17.Courses SET numCredits = '"+scanCredits.nextLine().trim()+"' WHERE number = '"
+					if(scanNumber.hasNextLine()){
+						sql = "UPDATE db309grp17.base_courses SET number = '"+scanNumber.nextLine().trim()+"' WHERE acronym = '"
 								+scanCourses.nextLine().trim()+"';";
 						stmt.executeUpdate(sql);
 					}else {
@@ -38,13 +38,13 @@ public class CreditHours {
 			}
 			
 			scanCourses.close();
-			scanCredits.close();
+			scanNumber.close();
+			System.out.println("Success");
 		}catch (Exception e){
 			System.out.println("Failure");
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: "+ e.getMessage());
 		}finally {
-			System.out.println("Success");
 			if (stmt != null) {
 				stmt.close();
 			}

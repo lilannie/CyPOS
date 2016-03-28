@@ -4,7 +4,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.Scanner;
 
-public class CreditHours {
+public class Courses {
 	public static void main(String[] args) throws SQLException {
 		Connection connect = null;
 		Statement stmt = null;
@@ -16,38 +16,33 @@ public class CreditHours {
 			connect = DriverManager.getConnection(dbServer, username, password);
 			stmt = connect.createStatement();
 			
-			File fCourses = new File("classNumber2.txt");
-			Scanner scanCourses = new Scanner(fCourses);
-			
-			File fCredits = new File("credits.txt");
-			Scanner scanCredits = new Scanner(fCredits);
+			File fDepartments = new File("MajorsDepartments.txt");
+			Scanner scanDepartments = new Scanner(fDepartments);
+			int counter = 1;
 			
 			String sql = "";
 			while(true){
-				if(scanCourses.hasNextLine()){
-					if(scanCredits.hasNextLine()){
-						sql = "UPDATE db309grp17.Courses SET numCredits = '"+scanCredits.nextLine().trim()+"' WHERE number = '"
-								+scanCourses.nextLine().trim()+"';";
-						stmt.executeUpdate(sql);
-					}else {
-						break;
-					}
+				if(scanDepartments.hasNextLine()){
+					sql = "UPDATE db309grp17.Courses SET db309grp17.Courses.departmentID = "+counter+" WHERE db309grp17.Courses.number "
+							+ "LIKE '"+scanDepartments.nextLine()+"%'";
+					stmt.executeUpdate(sql);
+					counter++;
 				}else {
 					break;
 				}
 			}
-			
-			scanCourses.close();
-			scanCredits.close();
+			scanDepartments.close();
+			System.out.println("Success");
 		}catch (Exception e){
 			System.out.println("Failure");
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: "+ e.getMessage());
 		}finally {
-			System.out.println("Success");
 			if (stmt != null) {
 				stmt.close();
 			}
 		}
 	}
 }
+
+

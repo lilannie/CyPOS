@@ -4,7 +4,7 @@ import java.io.File;
 import java.sql.*;
 import java.util.Scanner;
 
-public class CreditHours {
+public class SoftwareEngineering {
 	public static void main(String[] args) throws SQLException {
 		Connection connect = null;
 		Statement stmt = null;
@@ -16,35 +16,27 @@ public class CreditHours {
 			connect = DriverManager.getConnection(dbServer, username, password);
 			stmt = connect.createStatement();
 			
-			File fCourses = new File("classNumber2.txt");
-			Scanner scanCourses = new Scanner(fCourses);
-			
-			File fCredits = new File("credits.txt");
-			Scanner scanCredits = new Scanner(fCredits);
+			File fColleges = new File("se_courses.txt");
+			Scanner scanColleges = new Scanner(fColleges);
+		
 			
 			String sql = "";
 			while(true){
-				if(scanCourses.hasNextLine()){
-					if(scanCredits.hasNextLine()){
-						sql = "UPDATE db309grp17.Courses SET numCredits = '"+scanCredits.nextLine().trim()+"' WHERE number = '"
-								+scanCourses.nextLine().trim()+"';";
-						stmt.executeUpdate(sql);
-					}else {
-						break;
-					}
+				if(scanColleges.hasNextLine()){
+					sql = "INSERT INTO db309grp17.base_colleges (name) VALUES (\""
+							+scanColleges.nextLine().trim()+"\");";
+					stmt.executeUpdate(sql);
 				}else {
 					break;
 				}
 			}
-			
-			scanCourses.close();
-			scanCredits.close();
+			scanColleges.close();
+			System.out.println("Success");
 		}catch (Exception e){
 			System.out.println("Failure");
 			System.out.println("SQLException: " + e.getMessage());
 			System.out.println("SQLState: "+ e.getMessage());
 		}finally {
-			System.out.println("Success");
 			if (stmt != null) {
 				stmt.close();
 			}
