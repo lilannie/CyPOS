@@ -52,25 +52,6 @@ def register(request):
     return render(request, 'base/register.html', {'user_form': user_form, 'registered': registered}, context)
 
 
-# @author of function: Jens Petersen
-def user_edit(request):
-    user = UserForm
-    context = RequestContext(request)
-    if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
-        if user_form.is_valid():
-            user = user_form.save()
-            return render(request, 'base/user_edit.html', {}, context)
-        else:
-            print(user_form.errors)
-    else:
-        user = request.user
-        user_form = UserForm(request.POST, instance=user)
-       # user_form.save()
-
-    # Render the template depending on the context.
-    return render(request, 'base/user_edit.html', {'user_form': user_form})
-
 def user_login(request):
     # Like before, obtain the context for the user's request.
     context = RequestContext(request)
@@ -247,3 +228,24 @@ def pos_view(request):
 
 def index(request):
     return render(request, 'base/index.html')
+
+
+# @author of function: Jens Petersen
+def user_edit(request):
+    user = UserForm
+    context = RequestContext(request)
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            return render(request, 'base/user_edit.html', {}, context)
+        else:
+            print(user_form.errors)
+    # What're you do when it's not a post? When you just wanna display the form?
+    else:
+        user = request.user
+        user_form = UserForm(request.POST, instance=user)
+       # user_form.save()
+
+    # Render the template depending on the context.
+    return render(request, 'base/user_edit.html', {'user_form': user_form})
