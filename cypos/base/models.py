@@ -15,7 +15,7 @@ class Departments(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
     acronym = models.TextField(null=False, blank=False)
-    college = models.ForeignKey(Colleges, null=True, on_delete=models.CASCADE())
+    college = models.ForeignKey(Colleges, on_delete=models.CASCADE, null=True)
 
     def __unicode__(self):
         return self.name
@@ -27,9 +27,9 @@ class Courses(models.Model):
     acronym = models.TextField(null=False, blank=False, default='0')
     name = models.TextField(null=False, blank=False, default='0')
     description = models.TextField(null=False, blank=False, default='0')
-    # prereqs = models.ManyToManyField("self", on_delete=models.SET_NULL())
+    # prereqs = models.ManyToManyField("self", on_delete=models.SET_NULL)
     numCredits = models.IntegerField(null=True, blank=False, default='0')
-    department = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE())
+    department = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE)
     classificationNeeded = models.BooleanField(null=False, default=False)
 
     def __unicode__(self):
@@ -38,15 +38,15 @@ class Courses(models.Model):
 
 class Prerequisite(models.Model):
     id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE())
-    courseFor = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE())
+    course = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='prerequisite_course')
+    courseFor = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='prerequisite_courseFor')
     NONE = 'N'
     FRESHMAN = 'F'
     SOPHOMORE = 'SP'
     JUNIOR = 'J'
     SENIOR = 'S'
     CLASSIFICATION_CHOICES = (
-        (NONE, 'None')
+        (NONE, 'None'),
         (FRESHMAN, 'Freshman'),
         (SOPHOMORE, 'Sophomore'),
         (JUNIOR, 'Junior'),
@@ -57,8 +57,8 @@ class Prerequisite(models.Model):
 
 class Corequisite(models.Model):
     id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE())
-    courseFor = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE())
+    course = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='corequisite_course')
+    courseFor = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='corequisite_courseFor')
 
 
 class Semesters(models.Model):
@@ -73,14 +73,14 @@ class Semesters(models.Model):
         (FALL, 'Fall'),
     )
     term = TERM_CHOICES
-    courses = models.ManyToManyField(Courses, related_name='courses', null=True, on_delete=models.SET_NULL())
+    courses = models.ManyToManyField(Courses, related_name='courses')
 
 
 class Majors(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
-    college = models.ForeignKey(Colleges, null=True, on_delete=models.CASCADE())
-    reqCourses = models.ManyToManyField(Courses, null=True, on_delete=models.SET_NULL())
+    college = models.ForeignKey(Colleges, null=True, on_delete=models.CASCADE)
+    reqCourses = models.ManyToManyField(Courses)
 
     def __unicode__(self):
         return self.name
@@ -88,11 +88,11 @@ class Majors(models.Model):
 
 class Pos(models.Model):
     id = models.AutoField(primary_key=True)
-    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE())
-    major = models.ForeignKey(Majors, null=True, on_delete=models.CASCADE())
-    takenCourses = models.ManyToManyField(Courses, related_name='takenCourses', on_delete=models.SET_NULL())
-    neededCourses = models.ManyToManyField(Courses, related_name='neededCourses', on_delete=models.SET_NULL())
-    semesters = models.ManyToManyField(Semesters, related_name='semesters', on_delete=models.SET_NULL())
+    user = models.ForeignKey(User, null=False, on_delete=models.CASCADE)
+    major = models.ForeignKey(Majors, null=True, on_delete=models.CASCADE)
+    takenCourses = models.ManyToManyField(Courses, related_name='takenCourses')
+    neededCourses = models.ManyToManyField(Courses, related_name='neededCourses')
+    semesters = models.ManyToManyField(Semesters, related_name='semesters')
 
     def __unicode__(self):
         return self.id
@@ -101,8 +101,8 @@ class Pos(models.Model):
 class Electives(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.TextField(null=False, blank=False)
-    major = models.ForeignKey(Majors, null=True, on_delete=models.CASCADE())
-    courses = models.ManyToManyField(Courses, null=True, on_delete=models.SET_NULL())
+    major = models.ForeignKey(Majors, null=True, on_delete=models.CASCADE)
+    courses = models.ManyToManyField(Courses)
 
     def __unicode__(self):
         return self.id
@@ -110,8 +110,8 @@ class Electives(models.Model):
 
 class Substitutes(models.Model):
     id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE())
-    preqFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE())
+    course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='substitute_course')
+    courseFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='substitute_courseFor')
 
     def __unicode__(self):
         return self.id
