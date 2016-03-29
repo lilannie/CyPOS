@@ -5,6 +5,8 @@ from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+from django.contrib.auth.models import User
+
 
 def register(request):
     # Like before, get the request's context.
@@ -49,6 +51,25 @@ def register(request):
     # Render the template depending on the context.
     return render(request, 'base/register.html', {'user_form': user_form, 'registered': registered}, context)
 
+
+# @author of function: Jens Petersen
+def user_edit(request):
+    user = UserForm
+    context = RequestContext(request)
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            return render(request, 'base/user_edit.html', {}, context)
+        else:
+            print(user_form.errors)
+    else:
+        user = request.user
+        user_form = UserForm(request.POST, instance=user)
+       # user_form.save()
+
+    # Render the template depending on the context.
+    return render(request, 'base/user_edit.html', {'user_form': user_form})
 
 def user_login(request):
     # Like before, obtain the context for the user's request.
