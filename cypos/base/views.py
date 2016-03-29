@@ -232,7 +232,8 @@ def index(request):
 
 # @author of function: Jens Petersen
 def user_edit(request):
-    user = UserForm
+    user_form = None
+    # user = UserForm
     context = RequestContext(request)
     if request.method == 'POST':
         user_form = UserForm(data=request.POST)
