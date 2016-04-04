@@ -23,7 +23,7 @@
 				<div class="panel-body">
 					<form role="form" method="post" action="./manage" enctype="multipart/form-data">
 						{% csrf_token %}
-						{{ user_form}}
+						{{ user_form }}
                                 <ul>
                                     <li>{{ request.user.first_name }}</li>
                                     <li>{{ request.user.last_name }}</li>
