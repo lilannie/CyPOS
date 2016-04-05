@@ -246,15 +246,16 @@ def user_edit(request):
     else:
         user = request.user
         user_form = UserForm(request.POST, instance=request.user)
+        #user_form = UserEditForm(request.POST, instance=request.user)
        # user_form.save()
     return render(request, 'base/user_edit.html', {'user_form': user_form})
 
 
-class UserEditForm():
-    def get(request):
-        form = forms.UserEditForm(instance=team)
-        context['form'] = form
-        return self.render_to_response(context)
+# class UserEditForm():
+#     def get(request):
+#         form = forms.UserEditForm(instance=team)
+#         context['form'] = form
+#         return self.render_to_response(context)
     # Origin: iseage signup github repo
     #def post(self, request, context, *args, **kwargs):
     #     team = context['participant'].team
