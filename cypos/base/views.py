@@ -251,39 +251,18 @@ def user_edit(request):
 
 
 class UserEditForm():
-    template_name = 'team_dash.html'
-    page_title = 'Manage Team'
-    breadcrumb = 'Manage team'
-
-    def get(self, request, context, *args, **kwargs):
-        team = context['participant'].team
-        if 'form' in kwargs:
-            form = kwargs.pop('form')
-        else:
-            form = base_forms.ModifyTeamForm(instance=team)
+    def get(request):
+        form = forms.UserEditForm(instance=team)
         context['form'] = form
-        context['widget_data'] = {
-            'title': 'Team Members',
-            'icon': 'fa-users',
-        }
-        context['danger_widget_data'] = {
-            'title': 'Danger area',
-            'icon': 'fa-warning',
-        }
-
-        context['current_members'] = team.members()
-        context['member_requests'] = team.requested_members()
-        context['captain_requests'] = team.requested_captains()
-
         return self.render_to_response(context)
-
-    def post(self, request, context, *args, **kwargs):
-        team = context['participant'].team
-        form = base_forms.ModifyTeamForm(data=request.POST, instance=team)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Team successfully updated.')
-            return redirect('manage-team')
-        #If the form was invalid, get the old participant object back
-        context['participant'] = request.user.participant
-        return self.get(request, context, form=form)
+    # Origin: iseage signup github repo
+    #def post(self, request, context, *args, **kwargs):
+    #     team = context['participant'].team
+    #     form = base_forms.ModifyTeamForm(data=request.POST, instance=team)
+    #     if form.is_valid():
+    #         form.save()
+    #         messages.success(request, 'Team successfully updated.')
+    #         return redirect('manage-team')
+    #     #If the form was invalid, get the old participant object back
+    #     context['participant'] = request.user.participant
+    #     return self.get(request, context, form=form)
