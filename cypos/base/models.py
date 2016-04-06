@@ -117,7 +117,19 @@ class Substitutes(models.Model):
         return self.id
 
 
+# class UserModel (models.ModelForm):
+#     first_name = forms.CharField(help_text="First Name:")
+#     last_name = forms.CharField(help_text="Last Name:")
+#     username = forms.CharField(help_text="Username:")
+#     email = forms.CharField(help_text="Email:")
+#     password = forms.CharField(widget=forms.PasswordInput(), help_text="Password:")
 
+#     def firstname(request):
+#         first_name=request.user.first_name
+
+#     class Meta:
+#         model = User
+#         fields = ('first_name', 'last_name', 'username', 'email', 'password')
 
 
 
