@@ -235,7 +235,7 @@ def user_edit(request):
     user = request.user
     user_form = None
     context = RequestContext(request)
-    print vars(request)
+    #print vars(request)
     # return HttpResponse(request)
     if request.method == 'POST':
         user_form = UserEditForm(request.POST, instance=request.user)
@@ -244,7 +244,7 @@ def user_edit(request):
         
         if user_form.is_valid():
             user = user_form.save()
-            print(user_form['first_name'])
+            #print(user_form['first_name'])
             return render(request, 'base/manage.html', {}, context)
         else:
            print (user_form.errors)
@@ -252,11 +252,36 @@ def user_edit(request):
     else:
         user_form = UserForm(request.POST, instance=request.user)
         user_form.first_name = "user.first_name"
-        print(user.first_name)
+        #print(user.first_name)
         #user_form = UserEditForm(request.POST, instance=request.user)
        # user_form.save()
     return render(request, 'base/user_edit.html', {'user_form': user_form})
 
+def user_password_edit(request):
+    user = request.user
+    user_form = None
+    context = RequestContext(request)
+    #print vars(request)
+    # return HttpResponse(request)
+    if request.method == 'POST':
+        user_form = UserEditPasswordForm(request.POST, instance=request.user)
+        #here = request.POST['first_name'].first_name
+                
+        if user_form.is_valid():
+            user.set_password(user.password)
+            user = user_form.save()
+            #print(user_form['first_name'])
+            return render(request, 'base/manage.html', {}, context)
+        else:
+           print (user_form.errors)
+    
+    else:
+        user_form = UserForm(request.POST, instance=request.user)
+        user_form.first_name = "user.first_name"
+        #print(user.first_name)
+        #user_form = UserEditForm(request.POST, instance=request.user)
+       # user_form.save()
+    return render(request, 'base/user_edit.html', {'user_form': user_form})
 # def user_edit(request):
 #     #user = request.user
 #     user_edit_form = UserEditForm()

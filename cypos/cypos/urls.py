@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
     url(r'^user_edit', views.user_edit, name='user_edit'),
+    # url(r'^user_password_edit', views.user_password_edit, name='user_password_edit'),
     #url(r'^user_edit/$', views.UserEditForm.get(), name='user-edit-page')
 ]

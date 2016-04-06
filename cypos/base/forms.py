@@ -27,7 +27,18 @@ class UserEditForm(ModelForm):
             'email': 'Email',
             #'title': "Modify your user information here. Any information you would like to keep, do not modify."
         }]
-    
+
+# class UserEditPasswordForm(ModelForm):
+#     class Meta:
+#         model = User
+#         fields = ['old_password', 'new_password', 'repeat_new_password']
+#         fieldsets = [{
+#             'old_password':'Old Password', 
+#             'new_password': 'New Password', 
+#             'repeat_new_password': 'Repeat New Password', 
+#             #'title': "Modify your user information here. Any information you would like to keep, do not modify."
+#         }]
+
 class ChangePasswordForm(ModelForm):
     old_password = forms.CharField(widget=forms.PasswordInput(), required=True)
     new_password = forms.CharField(widget=forms.PasswordInput(), required=True)
