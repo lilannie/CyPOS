@@ -21,26 +21,26 @@
                     <h3 class="panel-title">Edit User Information</h3>
 				</div>
 				<div class="panel-body">
-					<form role="form" method="post" action="./user_edit" enctype="multipart/form-data">
+					<form role="form" method="post" action="./user_edit">
 						{% csrf_token %}
 
 						First Name:                   
                         <div>
-                            <input id="first_name1" type="text" name="Firstname" value={{ request.user.first_name }} /> 
+                            <input name="first_name" type="text" id="Firstname" value={{ request.user.first_name }} /> 
                         </div> 
                         Last Name:
                         <div>
                             
-                            <input id="last_name" type="text" name="Lastname" value={{ request.user.last_name }} /> 
+                            <input name="last_name" type="text" id="Lastname" value={{ request.user.last_name }} /> 
                         </div>
                         Username:
                         <div>
-                            <input id="username" type="text" name="Username" value={{ request.user.username }} />
+                            <input name="username" type="text" id="Username" value={{ request.user.username }} />
                         </div>
                         Email:
                         <div>
                             
-                            <input id="email" type="text" name="Email" value={{ request.user.email }} />
+                            <input name="email" type="text" id="Email" value={{ request.user.email }} />
                         </div>
                         <!--
                         <div>
