@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UserForm
+from .forms import UserForm, UserEditForm
 from .models import Courses, Majors, Pos, Electives, Departments, Colleges
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
@@ -31,7 +31,7 @@ def register(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-            user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+            user = authenticate(username=request.POST.get('username'), password=request.POsaveST.get('password'))
             login(request, user)
             # Update our variable to tell the template registration was successful.
 
@@ -235,20 +235,53 @@ def user_edit(request):
     user = request.user
     user_form = None
     context = RequestContext(request)
+    print(request.method)
     if request.method == 'POST':
-        user_form = UserForm(data=request.POST)
+        user_form = UserEditForm(data=request.POST)
+        #here = request.POST['first_name'].first_name
+        
+        
         if user_form.is_valid():
             user = user_form.save()
-            return render(request, 'base/user_edit.html', {}, context)
+            print(user_form['first_name'])
+            return render(request, 'base/manage.html', {}, context)
         else:
             print(user_form.errors)
-    # What're you do when it's not a post? When you just wanna display the form?
+    
     else:
         user = request.user
         user_form = UserForm(request.POST, instance=request.user)
+        user_form.first_name = "user.first_name"
+        print(user.first_name)
         #user_form = UserEditForm(request.POST, instance=request.user)
        # user_form.save()
     return render(request, 'base/user_edit.html', {'user_form': user_form})
+
+# def user_edit(request):
+#     #user = request.user
+#     user_edit_form = UserEditForm()
+#     #context = RequestContext(request)
+
+#     if request.method == 'POST':
+#         user_form = UserEditForm(data=request.POST)
+#         if user_form.is_valid():
+#             user_form.save()
+#             return render(request, 'base/user_edit.html', {}, context)
+#         else:
+#             print(user_form.errors)
+#     # What're you do when it's not a post? When you just wanna display the form?
+#     else:
+#         #user = request.user
+#        context['']
+#         user_edit_form['first_name'] = request.first_name
+#         user_edit_form['last_name'] = request.last_name
+#         user_edit_form['username'] = request.username
+#         user_edit_form['email'] = request.email
+
+#         #user_form = UserEditForm(request.POST, instance=request.user)
+#        # user_form.save()
+#         return render(request, 'base/user_edit.html', {'user_edit_form': user_edit_form})
+
 
 
 # class UserEditForm():
