@@ -235,9 +235,10 @@ def user_edit(request):
     user = request.user
     user_form = None
     context = RequestContext(request)
-    print(request.method)
+    print vars(request)
+    # return HttpResponse(request)
     if request.method == 'POST':
-        user_form = UserEditForm(data=request.POST)
+        user_form = UserEditForm(request.POST, instance=request.user)
         #here = request.POST['first_name'].first_name
         
         
@@ -246,10 +247,9 @@ def user_edit(request):
             print(user_form['first_name'])
             return render(request, 'base/manage.html', {}, context)
         else:
-            print(user_form.errors)
+           print (user_form.errors)
     
     else:
-        user = request.user
         user_form = UserForm(request.POST, instance=request.user)
         user_form.first_name = "user.first_name"
         print(user.first_name)
