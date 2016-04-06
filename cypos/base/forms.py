@@ -27,11 +27,7 @@ class UserEditForm(ModelForm):
             'email': 'Email',
             #'title': "Modify your user information here. Any information you would like to keep, do not modify."
         }]
-    def clean(self):
-        somefield = self.cleaned_data.get('somefield')
-        if not somefield:
-            raise forms.ValidationError('Some field is blank')
-
+    
 class ChangePasswordForm(ModelForm):
     old_password = forms.CharField(widget=forms.PasswordInput(), required=True)
     new_password = forms.CharField(widget=forms.PasswordInput(), required=True)
