@@ -14,16 +14,23 @@ class UserForm (ModelForm):
         model = User
         fields = ('first_name', 'last_name', 'username', 'email', 'password')
 
+
 # Modify user information form 
 class UserEditForm(ModelForm):
     class Meta:
-       #model = models.Team
+        model = User
         fields = ['first_name', 'last_name', 'username', 'email']
         fieldsets = [{
-            'id': 'modify-team',
-            'legend': 'Modify User',
-            'title': "Modify your user information here. Any information you would like to keep, do not modify.",
+            'first_name':'First Name', 
+            'last_name': 'Last Name', 
+            'username': 'Username', 
+            'email': 'Email',
+            #'title': "Modify your user information here. Any information you would like to keep, do not modify."
         }]
+    def clean(self):
+        somefield = self.cleaned_data.get('somefield')
+        if not somefield:
+            raise forms.ValidationError('Some field is blank')
 
 class ChangePasswordForm(ModelForm):
     old_password = forms.CharField(widget=forms.PasswordInput(), required=True)
