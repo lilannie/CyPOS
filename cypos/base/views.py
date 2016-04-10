@@ -259,26 +259,46 @@ def user_password_edit(request):
     context = RequestContext(request)
     if request.method == 'POST':
         #print vars(request)
-        user_form = ChangePasswordForm(request.POST, instance=request.user)          
+        user_form = ChangePasswordForm(request.POST, instance=request.user)   
+        # print(request.POST['old_password'])
+        # print(request.POST['new_password_1'])
+        # print(request.POST['new_password_2'])       
         if user_form.is_valid():
-            print vars(request)
-            print(request.POST['old_password'])
-            print(request.POST['new_password_1'])
-            print(request.POST['new_password_2'])
-            if request.user.password == request.POST['old_password']:
-                if request.POST['new_password_1'] != request.POST['new_password_2']:
-                    return render(request, 'base/user_password_edit.html', {'user_form': user_form})
+            #print vars(request)
+            # print(request.user.check_password(request.POST['old_password']))
+            # print(request.POST['old_password'])
+            # print(request.POST['new_password_1'])
+            # print(request.POST['new_password_2'])
+            cur = "before POST check"
+            if request.user.check_password(request.POST['old_password']):
+                cur = "Current and retyped old password match"
+                print(cur)
+                if request.POST['new_password_1'] == request.POST['new_password_2']:
+                    print(request.user.check_password(request.POST['old_password']) == request.POST['new_password_1'])
+                    if request.user.check_password(request.POST['new_password_1']):
+                        cur = "problem: old password and new password match"
+                        print(cur)
+                        return render(request, 'base/user_password_edit.html', {'user_form': user_form})
+                    else:                   
+                        cur = "old password and new password don't match!! :)"
+                        print(cur)
+                        user.set_password(request.POST['new_password_1'])
+                        user = user_form.save()
+                        user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+                        return render(request, 'base/manage.html', {}, context) 
                 else: 
-                    return render(request, 'base/manage.html', {}, context)
+                    cur = "problem: new_password_1 and new_password_2 don't match"
+                    print(cur)
+                    return render(request, 'base/user_password_edit.html', {'user_form': user_form})
+                    
             else:
+                cur = "problem: Current and retyped old password don't match"
+                print(cur)
                 return render(request, 'base/user_password_edit.html', {'user_form': user_form})
-            user.set_password(request.POST['new_password_1'])
-            user = user_form.save()
-            #user.set_password(request.POST.Password.new_password_1)
-            user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
-            # login(request, user)
-            return render(request, 'base/manage.html', {}, context)
+            
         else:
+            cur = "request not POST"
+            print(cur)
             return render(request, 'base/manage.html', {}, context)
             print (user_form.errors)
     

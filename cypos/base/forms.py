@@ -47,10 +47,11 @@ class ChangePasswordForm(ModelForm):
             'title': 'Your password should be at least 8 characters long.<br>' +
                      'Passwords must contain a lowercase letter, an uppercase letter, and a number or symbol.'
         }]
-    def clean(self):
-        cleaned_data = super(ChangePasswordForm, self).clean()
-        if cleaned_data.get('new_password_1') != cleaned_data.get('new_password_2'):
-            raise forms.ValidationError("The passwords you inputted do not match.")
+    # def clean(self):
+    #     cleaned_data = super(ChangePasswordForm, self).clean()
+    #     if cleaned_data.get('new_password_1') != cleaned_data.get('new_password_2'):
+    #         cur = ""
+    #         raise forms.ValidationError("The passwords you inputted do not match.")
 
 # class ForgotPasswordForm(ModelForm):
 #     old_password = forms.CharField(widget=forms.PasswordInput(), required=True)
