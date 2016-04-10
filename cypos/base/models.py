@@ -37,8 +37,8 @@ class Courses(models.Model):
 
 class Prerequisite(models.Model):
     id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='prerequisite_course')
-    courseFor = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='prerequisite_courseFor')
+    course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='prerequisite_course')
+    courseFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='prerequisite_courseFor')
     NONE = 'N'
     FRESHMAN = 'F'
     SOPHOMORE = 'SP'
@@ -56,8 +56,8 @@ class Prerequisite(models.Model):
 
 class Corequisite(models.Model):
     id = models.AutoField(primary_key=True)
-    course = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='corequisite_course')
-    courseFor = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE, related_name='corequisite_courseFor')
+    course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='corequisite_course')
+    courseFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='corequisite_courseFor')
 
 
 class Semesters(models.Model):
@@ -102,6 +102,8 @@ class Electives(models.Model):
     name = models.TextField(null=False, blank=False)
     major = models.ForeignKey(Majors, null=True, on_delete=models.CASCADE)
     courses = models.ManyToManyField(Courses)
+    creditNum = models.IntegerField(null=True, blank=True)
+    overlapWith = models.ManyToManyField("self")
 
     def __unicode__(self):
         return self.id
