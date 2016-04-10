@@ -27,7 +27,6 @@ class Courses(models.Model):
     acronym = models.TextField(null=False, blank=False, default='0')
     name = models.TextField(null=False, blank=False, default='0')
     description = models.TextField(null=False, blank=False, default='0')
-    # prereqs = models.ManyToManyField("self", on_delete=models.SET_NULL)
     numCredits = models.IntegerField(null=True, blank=False, default='0')
     department = models.ForeignKey(Departments, null=True, on_delete=models.CASCADE)
     classificationNeeded = models.BooleanField(null=False, default=False)

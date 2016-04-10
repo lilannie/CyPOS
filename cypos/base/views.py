@@ -146,11 +146,14 @@ def courses_view(request):
 
 def course_view_department(request, id):
     try:
-        courses = Courses.objects.get(id=id).order_by('number')
+        courses = Courses.objects.filter(department_id=id).order_by('number')
+        department = Departments.objects.get(id=id)
     except Courses.DoesNotExist:
         courses = []
+        department = []
     return render(request, 'base/course_department.html', {
-        'courses': courses
+        'courses': courses,
+        'department': department,
     })
 
 
@@ -219,10 +222,14 @@ def user_detail(request, id):
 def pos_view(request):
     try:
         pos = Pos.objects.filter(user=request.user).order_by('-id')[0]
+        neededCourses = pos.neededCourses.all()
+        print(pos.id)
     except:
         pos = []
+        neededCourses = []
     return render(request, 'base/view.html', {
-        'pos': pos
+        'pos': pos,
+        'neededCourses': neededCourses
     })
 
 
