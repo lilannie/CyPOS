@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import UserForm, UserEditForm
+from .forms import UserForm, UserEditForm, ChangePasswordForm
 from .models import Courses, Majors, Pos, Electives, Departments, Colleges
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
@@ -31,7 +31,7 @@ def register(request):
             # Once hashed, we can update the user object.
             user.set_password(user.password)
             user.save()
-            user = authenticate(username=request.POST.get('username'), password=request.POsaveST.get('password'))
+            user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
             login(request, user)
             # Update our variable to tell the template registration was successful.
 
@@ -235,16 +235,14 @@ def user_edit(request):
     user = request.user
     user_form = None
     context = RequestContext(request)
-    #print vars(request)
-    # return HttpResponse(request)
+    print vars(request)
+    
     if request.method == 'POST':
         user_form = UserEditForm(request.POST, instance=request.user)
-        #here = request.POST['first_name'].first_name
         
         
         if user_form.is_valid():
             user = user_form.save()
-            #print(user_form['first_name'])
             return render(request, 'base/manage.html', {}, context)
         else:
            print (user_form.errors)
@@ -252,76 +250,42 @@ def user_edit(request):
     else:
         user_form = UserForm(request.POST, instance=request.user)
         user_form.first_name = "user.first_name"
-        #print(user.first_name)
-        #user_form = UserEditForm(request.POST, instance=request.user)
-       # user_form.save()
+       
     return render(request, 'base/user_edit.html', {'user_form': user_form})
 
 def user_password_edit(request):
     user = request.user
     user_form = None
     context = RequestContext(request)
-    #print vars(request)
-    # return HttpResponse(request)
     if request.method == 'POST':
-        user_form = UserEditPasswordForm(request.POST, instance=request.user)
-        #here = request.POST['first_name'].first_name
-                
+        #print vars(request)
+        user_form = ChangePasswordForm(request.POST, instance=request.user)          
         if user_form.is_valid():
-            user.set_password(user.password)
+            print vars(request)
+            print(request.POST['old_password'])
+            print(request.POST['new_password_1'])
+            print(request.POST['new_password_2'])
+            if request.user.password == request.POST['old_password']:
+                if request.POST['new_password_1'] != request.POST['new_password_2']:
+                    return render(request, 'base/user_password_edit.html', {'user_form': user_form})
+                else: 
+                    return render(request, 'base/manage.html', {}, context)
+            else:
+                return render(request, 'base/user_password_edit.html', {'user_form': user_form})
+            user.set_password(request.POST['new_password_1'])
             user = user_form.save()
-            #print(user_form['first_name'])
+            #user.set_password(request.POST.Password.new_password_1)
+            user = authenticate(username=request.POST.get('username'), password=request.POST.get('password'))
+            # login(request, user)
             return render(request, 'base/manage.html', {}, context)
         else:
-           print (user_form.errors)
+            return render(request, 'base/manage.html', {}, context)
+            print (user_form.errors)
     
     else:
-        user_form = UserForm(request.POST, instance=request.user)
+        user_form = ChangePasswordForm(request.POST, instance=request.user)
         user_form.first_name = "user.first_name"
         #print(user.first_name)
         #user_form = UserEditForm(request.POST, instance=request.user)
        # user_form.save()
-    return render(request, 'base/user_edit.html', {'user_form': user_form})
-# def user_edit(request):
-#     #user = request.user
-#     user_edit_form = UserEditForm()
-#     #context = RequestContext(request)
-
-#     if request.method == 'POST':
-#         user_form = UserEditForm(data=request.POST)
-#         if user_form.is_valid():
-#             user_form.save()
-#             return render(request, 'base/user_edit.html', {}, context)
-#         else:
-#             print(user_form.errors)
-#     # What're you do when it's not a post? When you just wanna display the form?
-#     else:
-#         #user = request.user
-#        context['']
-#         user_edit_form['first_name'] = request.first_name
-#         user_edit_form['last_name'] = request.last_name
-#         user_edit_form['username'] = request.username
-#         user_edit_form['email'] = request.email
-
-#         #user_form = UserEditForm(request.POST, instance=request.user)
-#        # user_form.save()
-#         return render(request, 'base/user_edit.html', {'user_edit_form': user_edit_form})
-
-
-
-# class UserEditForm():
-#     def get(request):
-#         form = forms.UserEditForm(instance=team)
-#         context['form'] = form
-#         return self.render_to_response(context)
-    # Origin: iseage signup github repo
-    #def post(self, request, context, *args, **kwargs):
-    #     team = context['participant'].team
-    #     form = base_forms.ModifyTeamForm(data=request.POST, instance=team)
-    #     if form.is_valid():
-    #         form.save()
-    #         messages.success(request, 'Team successfully updated.')
-    #         return redirect('manage-team')
-    #     #If the form was invalid, get the old participant object back
-    #     context['participant'] = request.user.participant
-    #     return self.get(request, context, form=form)
+    return render(request, 'base/user_password_edit.html', {'user_form': user_form})

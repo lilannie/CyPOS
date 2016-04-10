@@ -117,19 +117,23 @@ class Substitutes(models.Model):
         return self.id
 
 
-# class UserModel (models.ModelForm):
-#     first_name = forms.CharField(help_text="First Name:")
-#     last_name = forms.CharField(help_text="Last Name:")
-#     username = forms.CharField(help_text="Username:")
-#     email = forms.CharField(help_text="Email:")
-#     password = forms.CharField(widget=forms.PasswordInput(), help_text="Password:")
+# class password (models.ModelForm):
+#     old_password = forms.CharField(widget=forms.PasswordInput(), required=True)
+#     new_password_1 = forms.CharField(widget=forms.PasswordInput(), required=True)
+#     new_password_2 = forms.CharField(widget=forms.PasswordInput(), required=True)
 
-#     def firstname(request):
-#         first_name=request.user.first_name
+#     def __unicode__(self):
+#         return self.id
 
-#     class Meta:
-#         model = User
-#         fields = ('first_name', 'last_name', 'username', 'email', 'password')
+class Password(models.Model):
+    id = models.AutoField(primary_key=True)
+    old_password = models.TextField(null=False, blank=False)
+    new_password_1 = models.TextField(null=False, blank=False)
+    new_password_2 = models.TextField(null=False, blank=False)
+
+    def __unicode__(self):
+        return self.id
+
 
 
 
