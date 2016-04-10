@@ -99,3 +99,14 @@ Template Syntax
 {{ variable }}
 {% tag %}
 {{ variable|filter }}
+
+Remote Linux Server Documentation:
+--------------------
+Directories:
+---------------
+Gitlab Repository:
+/var/www/G17_CyPOS
+
+Run Server:
+---------------
+python /var/www/G17_CyPOS/cypos/manage.py runserver 10.25.70.162:8000
