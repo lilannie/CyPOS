@@ -1,6 +1,7 @@
 {% include "base.html" %}
 {% load staticfiles %}
 {% block content %}
+    <h1>{{ department.name }}</h1>
     {% for course in courses %}
         <div class="panel panel-default panel-primary">
             <div class="panel-heading">
