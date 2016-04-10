@@ -37,7 +37,7 @@ def Main():
 if ___name__ == "__main__":
 	Main()
 
-#foe loop
+#for loop
 #Counts up to 5 not including 5
 for step in range(5):
 
