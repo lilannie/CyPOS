@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'base',
     'bootstrap3',
     'django_extensions',
+    'haystack'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,7 +88,39 @@ DATABASES = {
 
     }
 }
-
+# Documentation found at: 
+# http://django-haystack.readthedocs.org/en/v2.4.1/tutorial.html#installation
+# http://django-haystack.readthedocs.org/en/v2.4.1/settings.html
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://localhost:9001/solr/default',
+        'TIMEOUT': 60 * 5,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
+        'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    },
+    'autocomplete': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': '/home/search/whoosh_index',
+        'STORAGE': 'file',
+        'POST_LIMIT': 128 * 1024 * 1024,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
+        'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    },
+    'slave': {
+        'ENGINE': 'xapian_backend.XapianEngine',
+        'PATH': '/home/search/xapian_index',
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
+        'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    },
+    'db': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+        'EXCLUDED_INDEXES': ['thirdpartyapp.search_indexes.BarIndex'],
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
