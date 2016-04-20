@@ -4,7 +4,7 @@ from .models import Courses, Majors, Pos, Electives, Departments, Colleges
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-
+from django.views.generic import TemplateView
 from django.contrib.auth.models import User
 
 
@@ -316,3 +316,8 @@ def user_password_edit(request):
         #user_form = UserEditForm(request.POST, instance=request.user)
        # user_form.save()
     return render(request, 'base/user_password_edit.html', {'user_form': user_form})
+
+# Search view to be used with Haystack search
+class SearchView(TemplateView):
+    template_name = 'mysearch/search.html'
+search_view = SearchView.as_view()
