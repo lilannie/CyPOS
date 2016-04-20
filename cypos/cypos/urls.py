@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'^user_password_edit', views.user_password_edit, name='user_password_edit'),
     #url(r'^user_edit/$', views.UserEditForm.get(), name='user-edit-page')
     (r'^search/', include('haystack.urls')),
+        #for use with ElasticSearch
+        #url(r'^search$', search_view, name='search_view'),
 ]
