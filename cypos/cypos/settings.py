@@ -92,12 +92,22 @@ DATABASES = {
 # Documentation found at: 
 # http://django-haystack.readthedocs.org/en/v2.4.1/tutorial.html
 # http://django-haystack.readthedocs.org/en/v2.4.1/settings.html
+# Used for whoosh
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
+
+# backup... used for elasticsearch
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+#         'URL': 'http://127.0.0.1:9200/',
+#         'INDEX_NAME': 'haystack',
+#     },
+# }
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
