@@ -1,3 +1,15 @@
+##added compatibility for current django project
+
+#ignore files complied on the fly for django framework
+*.pyc
+
+
+
+
+
+
+
+##--old project?--##
 # Logs
 logs
 *.log
@@ -34,3 +46,4 @@ node_modules
 
 # Ignore .idea folder
 .idea/
+
