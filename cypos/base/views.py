@@ -204,6 +204,8 @@ def pos_new(request):
                 pos.neededCourses.add(course)
         # print(request.POST.get(str(number)))
 
+        coursesNeeded = pos.neededCourses.all
+
         # print(pos.takenCourses.all())
         return render(request, 'base/view.html', {}, context)
 
