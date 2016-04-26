@@ -207,15 +207,8 @@ def pos_new(request):
         coursesNeeded = pos.neededCourses.all
 
         # print(pos.takenCourses.all())
-        pos = Pos.objects.filter(user=request.user).order_by('-id')
-        neededCourses = []
-        display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
-        
-        return render(request, 'base/view.html', {
-                'pos': pos,
-                'neededCourses': neededCourses,
-                'display': display
-                }, context)
+        return render(request, 'base/view.html', {}, context)
+
     return render(request, 'base/new.html', {
         'majors': majors,
         'electives': electives,
