@@ -222,10 +222,13 @@ def user_detail(request, id):
 
 
 def pos_view(request):
-    #pos = Pos.objects.all()
+    pos = Pos.objects.filter(user=request.user).order_by('-id')
+    neededCourses = []
+    default = 0
     if request.method == 'POST':
             pos = Pos.objects.filter(user=request.user).order_by('-id') #[-1]
             neededCourses = pos.neededCourses.all()
+            default = 1 
             print(pos)
             print vars(pos)
             print(pos[1].id)
@@ -238,12 +241,23 @@ def pos_view(request):
             print(neededCourses.courses_id)
             return render(request, 'base/view.html', {
                 'pos': pos,
-                'neededCourses': neededCourses
+                'neededCourses': neededCourses,
+                'default': default
     })
 
-    pos = []
-    neededCourses = []
-    return render(request, 'base/view.html', {
+    
+    # print(pos)
+    # print vars(pos)
+    # print(pos[1].id)
+    # print(pos.user)
+    # print(pos.major)
+    # print(pos.takenCourses)
+    # print(pos.neededCourses)
+    # print(pos.semester)
+    # print(request.user.id)
+    # print(neededCourses.courses_id)
+    pos = Pos.objects.filter(user=request.user).order_by('-id')[0]
+    return render(request, 'base/view.html/{pos.id}', {
         'pos': pos,
         'neededCourses': neededCourses
     })
