@@ -224,41 +224,44 @@ def user_detail(request, id):
 def pos_view(request):
     pos = Pos.objects.filter(user=request.user).order_by('-id')
     neededCourses = []
-    default = 0
-    print vars(request)
+    display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
     if request.method == 'POST':
-            pos = Pos.objects.filter(user=request.user).order_by('-id') #[-1]
-            neededCourses = []
-            default = 1             
-            # print vars(pos)
-            # print(pos[1].id)
-            # print(pos.user)
-            # print(pos.major)
-            # print(pos.takenCourses)
-            # print(pos.neededCourses)
-            # print(pos.semester)
-            # print(request.user.id)
-            # print(neededCourses.courses_id)
+        print(request.POST)
+        if request.POST.get("posSwitch", "0") == 'posSwitch':
+            toprint = request.POST.get("posSwitch", "0")
+            print(toprint)
+            display = request.POST.get("generated", "0")
+            print(display)
             return render(request, 'base/view.html', {
                 'pos': pos,
                 'neededCourses': neededCourses,
-                'default': default
-    })
+                'display': display
+            })
+        if request.POST.get("deletePOS", "0") == 'deletePOS':
+            toprint = request.POST.get("deletePOS", "0")
+            print(toprint)
+            display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
+            print(display)
+            return render(request, 'base/view.html', {
+                'pos': pos,
+                'neededCourses': neededCourses,
+                'display': display
+            })
 
-    
-    # print(pos)
-    # print vars(pos)
-    # print(pos[1].id)
-    # print(pos.user)
-    # print(pos.major)
-    # print(pos.takenCourses)
-    # print(pos.neededCourses)
-    # print(pos.semester)
-    # print(request.user.id)
-    # print(neededCourses.courses_id)
+        pos = Pos.objects.filter(user=request.user).order_by('-id')
+        neededCourses = []
+        display = request.POST.get("display", "0")            
+        print(display)
+        return render(request, 'base/view.html', {
+            'pos': pos,
+            'neededCourses': neededCourses,
+            'display': display
+        })
+    print(display)
     return render(request, 'base/view.html', {
         'pos': pos,
-        'neededCourses': neededCourses
+        'neededCourses': neededCourses,
+        'display': display
     })
 
 
