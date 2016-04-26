@@ -227,21 +227,24 @@ def pos_view(request):
     display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
     if request.method == 'POST':
         print(request.POST)
-        if request.POST.get("posSwitch", "0") == 'posSwitch':
-            toprint = request.POST.get("posSwitch", "0")
-            print(toprint)
-            display = request.POST.get("generated", "0")
-            print(display)
+        #print vars(request)
+        toprint = request.POST.get("submit", "0")
+        display = request.POST.get("generated", "0")
+        print(toprint)
+        print(display)
+        if request.POST.get("submit", "0") == 'posSwitch':  
             return render(request, 'base/view.html', {
                 'pos': pos,
                 'neededCourses': neededCourses,
                 'display': display
             })
-        if request.POST.get("deletePOS", "0") == 'deletePOS':
-            toprint = request.POST.get("deletePOS", "0")
-            print(toprint)
+        if request.POST.get("submit", "0") == 'deletePOS':         
+            posDel = Pos.objects.get(id=display)
+            print(posDel.id)
+            print vars(posDel)
+            posDel.delete()
+            toprint = request.POST.get("submit", "0")
             display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
-            print(display)
             return render(request, 'base/view.html', {
                 'pos': pos,
                 'neededCourses': neededCourses,
@@ -257,6 +260,7 @@ def pos_view(request):
             'neededCourses': neededCourses,
             'display': display
         })
+
     print(display)
     return render(request, 'base/view.html', {
         'pos': pos,
