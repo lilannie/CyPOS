@@ -109,6 +109,17 @@ class Electives(models.Model):
         return self.id
 
 
+class PosElective(models.Model):
+    id = models.AutoField(primary_key=True)
+    pos = models.ForeignKey(Pos, null=True, on_delete=models.CASCADE)
+    elective = models.ForeignKey(Electives, null=True, on_delete=models.CASCADE)
+    takenCourses = models.ManyToManyField(Courses, related_name='elective_takenCourses')
+    creditsNeeded = models.IntegerField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.id
+
+
 class Substitutes(models.Model):
     id = models.AutoField(primary_key=True)
     course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='substitute_course')
