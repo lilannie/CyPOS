@@ -3,7 +3,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("select").change(function(){
+        $("#major").change(function(){
             $(this).find("option:selected").each(function(){
 /*                if($(this).attr("value")=="Computer Engineering"){
                     $(".major").not(".Computer Engineering").hide();
@@ -47,9 +47,22 @@
                         {{ reqCourse.department.acronym }} {{ reqCourse.number }}
                     </label>
                     <!--Views checks the name for POST.get(), but prints the value-->
-
                 </div>
             {% endfor %}
+        </div>
+    {% endfor %}
+    {% for elective in electives %}
+        <div class="{{ elective.major.name }} major">
+            <div class="select">
+                <label>
+                    {{ elective.name }} Elective
+                </label>
+                <select id="{{elective.id}}" multiple>
+                    {% for course in elective.courses.all %}
+                    <option value="{{ course.id }}">{{ course.acronym }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
     {% endfor %}
     <button type="submit" class="btn btn-default">Submit</button>

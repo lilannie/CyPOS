@@ -1,10 +1,15 @@
 from django.shortcuts import render
 from .forms import UserForm, UserEditForm, ChangePasswordForm
-from .models import Courses, Majors, Pos, Electives, Departments, Colleges
+from .models import Courses, Majors, Pos, Electives, Departments, Colleges, PosElective
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+<<<<<<< HEAD
 from django.views.generic import TemplateView
+=======
+from django.db.models import Q
+
+>>>>>>> master
 from django.contrib.auth.models import User
 
 
@@ -186,7 +191,11 @@ def user_manage(request):
 
 def pos_new(request):
     context = RequestContext(request)
-    majors = Majors.objects.all()
+    # majors = Majors.objects.all()
+    se = Majors.objects.get(name="Software Engineering")
+    cpre = Majors.objects.get(name="Computer Engineering")
+    cs = Majors.objects.get(name="Computer Science")
+    majors = {se, cpre, cs}
     electives = Electives.objects.all()
 
     if request.method == 'POST':
@@ -195,6 +204,28 @@ def pos_new(request):
         pos = Pos.objects.create(user=request.user, major=userMajor)
         pos.save()
 
+        electiveCourses = []
+        electivesNeeded = []
+
+        userElectives = Electives.objects.filter(major=userMajor)
+        for elective in userElectives:
+            posElective = PosElective.objects.create(pos=pos, elective=elective)
+            creditsTaken = 0
+            for course in elective.courses:
+                if str(request.POST.get(str(course.id))) != 'None':
+                    course = Courses.objects.get(acronym=request.POST.get(str(course.id)))
+                    posElective.takenCourses.add(course)
+                    creditsTaken = creditsTaken + course.numCredits
+                    electiveCourses.append(course)
+
+            if(elective.creditNum - creditsTaken < 0):
+                posElective.creditsNeeded = 0
+            else:
+                posElective.creditsNeeded = elective.creditNum - creditsTaken
+                electivesNeeded.append(posElective)
+
+            posElective.save()
+
         for reqCourse in userMajor.reqCourses.all():
             if str(request.POST.get(str(reqCourse.id))) != 'None':
                 course = Courses.objects.get(acronym=request.POST.get(str(reqCourse.id)))
@@ -202,12 +233,16 @@ def pos_new(request):
             else:
                 course = Courses.objects.get(id=reqCourse.id)
                 pos.neededCourses.add(course)
-        # print(request.POST.get(str(number)))
+
+        for courses in electiveCourses:
+            pos.takenCourses.add(course)
 
         coursesNeeded = pos.neededCourses.all
-
-        # print(pos.takenCourses.all())
-        return render(request, 'base/view.html', {}, context)
+        return render(request, 'base/view.html', {
+            'pos': pos,
+            'coursesNeeded': coursesNeeded,
+            'electivesNeeded': electivesNeeded,
+        }, context)
 
     return render(request, 'base/new.html', {
         'majors': majors,
