@@ -4,12 +4,8 @@ from .models import Courses, Majors, Pos, Electives, Departments, Colleges, PosE
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-<<<<<<< HEAD
 from django.views.generic import TemplateView
-=======
 from django.db.models import Q
-
->>>>>>> master
 from django.contrib.auth.models import User
 
 
@@ -238,6 +234,7 @@ def pos_new(request):
             pos.takenCourses.add(course)
 
         coursesNeeded = pos.neededCourses.all
+        pos = Pos.objects.filter(user=request.user).order_by('-id')
         return render(request, 'base/view.html', {
             'pos': pos,
             'coursesNeeded': coursesNeeded,
