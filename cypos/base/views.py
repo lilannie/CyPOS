@@ -257,6 +257,9 @@ def pos_view(request):
     pos = Pos.objects.filter(user=request.user).order_by('-id')
     neededCourses = []
     display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
+    temp = Pos.objects.filter(user=request.user).order_by('-id')[0]
+    print vars(temp.neededCourses.all)
+    #print vars(Pos.objects.filter(user=request.user).order_by('-id')[0])
     if request.method == 'POST':
         # print(request.POST)
         # print vars(request)

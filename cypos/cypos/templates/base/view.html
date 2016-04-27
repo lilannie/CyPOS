@@ -1,6 +1,27 @@
 {% include "base.html" %}
 {% block content %}
 {% csrf_token %}
+
+<script 
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js">
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#major").change(function(){
+            $(this).find("option:selected").each(function(){
+                if($(this).attr("value")==generated.id){
+                    $(".generated").not(generated.id).hide();
+                    $(".Software, .Engineering").show();
+                }
+                else{
+                    $(".generated").hide();
+                }
+            });
+        }).change();
+    });
+</script>
+
+
 <div class="panel panel-defaul panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Select POS</h3>
@@ -22,143 +43,38 @@
 
 <div class="panel panel-defaul panel-primary">
     <div class="panel-heading">
-        <h3 class="panel-title">Delete POS</h3>
-    </div>
-     <div class="form-group">
-        <form method="post" name="deletePOS">
-            {% csrf_token %}
-            <div>Would you like to delete the currently displayed program of study?</div>
-
-            <button type="submit" name="deletePOS" value="deletePOS" class="btn btn-default">Delete POS</button>
-        </form>  
-    </div>
-</div>
-
-<div class="panel panel-defaul panel-primary">
-    <div class="panel-heading">
         <h3 class="panel-title">Courses Needed</h3>
     </div>
     <div class="panel-body">
         <table class="table table-striped">
-            {% for course in pos.neededCourses.all %}
-                <tr>
-                    <td>{{ course.acronym }}</td>
-                </tr>
+            {% for generated in pos %}
+                {% for course in generated.neededCourses.all %}
+                    <div>
+                        {{ course.acronym }} {{course.number}}
+                    </div>
+                {% endfor %}
             {% endfor %}
         </table>
     </div>
 </div>
 
+
 <div class="panel panel-defaul panel-primary">
     <div class="panel-heading">
         <h3 class="panel-title">Semester</h3>
     </div>
+
     <div class="panel-body">
         <table class="table table-striped" id="current-members">
-            <thead><tr>
-                <th>Course Name</th>
-                <th>Course Number</th>
-                <th>Credit Hours</th>
-            </tr></thead>
-            <tbody>
-             <td class="first">{{ neededCourses.courses_id}}</td>
-            {% for pos in Pos %}
-            <tr id="member-{{ member.id }}">
-                <option value="{{ major.id }}">{{ major.name }}</option>
-                <td class="first">{{ neededCourses.courses_id}}</td>
-            </tr>
+            {% for generated in pos %}
+                {% for course in generated.semesters.all %}
+                    <div>
+                        {{ course.acronym }} {{course.number}} {{course.numCredits}}
+                    </div>
+                {% endfor %}
             {% endfor %}
-            </tbody>
         </table>
     </div>
 </div>
 
-<!--
-<div class="panel panel-defaul panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Semester</h3>
-    </div>
-    <div class="panel-body">
-        <table class="table table-hover">
-            <colgroup>
-                <col width="30"/>
-                <col width="100"/>
-                <col width="100"/>
-                <col width="100"/>
-            </colgroup>
-            <thead>
-            <tr>
-                <th colspan="1" class="redips-mark"></th>
-                <th colspan="1" class="redips-mark">Course Number</th>
-                <th colspan="1" class="redips-mark">Course Name</th>
-                <th colspan="1" class="redips-mark">Credit Hours</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr class="rl">
-                <td class="redips-rowhandler">
-                    <div class="redips-drag redips-row"></div>
-                </td>
-                <div class="redips-drag blue">
-                    <td>165</td>
-                    <td>Math</td>
-                    <td>4</td>
-                </div>
-            </tr>
-            <tr class="rl">
-                <td class="redips-rowhandler">
-                    <div class="redips-drag redips-row"></div>
-                </td>
-                <div class="redips-drag blue">
-                    <td>177</td>
-                    <td>Chem</td>
-                    <td>4</td>
-                </div>
-            </tr>
-            <tr class="rl">
-                <td class="redips-rowhandler">
-                    <div class="redips-drag redips-row"></div>
-                </td>
-                <div class="redips-drag blue">
-                    <td>101</td>
-                    <td>SE</td>
-                    <td>R</td>
-                </div>
-            </tr>
-            <tr class="rl">
-                <td class="redips-rowhandler">
-                    <div class="redips-drag redips-row"></div>
-                </td>
-                <div class="redips-drag blue">
-                    <td>185</td>
-                    <td>CprE</td>
-                    <td>3</td>
-                </div>
-            </tr>
-            <tr class="rl">
-                <td class="redips-rowhandler">
-                    <div class="redips-drag redips-row"></div>
-                </td>
-                <div class="redips-drag blue">
-                    <td>160</td>
-                    <td>LIB</td>
-                    <td>R</td>
-                </div>
-            </tr>
-            <tr class="rl">
-                <td class="redips-rowhandler">
-                    <div class="redips-drag redips-row"></div>
-                </td>
-                <div class="redips-drag blue">
-                    <td>150</td>
-                    <td>Engl</td>
-                    <td>3</td>
-                </div>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
--->
 {% endblock content %}
