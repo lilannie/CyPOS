@@ -50,7 +50,7 @@
             {% for generated in pos %}
                 {% for course in generated.neededCourses.all %}
                     <div>
-                        {{ course.acronym }} {{course.number}}
+                        {{ course.acronym }} {{course.number}} {{course.numCredits}}
                     </div>
                 {% endfor %}
             {% endfor %}
@@ -69,7 +69,13 @@
             {% for generated in pos %}
                 {% for course in generated.semesters.all %}
                     <div>
-                        {{ course.acronym }} {{course.number}} {{course.numCredits}}
+                        {{ course.term }} 
+                        {% for courses in course.all %}
+                            <div>
+                                {{ course.acronym }} {{course.number}} {{course.numCredits}}
+                            </div>
+                        {% endfor %}
+                        {{course.courses}} 
                     </div>
                 {% endfor %}
             {% endfor %}
