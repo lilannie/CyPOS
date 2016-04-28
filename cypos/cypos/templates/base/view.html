@@ -7,21 +7,14 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $(".coursesNeeded").change(function(){
+        $("#generated").change(function(){
             $(document).find("option:selected").each(function(){
-                // alert($(".coursesNeeded").attr("id"))
-                if($(this).attr("value")==$(".coursesNeeded").attr("id")){
-                    var thisid = $(this).attr("value");
-                    $(".coursesNeeded").hide();
-                    $(".coursesNeeded").filter('[id*='+thisid+']').show();
-
+                {% for generated in pos %}
+                if($(this).attr("value")=="{{ generated.id }}"){
+                    $(".coursesNeeded").not(".{{ generated.id }}pos").hide();
+                    $(".{{ generated.id }}pos").show();
                 }
-                else{
-                    $(".coursesNeeded").hide();
-                }         
-                // var thisid = $(document).find("option:selected").attr("value");
-                // $(".coursesNeeded").hide();
-                // $(".coursesNeeded").filter('[id*='+thisid+']').show();    
+                {% endfor %}  
             }); 
         }).change(); 
     });
@@ -47,7 +40,7 @@
 </div>
 
 {% for generated in pos %}
-<div class="coursesNeeded" id="{{generated.id}}">
+<div class="{{generated.id}}pos coursesNeeded" id="{{generated.id}}">
     <div class="panel panel-defaul panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">Courses Needed for POS {{generated.id}}</h3>
