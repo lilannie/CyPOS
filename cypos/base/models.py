@@ -122,14 +122,6 @@ class Substitutes(models.Model):
         return self.id
 
 
-# class password (models.ModelForm):
-#     old_password = forms.CharField(widget=forms.PasswordInput(), required=True)
-#     new_password_1 = forms.CharField(widget=forms.PasswordInput(), required=True)
-#     new_password_2 = forms.CharField(widget=forms.PasswordInput(), required=True)
-
-#     def __unicode__(self):
-#         return self.id
-
 class Password(models.Model):
     id = models.AutoField(primary_key=True)
     old_password = models.TextField(null=False, blank=False)
