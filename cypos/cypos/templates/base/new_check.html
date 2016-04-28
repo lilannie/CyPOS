@@ -1,0 +1,40 @@
+{% include "base.html" %}
+{% block content %}
+<h2>Check Electives</h2>
+<form method="post" action="/newcheck" name="electives">
+    <input type="hidden" name="major" value="{{ userMajorId }}" />
+    <input type="hidden" name="pos" value="{{ posId }}" />
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-4"><h4>Elective</h4></div>
+        <div class="col-md-4"><h4>Remainding Credits Needed</h4></div>
+        <div class="col-md-4"><h4>Select Courses to take to fulfill Elective</h4></div>
+    </div>
+    {% for poselective in electivesNeeded %}
+        <div class="row">
+            <div class="col-md-4">
+                <h5>{{ poselective.elective.name }} Elective</h5>
+                {% if poselective.elective.overlapWith.all %}
+                <p>
+                    <h6>May Overlap with:</h6>
+                    <ul>
+                    {% for electiveOverlap in poselective.elective.overlapWith.all %}
+                       <li>{{ electiveOverlap.name}}</li>
+                    {% endfor %}
+                    </ul>
+                </p>
+                {% endif %}
+            </div>
+            <div class="col-md-4">{{ poselective.creditsNeeded}}</div>
+            <div class="col-md-4">
+                <select id="{{ poselective.elective.id }}elective" name="{{ poselective.elective.id }}elective" multiple>
+                    {% for course in poselective.elective.courses.all %}
+                    <option value="{{ course.id }}">{{ course.acronym }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+{% endblock content %}
