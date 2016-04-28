@@ -7,20 +7,25 @@
 </script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $("#major").change(function(){
-            $(this).find("option:selected").each(function(){
-                if($(this).attr("value")==generated.id){
-                    $(".generated").not(generated.id).hide();
-                    $(".Software, .Engineering").show();
+        $(".coursesNeeded").change(function(){
+            $(document).find("option:selected").each(function(){
+                // alert($(".coursesNeeded").attr("id"))
+                if($(this).attr("value")==$(".coursesNeeded").attr("id")){
+                    var thisid = $(this).attr("value");
+                    $(".coursesNeeded").hide();
+                    $(".coursesNeeded").filter('[id*='+thisid+']').show();
+
                 }
                 else{
-                    $(".generated").hide();
-                }
-            });
-        }).change();
+                    $(".coursesNeeded").hide();
+                }         
+                // var thisid = $(document).find("option:selected").attr("value");
+                // $(".coursesNeeded").hide();
+                // $(".coursesNeeded").filter('[id*='+thisid+']').show();    
+            }); 
+        }).change(); 
     });
 </script>
-
 
 <div class="panel panel-defaul panel-primary">
     <div class="panel-heading">
@@ -35,28 +40,34 @@
                     <option value="{{ generated.id }}">{{ generated.id}}: {{ generated.major }}</option>                    
                 {% endfor %}               
             </select>
-            <button type="submit" name="submit" value="posSwitch" class="btn btn-default">Select</button>
+            <!--<button type="submit" name="submit" value="posSwitch" class="btn btn-default">Select</button>-->
             <button type="submit" name="submit" value="deletePOS" class="btn btn-default">Delete POS</button>
           </form>  
     </div>
 </div>
 
-<div class="panel panel-defaul panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Courses Needed</h3>
-    </div>
-    <div class="panel-body">
-        <table class="table table-striped">
-            {% for generated in pos %}
-                {% for course in generated.neededCourses.all %}
-                    <div>
-                        {{ course.acronym }} {{course.number}} {{course.numCredits}}
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        </table>
+{% for generated in pos %}
+<div class="coursesNeeded" id="{{generated.id}}">
+    <div class="panel panel-defaul panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Courses Needed for POS {{generated.id}}</h3>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped" id="{{ generated.id }}">
+                <div class="{{ generated.id }}">
+                    {% for course in generated.neededCourses.all %}
+                        <tr>
+                            <td>
+                            {{ course.acronym }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </div>
+            </table>
+        </div>
     </div>
 </div>
+{% endfor %}
 
 
 <div class="panel panel-defaul panel-primary">

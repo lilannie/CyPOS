@@ -187,7 +187,6 @@ def user_manage(request):
 
 def pos_new(request):
     context = RequestContext(request)
-    # majors = Majors.objects.all()
     se = Majors.objects.get(name="Software Engineering")
     cpre = Majors.objects.get(name="Computer Engineering")
     cs = Majors.objects.get(name="Computer Science")
@@ -195,10 +194,8 @@ def pos_new(request):
     electives = Electives.objects.all()
 
     if request.method == 'POST':
-        print(request.POST.get('major'))
         userMajor = Majors.objects.get(id=str(request.POST.get('major')))
         pos = Pos.objects.create(user=request.user, major=userMajor)
-        pos.save()
 
         electiveCourses = []
         electivesNeeded = []
@@ -207,20 +204,18 @@ def pos_new(request):
         for elective in userElectives:
             posElective = PosElective.objects.create(pos=pos, elective=elective)
             creditsTaken = 0
-            for course in elective.courses:
+            for course in elective.courses.all():
                 if str(request.POST.get(str(course.id))) != 'None':
                     course = Courses.objects.get(acronym=request.POST.get(str(course.id)))
                     posElective.takenCourses.add(course)
-                    creditsTaken = creditsTaken + course.numCredits
+                    creditsTaken = creditsTaken + int(course.numCredits)
                     electiveCourses.append(course)
-
-            if(elective.creditNum - creditsTaken < 0):
+            posElective.save()
+            if(elective.creditNum - int(creditsTaken) < 0):
                 posElective.creditsNeeded = 0
             else:
-                posElective.creditsNeeded = elective.creditNum - creditsTaken
+                posElective.creditsNeeded = elective.creditNum - int(creditsTaken)
                 electivesNeeded.append(posElective)
-
-            posElective.save()
 
         for reqCourse in userMajor.reqCourses.all():
             if str(request.POST.get(str(reqCourse.id))) != 'None':
@@ -230,9 +225,10 @@ def pos_new(request):
                 course = Courses.objects.get(id=reqCourse.id)
                 pos.neededCourses.add(course)
 
-        for courses in electiveCourses:
+        for course in electiveCourses:
             pos.takenCourses.add(course)
 
+        pos.save()
         coursesNeeded = pos.neededCourses.all
         pos = Pos.objects.filter(user=request.user).order_by('-id')
         return render(request, 'base/view.html', {
@@ -257,26 +253,11 @@ def pos_view(request):
     pos = Pos.objects.filter(user=request.user).order_by('-id')
     neededCourses = []
     display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
-    # temp = Pos.objects.filter(user=request.user).order_by('-id')[0]
-    # print vars(temp.neededCourses.all)
-    #print vars(Pos.objects.filter(user=request.user).order_by('-id')[0])
     if request.method == 'POST':
-        # print(request.POST)
-        # print vars(request)
         toprint = request.POST.get("submit", "0")
         display = request.POST.get("generated", "0")
-        # print(toprint)
-        # print(display)
-        if request.POST.get("submit", "0") == 'posSwitch':  
-            return render(request, 'base/view.html', {
-                'pos': pos,
-                'neededCourses': neededCourses,
-                'display': display
-            })
         if request.POST.get("submit", "0") == 'deletePOS':         
             posDel = Pos.objects.get(id=display)
-            # print(posDel.id)
-            # print vars(posDel)
             posDel.delete()
             toprint = request.POST.get("submit", "0")
             display = Pos.objects.filter(user=request.user).order_by('-id')[0].id
@@ -296,7 +277,6 @@ def pos_view(request):
         #     'display': display
         # })
 
-    # print(display)
     return render(request, 'base/view.html', {
         'pos': pos,
         'neededCourses': neededCourses,
