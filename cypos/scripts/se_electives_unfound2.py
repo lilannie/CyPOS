@@ -13,48 +13,48 @@ def run():
     supp = []
     tech = []
 
-    f = open("../files/degreeInfo/electives/txt/2unfound_international_electives.txt", "r")
-    f2 = open("../files/degreeInfo/electives/txt/3unfound_international_electives.txt", "w")
+    f = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_international_electives.txt", "r")
+    f2 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_international_electives.txt", "w")
     for line in f:
         ip.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f3 = open("../files/degreeInfo/electives/txt/2unfound_USD.txt", "r")
-    f4 = open("../files/degreeInfo/electives/txt/3unfound_USD.txt", "w")
+    f3 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_USD.txt", "r")
+    f4 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_USD.txt", "w")
     for line in f3:
         usd.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f5 = open("../files/degreeInfo/electives/txt/2unfound_arts_&_humanities.txt", "r")
-    f6 = open("../files/degreeInfo/electives/txt/3unfound_arts_&_humanities.txt", "w")
+    f5 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_arts_&_humanities.txt", "r")
+    f6 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_arts_&_humanities.txt", "w")
     for line in f5:
         ah.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f7 = open("../files/degreeInfo/electives/txt/2unfound_social_sciences.txt", "r")
-    f8 = open("../files/degreeInfo/electives/txt/3unfound_social_sciences.txt", "w")
+    f7 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_social_sciences.txt", "r")
+    f8 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_social_sciences.txt", "w")
     for line in f7:
         ss.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f9 = open("../files/degreeInfo/electives/txt/2unfound_math_electives.txt", "r")
-    f10 = open("../files/degreeInfo/electives/txt/3unfound_math_electives.txt", "w")
+    f9 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_math_electives.txt", "r")
+    f10 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_math_electives.txt", "w")
     for line in f9:
         math.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f11 = open("../files/degreeInfo/electives/txt/2unfound_econ_electives.txt", "r")
-    f12 = open("../files/degreeInfo/electives/txt/3unfound_econ_electives.txt", "w")
+    f11 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_econ_electives.txt", "r")
+    f12 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_econ_electives.txt", "w")
     for line in f11:
         econ.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f13 = open("../files/degreeInfo/electives/txt/2unfound_software_engineering_electives.txt", "r")
-    f14 = open("../files/degreeInfo/electives/txt/3unfound_software_engineering_electives.txt", "w")
+    f13 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_software_engineering_electives.txt", "r")
+    f14 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_software_engineering_electives.txt", "w")
     for line in f13:
         see.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f15 = open("../files/degreeInfo/electives/txt/2unfound_supp_electives.txt", "r")
-    f16 = open("../files/degreeInfo/electives/txt/3unfound_supp_electives.txt", "w")
+    f15 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_supp_electives.txt", "r")
+    f16 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_supp_electives.txt", "w")
     for line in f15:
         supp.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 
-    f17 = open("../files/degreeInfo/electives/txt/2unfound_technical_electives.txt", "r")
-    f18 = open("../files/degreeInfo/electives/txt/3unfound_technical_electives.txt", "w")
+    f17 = open("../files/degreeInfo/software_engineering/electives/txt/2unfound_technical_electives.txt", "r")
+    f18 = open("../files/degreeInfo/software_engineering/electives/txt/3unfound_technical_electives.txt", "w")
     for line in f17:
         tech.append(line.replace("\t", " ").replace("\n", "").replace("\r", ""))
 

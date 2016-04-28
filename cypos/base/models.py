@@ -32,47 +32,19 @@ class Courses(models.Model):
     classificationNeeded = models.BooleanField(null=False, default=False)
 
     def __unicode__(self):
-        return self.number + " " + self.department.acronym
+        return self.department.acronym + " " + self.number
 
 
 class Prerequisite(models.Model):
     id = models.AutoField(primary_key=True)
     course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='prerequisite_course')
     courseFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='prerequisite_courseFor')
-    NONE = 'N'
-    FRESHMAN = 'F'
-    SOPHOMORE = 'SP'
-    JUNIOR = 'J'
-    SENIOR = 'S'
-    CLASSIFICATION_CHOICES = (
-        (NONE, 'None'),
-        (FRESHMAN, 'Freshman'),
-        (SOPHOMORE, 'Sophomore'),
-        (JUNIOR, 'Junior'),
-        (SENIOR, 'Senior'),
-    )
-    classification = CLASSIFICATION_CHOICES
 
 
 class Corequisite(models.Model):
     id = models.AutoField(primary_key=True)
     course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='corequisite_course')
     courseFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='corequisite_courseFor')
-
-
-class Semesters(models.Model):
-    id = models.AutoField(primary_key=True)
-    numCredits = models.IntegerField(null=True, blank=True, default='0')
-    SPRING = 'S'
-    SUMMER = 'SS'
-    FALL = 'F'
-    TERM_CHOICES = (
-        (SPRING, 'Spring'),
-        (SUMMER, 'Summer'),
-        (FALL, 'Fall'),
-    )
-    term = TERM_CHOICES
-    courses = models.ManyToManyField(Courses, related_name='courses')
 
 
 class Majors(models.Model):
@@ -83,6 +55,29 @@ class Majors(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Electives(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.TextField(null=False, blank=False)
+    major = models.ForeignKey(Majors, null=True, on_delete=models.CASCADE)
+    courses = models.ManyToManyField(Courses, related_name="elective_courses")
+    creditNum = models.IntegerField(null=True, blank=True)
+    overlapWith = models.ManyToManyField("self")
+
+    def __unicode__(self):
+        return self.name
+
+
+class Semesters(models.Model):
+    id = models.AutoField(primary_key=True)
+    numCredits = models.IntegerField(null=True, blank=True, default='0')
+    courses = models.ManyToManyField(Courses, related_name='courses')
+    order = models.IntegerField(null=True, blank=True)
+    electives = models.ManyToManyField(Electives, related_name='electives_in_semester')
+
+    def __unicode__(self):
+        return self.id
 
 
 class Pos(models.Model):
@@ -97,13 +92,10 @@ class Pos(models.Model):
         return self.id
 
 
-class Electives(models.Model):
+class FourYrPlan(models.Model):
     id = models.AutoField(primary_key=True)
-    name = models.TextField(null=False, blank=False)
-    major = models.ForeignKey(Majors, null=True, on_delete=models.CASCADE)
-    courses = models.ManyToManyField(Courses)
-    creditNum = models.IntegerField(null=True, blank=True)
-    overlapWith = models.ManyToManyField("self")
+    major = models.ForeignKey(Majors, related_name='FourYrPlanMajor', null=True, on_delete=models.CASCADE)
+    semesters = models.ManyToManyField(Semesters, related_name='FourYrPlanSemesters')
 
     def __unicode__(self):
         return self.id
@@ -117,13 +109,14 @@ class PosElective(models.Model):
     creditsNeeded = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
-        return self.id
+        return self.elective.name
 
 
 class Substitutes(models.Model):
     id = models.AutoField(primary_key=True)
     course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='substitute_course')
     courseFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='substitute_courseFor')
+    courseSubOf = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='substitude_courseSubOf')
 
     def __unicode__(self):
         return self.id

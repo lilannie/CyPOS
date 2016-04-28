@@ -5,19 +5,17 @@
     $(document).ready(function(){
         $("#major").change(function(){
             $(this).find("option:selected").each(function(){
-/*                if($(this).attr("value")=="Computer Engineering"){
-                    $(".major").not(".Computer Engineering").hide();
-                    $(".Computer, .Engineering").show();
-                }
-                else if($(this).attr("value")=="Computer Science"){
-                    $(".major").not(".ComputerScience").hide();
-                    $(".Computer, .Science").show();
-                }
-                else */
-
                 if($(this).attr("value")=="559"){
                     $(".major").not(".Software Engineering").hide();
                     $(".Software, .Engineering").show();
+                }
+                else if($(this).attr("value")=="464") {
+                    $(".major").not(".Computer Engineering").hide();
+                    $(".Computer.Engineering").show();
+                }
+                else if($(this).attr("value")=="465"){
+                    $(".major").not(".Computer Science").hide();
+                    $(".Computer, .Science").show();
                 }
                 else{
                     $(".major").hide();
@@ -38,30 +36,47 @@
         </select>
     </div>
 
+    <h3>Select all the required courses you've taken:</h3>
     {% for major in majors %}
         <div class="{{ major.name }} major">
             {% for reqCourse in major.reqCourses.all %}
-                <div class="checkbox">
-                    <label>
-                         <input type="checkbox" value="{{ reqCourse.acronym }}" name="{{ reqCourse.id }}">
-                        {{ reqCourse.department.acronym }} {{ reqCourse.number }}
-                    </label>
-                    <!--Views checks the name for POST.get(), but prints the value-->
-                </div>
+                <label>
+                     <input type="checkbox" value="{{ reqCourse.acronym }}" name="{{ major.id }}major">
+                    {{ reqCourse.department.acronym }} {{ reqCourse.number }}
+                </label>
+                <!--Views checks the name for POST.get(), but prints the value-->
             {% endfor %}
         </div>
     {% endfor %}
+    <div class="row">
+        <div class="col-md-4"><h4>Elective</h4></div>
+        <div class="col-md-4"><h4>Required Number Credits</h4></div>
+        <div class="col-md-4"><h4>Select Courses Taken Already for Elective</h4></div>
+    </div>
     {% for elective in electives %}
         <div class="{{ elective.major.name }} major">
-            <div class="select">
-                <label>
-                    {{ elective.name }} Elective
-                </label>
-                <select id="{{elective.id}}" multiple>
-                    {% for course in elective.courses.all %}
-                    <option value="{{ course.id }}">{{ course.acronym }}</option>
-                    {% endfor %}
-                </select>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>{{ elective.name }} Elective</h5>
+                    {% if elective.overlapWith.all %}
+                    <p>
+                        <h6>May Overlap with:</h6>
+                        <ul>
+                        {% for electiveOverlap in elective.overlapWith.all %}
+                           <li>{{ electiveOverlap.name}}</li>
+                        {% endfor %}
+                        </ul>
+                    </p>
+                    {% endif %}
+                </div>
+                <div class="col-md-4">{{ elective.creditNum}}</div>
+                <div class="col-md-4">
+                    <select id="{{ elective.id }}elective" name="{{ elective.id }}elective" multiple>
+                        {% for course in elective.courses.all %}
+                        <option value="{{ course.id }}">{{ course.acronym }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
             </div>
         </div>
     {% endfor %}
