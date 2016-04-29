@@ -388,7 +388,7 @@ def pos_new(request):
                 return x.weight
 
             # Find max weight and total credits
-            maxWeight = max(neededCourses, key=weight)
+            maxWeight = max(neededCourses, key=weight).weight
             print("Max weight: " + str(maxWeight))
             totalcredits = 0
 
@@ -397,7 +397,14 @@ def pos_new(request):
             for course in neededCourses:
                 if course in basicprogram.courses.all():
                     setattr(course, 'weight', course.weight + 6)
-                totalcredits = totalcredits + course.numCredits
+                    # Some credits are a string, ex: "1-2"
+                    try:
+                        int(course.numCredits)
+                        totalcredits = totalcredits + int(course.numCredits)
+                    except:
+                        credits = course.numCredits.replace("-", "")
+                        credits = credits.replace(" ", "")
+                        totalcredits = totalcredits + int(credits)
             print("Total credits: " + str(totalcredits))
 
             # Estimate number of semesters
@@ -440,7 +447,14 @@ def pos_new(request):
                 if semester.numCredits != 18 and (semester.numCredits + course.numCredits) <= 18:
                     setattr(course, 'sem', order)
                     semester.courses.add(course)
-                    semester.numCredits += course.numCredits
+                    # Some credits are a string, ex: "1-2"
+                    try:
+                        int(course.numCredits)
+                        semester.numCredits += int(course.numCredits)
+                    except:
+                        credits = course.numCredits.replace("-", "")
+                        credits = credits.replace(" ", "")
+                        semester.numCredits += int(course.numCredits)
                     placed.append(course)
                     print("Course "+ str(course) + "placed in semester order = " + order)
                 else:

@@ -147,6 +147,12 @@ class Note(models.Model):
     def __unicode__(self):
         return self.title
 
+class MajorSubstitutes(models.Model):
+    id = models.AutoField(primary_key=True)
+    major = models.ForeignKey(Majors, related_name='MajorSubstitute', null=True, on_delete=models.CASCADE)
+    course = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='MajorSubstitutesCourse')
+    courseFor = models.ForeignKey(Courses, null=True, on_delete=models.CASCADE, related_name='MajorSubstitutesCourseFor')
+
 
 
 
