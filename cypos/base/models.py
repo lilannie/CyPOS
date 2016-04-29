@@ -91,16 +91,6 @@ class Pos(models.Model):
     def __unicode__(self):
         return self.id
 
-
-class FourYrPlan(models.Model):
-    id = models.AutoField(primary_key=True)
-    major = models.ForeignKey(Majors, related_name='FourYrPlanMajor', null=True, on_delete=models.CASCADE)
-    semesters = models.ManyToManyField(Semesters, related_name='FourYrPlanSemesters')
-
-    def __unicode__(self):
-        return self.id
-
-
 class BasicProgram(models.Model):
     id = models.AutoField(primary_key=True)
     major = models.ForeignKey(Majors, related_name='BasicProgramMajor', null=True,on_delete=models.CASCADE)
