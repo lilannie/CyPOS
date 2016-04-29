@@ -25,7 +25,7 @@
         <h3 class="panel-title">Select POS</h3>
     </div>
      <div class="form-group">
-         <form method="post" name="submit">
+         <form method="post" action="/view" name="submit">
             {% csrf_token %}
             <div>Pos (newest to oldest):</div>
             <select class="form-control" id="generated" name="generated">
@@ -39,52 +39,44 @@
     </div>
 </div>
 
-
 {% for generated in pos %}
 <div class="{{generated.id}}pos coursesNeeded" id="{{generated.id}}">
+    <h1>POS number {{ generated.id }}</h1>
+    {% for semester in generated.semesters.all %}
     <div class="panel panel-defaul panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">Courses Needed for POS {{generated.id}}</h3>
+            <h3 class="panel-title">
+                Semester {{ semester.order }}
+            </h3>
         </div>
         <div class="panel-body">
-            <table class="table table-striped" id="{{ generated.id }}">
-                <div class="{{ generated.id }}">
-                    {% for course in generated.neededCourses.all %}
-                        <tr>
-                            <td>
-                            {{ course.acronym }}
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Course</th>
+                        <th>Name</th>
+                        <th>Number of Credits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for course in semester.courses.all %}
+                    <tr>
+                        <td>{{ course.acronym }}</td>
+                        <td>{{ course.name }}</td>
+                        <td>{{ course.numCredits }}</td>
+                    </tr>
+                {% endfor %}
+                    <tr>
+                        <td></td>
+                        <td>Total Number of Credits:</td>
+                        <td>{{ semester.numCredits }}</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
     </div>
+    {% endfor %}
 </div>
 {% endfor %}
-
-<div class="panel panel-defaul panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Semester</h3>
-    </div>
-
-    <div class="panel-body">
-        <table class="table table-striped" id="current-members">
-            {% for generated in pos %}
-                {% for course in generated.semesters.all %}
-                    <div>
-                        {{ course.term }} 
-                        {% for courses in course.all %}
-                            <div>
-                                {{ course.acronym }} {{course.number}} {{course.numCredits}}
-                            </div>
-                        {% endfor %}
-                        {{course.courses}} 
-                    </div>
-                {% endfor %}
-            {% endfor %}
-        </table>
-    </div>
-</div>
 
 {% endblock content %}

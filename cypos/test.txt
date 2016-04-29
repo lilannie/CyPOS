@@ -1,0 +1,178 @@
+Performing system checks...
+
+System check identified no issues (0 silenced).
+April 29, 2016 - 16:47:58
+Django version 1.9.4, using settings 'cypos.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+Max weight: 5
+Total credits: 27
+Initial total semesters: 5
+SE 166: 0
+SPCM 212: 0
+MATH 267: 0
+COMS 311: 0
+STAT 330: 0
+SE 339: 0
+COMS 352: 0
+COMS 363: 0
+SE 492: 0
+SE 494: 0
+COMS 230: 1
+SE 319: 1
+COMS 321: 1
+COMS 327: 1
+SE 491: 1
+CPRE 281: 2
+ENGL 314: 2
+SE 329: 2
+COMS 309: 3
+COMS 228: 4
+COMS 227: 5
+SE 101: 6
+LIB 160: 6
+CHEM 167: 6
+CPRE 185: 6
+PHYS 221: 6
+MATH 166: 7
+ENGL 150: 8
+MATH 165: 8
+ENGL 250: 9
+Checking ENGL 250
+Checking MATH 165
+
+Course MATH 165 placed in semester order = 0
+Checking ENGL 250
+Checking ENGL 150
+
+Course ENGL 150 placed in semester order = 0
+Checking ENGL 250
+
+Course ENGL 250 placed in semester order = 1
+Checking MATH 166
+
+Course MATH 166 placed in semester order = 1
+Checking PHYS 221
+
+Course PHYS 221 placed in semester order = 1
+Checking CPRE 185
+
+Course CPRE 185 placed in semester order = 0
+Checking CHEM 167
+
+Course CHEM 167 placed in semester order = 0
+Checking LIB 160
+
+Course LIB 160 placed in semester order = 0
+Checking SE 101
+
+Course SE 101 placed in semester order = 0
+Checking COMS 227
+
+
+Course COMS 227 placed in semester order = 1
+Checking COMS 228
+
+Course COMS 228 placed in semester order = 2
+Checking COMS 309
+
+Course COMS 309 placed in semester order = 3
+Checking SE 329
+
+Course SE 329 placed in semester order = 4
+Checking ENGL 314
+
+Course ENGL 314 placed in semester order = 2
+Checking CPRE 281
+
+
+
+Course CPRE 281 placed in semester order = 2
+Checking SE 491
+
+New semester order: 5
+
+Course SE 491 placed in semester order = 5
+Checking COMS 327
+
+Course COMS 327 placed in semester order = 3
+Checking COMS 321
+
+Course COMS 321 placed in semester order = 3
+Checking SE 319
+
+Course SE 319 placed in semester order = 3
+Checking COMS 230
+
+Course COMS 230 placed in semester order = 2
+Checking SE 494
+
+Course SE 494 placed in semester order = 0
+Checking SE 492
+
+New semester order: 6
+
+Course SE 492 placed in semester order = 6
+Checking COMS 363
+
+Course COMS 363 placed in semester order = 3
+Checking COMS 352
+
+Course COMS 352 placed in semester order = 4
+Checking SE 339
+
+Course SE 339 placed in semester order = 4
+Checking STAT 330
+
+Course STAT 330 placed in semester order = 2
+Checking COMS 311
+
+Course COMS 311 placed in semester order = 3
+Checking MATH 267
+
+
+
+Course MATH 267 placed in semester order = 4
+Checking SPCM 212
+
+Course SPCM 212 placed in semester order = 0
+Checking SE 166
+
+Course SE 166 placed in semester order = 0
+Semester 0 18 credits
+CHEM 167
+CPRE 185
+ENGL 150
+LIB 160
+MATH 165
+SE 101
+SE 166
+SE 494
+SPCM 212
+Semester 1 16 credits
+COMS 227
+ENGL 250
+MATH 166
+PHYS 221
+Semester 2 16 credits
+CPRE 281
+COMS 228
+COMS 230
+ENGL 314
+STAT 330
+Semester 3 18 credits
+COMS 309
+COMS 311
+COMS 321
+COMS 327
+COMS 363
+SE 319
+Semester 4 13 credits
+COMS 352
+MATH 267
+SE 329
+SE 339
+Semester 5 3 credits
+SE 491
+Semester 6 2 credits
+SE 492
