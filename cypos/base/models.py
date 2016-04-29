@@ -101,6 +101,12 @@ class FourYrPlan(models.Model):
         return self.id
 
 
+class BasicProgram(models.Model):
+    id = models.AutoField(primary_key=True)
+    major = models.ForeignKey(Majors, related_name='BasicProgramMajor', null=True,on_delete=models.CASCADE)
+    courses = models.ManyToManyField(Courses, related_name="BasicProgramCourses")
+
+
 class PosElective(models.Model):
     id = models.AutoField(primary_key=True)
     pos = models.ForeignKey(Pos, null=True, on_delete=models.CASCADE)

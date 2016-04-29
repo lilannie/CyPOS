@@ -6,6 +6,7 @@ Django==1.9.4
 django-bootstrap3==7.0.1
 django-extensions==1.6.1
 django-haystack==2.4.1
+django-jquery==1.12.2
 elasticsearch==2.3.0
 enum34==1.1.2
 idna==2.1

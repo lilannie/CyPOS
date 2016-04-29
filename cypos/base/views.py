@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from .forms import UserForm, UserEditForm, ChangePasswordForm
 from .models import Courses, Majors, Pos, Electives, Departments, \
-    Colleges, PosElective, FourYrPlan, Prerequisite, Corequisite, Substitutes
+    Colleges, PosElective, FourYrPlan, Prerequisite, Corequisite, \
+    Substitutes, BasicProgram, Semesters
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -268,22 +269,79 @@ def pos_new(request):
                     setattr(course, 'checkprereqs', checkprereqs)
                     checkCourses.append(course)
 
-            return render(request, 'base/new_check_prereq.html', {
-                'courses': checkCourses,
-                'posId': pos.id,
-                'userMajorId': userMajor.id
-            }, context)
+            if len(courses) != 0:
+                return render(request, 'base/new_check_prereq.html', {
+                    'courses': checkCourses,
+                    'posId': pos.id,
+                    'userMajorId': userMajor.id
+                }, context)
+            else:
+                pos = Pos.objects.get(id=str(request.POST.get('pos')))
+                userMajor = Majors.objects.get(id=str(request.POST.get('major')))
+                prereqs = request.POST.getlist('prereqs')
+                for prereq in prereqs:
+                    course = Courses.objects.get(acronym=prereq)
+                    pos.takenCourses.add(course)
+                stack = []
+                neededCourses = []
+                nc = pos.neededCourses.all().order_by('number')
+                for course in nc:
+                    setattr(course, 'weight', 0)
+                    stack.append(course)
+                    neededCourses.append(course)
+                while len(stack) != 0:
+                    course = stack.pop()
+                    prereqs = Prerequisite.objects.filter(courseFor=course)
+                    for prereq in prereqs:
+                        if prereq.course.department.id != 262:
+                            found = False
+                            if prereq.course not in stack:
+                                if prereq.course not in pos.takenCourses.all():
+                                    if prereq.course not in pos.neededCourses.all():
+                                        substitutes = Substitutes.objects.filter(courseFor=course, courseSubOf=prereq.course)
+                                        for substitute in substitutes:
+                                            if substitute.course in pos.takenCourses.all():
+                                                found = True
+                                    else:
+                                        found = True
+                                else:
+                                    found = True
+                            else:
+                                found = True
+                                setattr(stack[stack.index(prereq.course)], 'weight', course.weight + 1)
+                            if found == False:
+                                setattr(prereq.course, 'weight', course.weight + 1)
+                                stack.insert(0, prereq.course)
+                                if prereq.course not in pos.neededCourses.all():
+                                    setattr(prereq.course, 'weight', course.weight + 1)
+                                    print(course)
+                                    neededCourses.append(prereq.course)
+                                    pos.neededCourses.add(prereq.course)
+                        else:
+                            if str(prereq.course.number) == 'CLASS':
+                                setattr(course, 'class', prereq.course.acronym)
+                            elif str(prereq.course.number) == 'CREDITS':
+                                setattr(course, 'credits', prereq.course.acronym)
+
+                def reverse_weight(x, y):
+                    return y.weight - x.weight
+                neededCourses = sorted(neededCourses, cmp=reverse_weight)
+                for course in neededCourses:
+                    print(str(course)+": "+str(course.weight))
+
 
         elif str(request.path_info) == '/newcheckprereq':
+            # Add user inputted prereqs to takenCourses
             pos = Pos.objects.get(id=str(request.POST.get('pos')))
             userMajor = Majors.objects.get(id=str(request.POST.get('major')))
-
             prereqs = request.POST.getlist('prereqs')
             for prereq in prereqs:
-                course = Courses.objects.get(acronym=prereq)
-
+                print('Prereq: '+ str(prereq))
+                course = Courses.objects.get(id=prereq)
                 pos.takenCourses.add(course)
+                print("Added this prereq to takenCourses: "+str(course))
 
+            # Deal with prereqs
             stack = []
             neededCourses = []
             nc = pos.neededCourses.all().order_by('number')
@@ -291,7 +349,6 @@ def pos_new(request):
                 setattr(course, 'weight', 0)
                 stack.append(course)
                 neededCourses.append(course)
-
             while len(stack) != 0:
                 course = stack.pop()
                 prereqs = Prerequisite.objects.filter(courseFor=course)
@@ -301,7 +358,7 @@ def pos_new(request):
                         if prereq.course not in stack:
                             if prereq.course not in pos.takenCourses.all():
                                 if prereq.course not in pos.neededCourses.all():
-                                    substitutes = Substitutes.objects.filter(courseFor=prereq.course, courseSubOf=course)
+                                    substitutes = Substitutes.objects.filter(courseFor=course, courseSubOf=prereq.course)
                                     for substitute in substitutes:
                                         if substitute.course in pos.takenCourses.all():
                                             found = True
@@ -319,20 +376,131 @@ def pos_new(request):
                                 setattr(prereq.course, 'weight', course.weight + 1)
                                 neededCourses.append(prereq.course)
                                 pos.neededCourses.add(prereq.course)
-                else:
-                    if str(prereq.course.number) == 'CLASS':
-                        setattr(course, 'class', prereq.course.acronym)
-                    elif str(prereq.course.number) == 'CREDITS':
-                        setattr(course, 'credits', prereq.course.acronym)
+                    else:
+                        if str(prereq.course.number) == 'CLASS':
+                            setattr(course, 'class', prereq.course.acronym)
+                        elif str(prereq.course.number) == 'CREDITS':
+                            setattr(course, 'credits', prereq.course.acronym)
+            # Deal with schedule of courses
 
-            print(neededCourses)
-            # plan = FourYrPlan.objects.get(major=userMajor)
-            # semesters = plan.semesters.all().order_by('order')
-            # for semester in semesters:
-            #     for couse in semester.courses:
-            #
-            #
-            #
+            # Order classes by weight, largest at top, smallest at bottom
+            def weight(x):
+                return x.weight
+
+            # Find max weight and total credits
+            maxWeight = max(neededCourses, key=weight)
+            print("Max weight: " + str(maxWeight))
+            totalcredits = 0
+
+            # Add extra weight for basic program
+            basicprogram = BasicProgram.objects.get(major=userMajor)
+            for course in neededCourses:
+                if course in basicprogram.courses.all():
+                    setattr(course, 'weight', course.weight + 6)
+                totalcredits = totalcredits + course.numCredits
+            print("Total credits: " + str(totalcredits))
+
+            # Estimate number of semesters
+            totalSemesters = 0
+            minSemesters = totalcredits / 18
+            if maxWeight > minSemesters:
+                totalSemesters = maxWeight
+            else:
+                totalSemesters = minSemesters
+            print("Total semesters: " + str(totalSemesters))
+
+            # Create empty semesters
+            semesters = []
+            for step in range(totalSemesters):
+                s = Semesters.objects.create(order=step)
+                semesters.append(s)
+
+            # Order classes by weight, smallest at top, largest at bottom
+            def weight(x, y):
+                return x.weight - y.weight
+            neededCourses = sorted(neededCourses, cmp=weight)
+
+            # Find earliest semester a course can be placed
+            def findLatestSem(prereqs, semesters):
+                count = 0
+                numToFind = len(prereqs)
+                latestSem = 0
+                for semester in semesters:
+                    for course in semester.courses.all():
+                        if course in prereqs:
+                            count += 1
+                            latestSem = semester.order
+                        if count == numToFind:
+                            return latestSem
+                return latestSem
+
+            # Try to put a course in a semesters[order]
+            def put(semesters, order, course, placed, totalSemesters):
+                semester = semesters[order]
+                if semester.numCredits != 18 and (semester.numCredits + course.numCredits) <= 18:
+                    setattr(course, 'sem', order)
+                    semester.courses.add(course)
+                    semester.numCredits += course.numCredits
+                    placed.append(course)
+                    print("Course "+ str(course) + "placed in semester order = " + order)
+                else:
+                    if (order + 1) > (totalSemesters - 1):
+                        print("Semester created")
+                        semester = Semesters.objects.create(order=(order+1))
+                        totalSemesters += 1
+                        semesters[order+1] = semester
+                        put(semesters, (order+1), course, placed, totalSemesters)
+                    else:
+                        put(semesters, (order+1), course, placed, totalSemesters)
+
+            placed = []
+            for course in neededCourses:
+                # Get prereqs and coreqs
+                print("Checking "+str(course))
+                prereqs = Prerequisite.objects.filter(courseFor=course)
+                coreqs = Corequisite.objects.filter(courseFor=course)
+                for prereq in prereqs:
+                    if prereq.course in pos.takenCourses.all():
+                        prereqs.remove(prereq)
+                        print("Removing prereq: "+ str(prereq.course))
+                    else:
+                        print("Prereq: "+str(prereq.course))
+                for coreq in coreqs:
+                    if coreq.course in pos.takenCourses.all():
+                        coreqs.remove(coreq)
+                        print("Removing coreq: "+ str(coreq.course))
+                    else:
+                        print("Coreq: "+str(coreq.course))
+
+                # Logic for first avaliable semester
+                print("Length of prereqs: " + str(len(prereqs)))
+                semCount = 0
+                if len(prereqs) != 0:
+                    semCount = findLatestSem(prereqs, semesters) + 1
+                print("Semester count: " + str(semCount))
+
+                print("Length of coreqs: " + str(len(coreqs)))
+                if len(coreqs) == 0:
+                    put(semesters, semCount, course, placed, totalSemesters)
+                else:
+                    for coreq in coreqs:
+                        if coreq.course in placed:
+                            if placed[placed.index(coreq.course)].sem >= semCount:
+                                put(semesters, placed[placed.index(coreq.course)].sem, course, placed, totalSemesters)
+                            else:
+                                put(semesters, semCount, course, placed, totalSemesters)
+                        else:
+                            put(semesters, semCount, coreq.course, placed, totalSemesters)
+                            put(semesters, semCount, course, placed, totalSemesters)
+
+            for semester in semesters:
+                print("Semester "+ semester.order)
+                for course in semester.courses.all():
+                    print(course)
+
+            # for course in neededCourses:
+            #     print(str(course)+ ": "+ str(course.weight))
+
             # return render(request, 'base/view.html', {
             #     'pos': pos,
             #
@@ -361,16 +529,6 @@ def pos_view(request):
                 'neededCourses': neededCourses,
                 'display': display
             })
-
-        # pos = Pos.objects.filter(user=request.user).order_by('-id')
-        # neededCourses = []
-        # display = request.POST.get("display", "0")            
-        # print(display)
-        # return render(request, 'base/view.html', {
-        #     'pos': pos,
-        #     'neededCourses': neededCourses,
-        #     'display': display
-        # })
 
     return render(request, 'base/view.html', {
         'pos': pos,
@@ -449,9 +607,6 @@ def user_password_edit(request):
     else:
         user_form = ChangePasswordForm(request.POST, instance=request.user)
         user_form.first_name = "user.first_name"
-        #print(user.first_name)
-        #user_form = UserEditForm(request.POST, instance=request.user)
-       # user_form.save()
     return render(request, 'base/user_password_edit.html', {'user_form': user_form})
 
 # Search view to be used with Haystack search
