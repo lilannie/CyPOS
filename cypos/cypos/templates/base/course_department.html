@@ -1,36 +1,38 @@
 {% include "base.html" %}
 {% load staticfiles %}
 {% block content %}
-    <h1>{{ department.name }}</h1>
-    {% for course in courses %}
-        <div class="panel panel-default panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">{{ course.acronym }}</h3>
+    <div style="width: 75%; margin: auto;">
+        <h1 style="text-align: center">{{ department.name }}</h1>
+        {% for course in courses %}
+            <div class="panel panel-default panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{ course.acronym }}</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <tr>
+                            <th style="width: 200px;">Name:</th>
+                            <td>{{ course.name}}</td>
+                        </tr>
+                        <tr>
+                            <th style="width: 200px;">Prerequisites:</th>
+                            <td>
+                                {%for prereq in course.prereqs.all %}
+                                    {{ prereq.acronym }} <br/>
+                                {% endfor %}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width: 200px;">Credit Hours:</th>
+                            <td>{{ course.numCredits }}</td>
+                        </tr>
+                        <tr>
+                            <th style="width: 200px;">Description:</th>
+                            <td>{{ course.description }}</td>
+                        </tr>
+                    </table>
+                </div>
             </div>
-            <div class="panel-body">
-                <table class="table table-striped">
-                    <tr>
-                        <th>Name:</th>
-                        <td>{{ course.name}}</td>
-                    </tr>
-                    <tr>
-                        <th>Prerequisites:</th>
-                        <td>
-                            {%for prereq in course.prereqs.all %}
-                                {{ prereq.acronym }} <br/>
-                            {% endfor %}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Credit Hours:</th>
-                        <td>{{ course.numCredits }}</td>
-                    </tr>
-                    <tr>
-                        <th>Description:</th>
-                        <td>{{ course.description }}</td>
-                    </tr>
-                </table>
-            </div>
-        </div>
     {% endfor %}
+    </div>
 {% endblock content %}

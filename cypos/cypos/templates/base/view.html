@@ -20,62 +20,64 @@
     });
 </script>
 
-<div class="panel panel-defaul panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Select POS</h3>
-    </div>
-     <div class="form-group">
-         <form method="post" action="/view" name="submit">
-            {% csrf_token %}
-            <div>Pos (newest to oldest):</div>
-            <select class="form-control" id="generated" name="generated">
-                {% for generated in pos %}
-                    <option value="{{ generated.id }}">{{ generated.id}}: {{ generated.major }}</option>                    
-                {% endfor %}               
-            </select>
-            <!--<button type="submit" name="submit" value="posSwitch" class="btn btn-default">Select</button>-->
-            <button type="submit" name="submit" value="deletePOS" class="btn btn-default">Delete POS</button>
-          </form>  
-    </div>
-</div>
-
-{% for generated in pos %}
-<div class="{{generated.id}}pos coursesNeeded" id="{{generated.id}}">
-    <h1>POS number {{ generated.id }}</h1>
-    {% for semester in generated.semesters.all %}
+<div style="width:75%; margin: auto;">
     <div class="panel panel-defaul panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">
-                Semester {{ semester.order }}
-            </h3>
+            <h3 class="panel-title">Select POS</h3>
         </div>
-        <div class="panel-body">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Course</th>
-                        <th>Name</th>
-                        <th>Number of Credits</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for course in semester.courses.all %}
-                    <tr>
-                        <td>{{ course.acronym }}</td>
-                        <td>{{ course.name }}</td>
-                        <td>{{ course.numCredits }}</td>
-                    </tr>
-                {% endfor %}
-                    <tr>
-                        <td></td>
-                        <td>Total Number of Credits:</td>
-                        <td>{{ semester.numCredits }}</td>
-                    </tr>
-                </tbody>
-            </table>
+         <div class="form-group" style="width: 90%; margin: auto;;">
+             <form method="post" action="/view" name="submit">
+                {% csrf_token %}
+                <div>Pos (newest to oldest):</div>
+                <select class="form-control" id="generated" name="generated">
+                    {% for generated in pos %}
+                        <option value="{{ generated.id }}">{{ generated.id}}: {{ generated.major }}</option>
+                    {% endfor %}
+                </select>
+                <!--<button type="submit" name="submit" value="posSwitch" class="btn btn-default">Select</button>-->
+                <button type="submit" name="submit" value="deletePOS" class="btn btn-default">Delete POS</button>
+              </form>
         </div>
     </div>
-    {% endfor %}
+
+    {% for generated in pos %}
+    <div class="{{generated.id}}pos coursesNeeded" id="{{generated.id}}">
+        <h1>POS number {{ generated.id }}</h1>
+        {% for semester in generated.semesters.all %}
+        <div class="panel panel-defaul panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    Semester {{ semester.order }}
+                </h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Course</th>
+                            <th>Name</th>
+                            <th>Number of Credits</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for course in semester.courses.all %}
+                        <tr>
+                            <td>{{ course.acronym }}</td>
+                            <td>{{ course.name }}</td>
+                            <td>{{ course.numCredits }}</td>
+                        </tr>
+                    {% endfor %}
+                        <tr>
+                            <td></td>
+                            <td>Total Number of Credits:</td>
+                            <td>{{ semester.numCredits }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endfor %}
 
